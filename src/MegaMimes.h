@@ -190,20 +190,20 @@ typedef struct
   char* 	mMimeName ;
   
   bool 	mTextFile ;
-  const char*	mTextEncoding ;
+  char*	mTextEncoding ;
   
 } MegaFileInfo ;
 
 
 /**
-  @brief
+  @fn
     The function gets the mime type of the file specified by the path. 
-    The function does not check if the file exists or not. It just uses the file basename 
+    The function does not check if the file exists or not. It just uses the file's basename 
     including the extension to lookup the mime type. The filename can also be an extension
     only, which is preceeded by a ".". Example (.mp3, mega.mp3, /usr/lib/mega.mp3 ) will all 
     return the same thing.
   @param pFileName
-    The name of the file whose mime type should be guessed
+    The name of the file whose mime type should be determined
   @return 
     the mimetype of the file or NULL if no mimetype is known 
     for the file. The string returned should be freed
@@ -212,11 +212,11 @@ char* getMegaMimeType ( const char* pFileName );
 
 
 /**
-  @brief 
-    The function guesses the file extension for the mimetype. The mimetype should be 
+  @fn
+    The function gets the file extensions for the mimetype. The mimetype should be 
     in the form first-part/second-part, otherwise it is invalid. An optional version can be 
-    added to the string. Any other trailing details are ignored. Pattern matching could also be
-    used
+    added to the string. Any other trailing details are ignored. * character can be used to match
+    everything. Eg video/ returns all video file extensions and * returns all file extensions
   
   @param pMimeType
     The mimetype whose extension is to be determined 
@@ -228,61 +228,61 @@ char* getMegaMimeType ( const char* pFileName );
 char** getMegaMimeExtensions ( const char* pMimeType );
 
 /**
-  @brief
-    Gets information about the file. The file need not exist.
-    If the file name has no extension, NULL is returned.
+  @fn
+    Gets information about the file. 
     
   @param pFilePath
-    The name of the file whose information is to be determined. Can be 
-    and extension, which in that case a dot must be the first character.
+    The name of the file whose information is to be determined. 
     
   @return 
     the information about the file. The structure returned should be freed 
-    with ot_fileinfo_free
+    with freeMegaFileInfo. The function returns NULL if the file does not exists, or the user does not 
+    have permissions to read from the file
 */
 MegaFileInfo* getMegaFileInformation( const char* pFilePath );
 
 /**
-  @brief 
-    Returns whether the fileis a text file or not. The function
-    is a really slows function, as it scans through every byte, checking
-    to see if it is a control character or not. 	
+  @fn 
+    Returns whether the file is a text file or not. The function
+    is a really slow function, as it scans through every byte, checking
+    to see if it is a control character or not. The encoding is taken into consideration.	
   @param pUrl 
     The path name for the file. If the file des not exist, false is returned.
   @return 
-    whether the file is a text file or not 		
+    whether the file is a text file or not. Returns false if the file does not eixist. 		
 */
 bool isTextFile ( const char* path ); 
 
 /**
-  @brief 
+  @fn 
     Returns whether the file is a binary file or not 	
   @param pUrl 
-    The path name for the file. If the file des not exist, false is returned.
+    The path name for the file. 
   @return 
-    whether the file is a bnary file or not 		
+    whether the file is a binary file or not. Reutrns false if the file does not exist. 		
   
 */
 bool isBinaryFile (const char* path );
 
 /**
-  @brief 
-    The function gets the encoding of the file. The string can be utf-8, utf-16BE, utf-16LE, utf-16
-    utf-32, urtf-32BE, utf-32LE. The function does not check if the file is binary file or a text file.
+  @pre The file is assumed to be a text file. Use isTextFile to check the file before calling 
+  		this function. 
+  @fn 
+    The function gets the encoding of the file. The string can be UTF-8, UTF-8, UTF-16LE, UTF-16
+    UTF-32, UTF-32BE, UTF-32LE. The function does not check if the file is binary file or a text file.
     It is assumend that you are really sure that it is a binary file. You can use @func isTextFile to 
     first check if it is a text file, before using the function. 
   @param path
-    The path name for the file. If the file des not exist, NULL is returned if the file does not exist, or
-    you do not have permissions to read from the file or any of its parent directories.
+    The path name for the file  
   @return 
-    the file encoding or NULL 		
+    the file encoding or UTF-8
 */
 const char* getMegaTextFileEncoding( const char* path );
 
 /**
-  @brief 
+  @fn 
     The function deallocates and destroys a MegaFileInfo structure. If the structure is NULL, the function 
-    simply returns nothing and does nothing. 
+    simply and does nothing. 
   @param pData 
     The MegaFileInfo structure to be freed 
 */
@@ -290,7 +290,7 @@ const char* getMegaTextFileEncoding( const char* path );
 void freeMegaFileInfo(MegaFileInfo* pData );
 
 /**
-  @brief 
+  @fn 
     The function deallocates and frees a string returned by any of the functions. The difference between
     this function and the std library @func free , is that this function does nothing if its 
     argument is NULL
@@ -300,9 +300,9 @@ void freeMegaFileInfo(MegaFileInfo* pData );
 void freeMegaString( char* pData );
 
 /**
-  @brief
+  @fn
     The function frees the dynamically allocated array of dynamically allocated strings returned by 
-    @func getMegaMimeExtensions. The function simply does nothing ig its argument is NULL
+    @func getMegaMimeExtensions. The function simply does nothing if its argument is NULL
   @param pData 
     The string array to be freed.
 */

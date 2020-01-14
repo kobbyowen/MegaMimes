@@ -3,11 +3,11 @@
 void getMegaMimeTypeTest(void* data)
 {
   char * res = getMegaMimeType(".txt") ;
-  assert_string_equal(res, "plain.txt") ;
+  assert_string_equal(res, "text/plain") ;
   freeMegaString(res);
 
   res = getMegaMimeType(".1") ;
-  assert_string_equal(res, "text/roff") ;
+  assert_string_equal(res, "text/troff") ;
   freeMegaString(res);
 
   res = getMegaMimeType(".zip") ;

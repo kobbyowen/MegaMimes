@@ -1096,7 +1096,17 @@ MegaFileInfo* getMegaFileInformation( const char* pFilePath )
 	info->mMimeType = mimetype ;
 	
 	info->mTextFile = isTextFile(pFilePath) ;
-	info->mTextEncoding = info->mTextFile ? getMegaTextFileEncoding(pFilePath) : "" ;
+	if(info->mTextFile){
+		const char* enc = getMegaTextFileEncoding(pFilePath);
+		info->mTextEncoding = malloc(strlen(enc)+1);
+		assert(info->mTextEncoding != NULL);
+		strcpy(info->mTextEncoding, enc);
+	}
+	else{
+		char* sp = malloc(1) ;
+		assert(sp != NULL);
+		strcpy(sp, "") ;
+	}
 	
 	return info ;
 }
@@ -1116,7 +1126,8 @@ void freeMegaFileInfo(MegaFileInfo* pData )
 
 	if(pData->mMimeType) free(pData->mMimeType) ;
 	if(pData->mMimeName) free(pData->mMimeName) ;
-	
+	free(pData->mTextEncoding);
+		
 	free(pData)	;
 }
 
