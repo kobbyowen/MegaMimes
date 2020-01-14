@@ -10,6 +10,7 @@ has no dependencies. It is tested on all major operating systems( windows, Linux
 
 ```
 cd MegaMimes 
+./configure
 make 
 sudo make install 
 ```
