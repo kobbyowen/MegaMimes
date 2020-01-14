@@ -196,6 +196,7 @@ typedef struct
 
 
 /**
+  @brief Get The Mime Type Of A File Or A File Extension
   @fn
     The function gets the mime type of the file specified by the path. 
     The function does not check if the file exists or not. It just uses the file's basename 
