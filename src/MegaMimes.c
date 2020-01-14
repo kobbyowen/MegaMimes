@@ -1106,6 +1106,7 @@ MegaFileInfo* getMegaFileInformation( const char* pFilePath )
 		char* sp = malloc(1) ;
 		assert(sp != NULL);
 		strcpy(sp, "") ;
+		info->mTextEncoding = sp ;
 	}
 	
 	return info ;
