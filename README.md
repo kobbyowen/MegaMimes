@@ -27,89 +27,91 @@ precompiled binaries that are located in win32 sub folder.
   
 ```c
 
-  #include "MegaMimes.h"
+#include "MegaMimes.h"
    
- 	int main( int argc, char** argv)
- 	{
- 		char* mimetype  = getMegaMimeType("/etc/settings.ini") ; // returns ''
+int main( int argc, char** argv)
+{
+    char* mimetype  = getMegaMimeType("/etc/settings.ini") ; // returns ''
  		
- 		// must not necessarily be a file which exists on the disk. 
- 		char* mimetype2 = getMegaMimeType(".mp4") ; // returns 'video/mp4'
- 		
- 		char* mimetype3 = getMegaMimeType("owen"); // returns NULL ;
- 
- 		freeMegaString(mimetype);
- 		freeMegaString(mimetype2);
- 		freeMegaString(mimetype3);
- 	}
+    // must not necessarily be a file which exists on the disk. 
+    char* mimetype2 = getMegaMimeType(".mp4") ; // returns 'video/mp4'
+ 	
+    char* mimetype3 = getMegaMimeType("owen"); // returns NULL ;
+    
+    freeMegaString(mimetype);
+    freeMegaString(mimetype2);
+    freeMegaString(mimetype3);
+}
   ``` 
 
 ### Getting The File Extension Associated With A Mime Type
   
   ```c
+  
   #include "MegaMimes.h"
-   
- 	int main( int argc, char** argv)
- 	{
- 		char** extensions = getMegaMimeExtensions("video/mp4") ;
- 		// returns {'*.mp4', NULL}
- 		freeMegaStringArray(extensions);
- 
-  	// get all video file extensions
-  	extensions = getMegaMimeExtensions("video/*") ;
-
+  
+  int main( int argc, char** argv)
+  {
+  
+    char** extensions = getMegaMimeExtensions("video/mp4") ;
+    // returns {'*.mp4', NULL}
+    freeMegaStringArray(extensions);
+    
+    //get all video file extensions
+    extensions = getMegaMimeExtensions("video/*") ;
+    
     // returns {'*.3g2', '*.3gp', '*.avi', .... ,NULL}
     freeMegaStringArray(extensions) ;
-  
-  	extensions = getMegaMimeExtensions("*/*") ;
- 		// returns all file extensions
- 		freeMegaStringArray(extensions);
- 
-  	extensions = getMegaMimeExtensions("text/rr") ;
-  	// returns NULL because no extension has that mime name 
-  
- 	}
+    
+    extensions = getMegaMimeExtensions("*/*") ;
+    // returns all file extensions
+ 	freeMegaStringArray(extensions);
+    
+    extensions = getMegaMimeExtensions("text/rr") ;
+    // returns NULL because no extension has that mime name  
+ }
   ```
    
   
 ### Getting Information About A File 
   
   ```c
-  #include "MegaMimes.h"
+ #include "MegaMimes.h"
    
- 	int main( int argc, char** argv)
- 	{
- 		  MegaFileInfo * fileinfo = getMegaFileInformation("/usr/package.json") ;
-     	
-  		if (!fileinfo) 
-  		{ 
-  				printf("The file does not exits or you may not have read permission.");
-  				return 1 ;
-  		}
-  		else
-  		{	
-  			printf("Directory : %s\n", fileinfo->mBaseDir) ;
-  			printf("Base Name : %s\n", fileinfo->mBaseName) ;
-  			printf("File Extension : %s\n", fileinfo->mExtension) ;
-  			printf("File Size : %lld Bytes\n", fileinfo->mFileSize ) ;
-  			printf("Mime Type : %s\n", fileinfo->mMimeType) ;
-  			printf("Mime Name : %s\n", fileinfo->mMimeName) ;
-  			if(fileinfo->mTextFile)
-  			{
-  				printf("File Type : Text File , Encoding : %s", fileinfo->mTextEncoding);
-  			}
-  			else printf("File Type : Binary File") ;
-  		}
-  		// Output 
-  		// Directory : /usr/
-  		// Base Name : package
-     	// File Extension : .json 
-  		// File Size : 124564 Bytes
-  		// Mime Type : application/json 
-  		// Mime Name : JSON (JavaScript Object Notation)
-     	// File Type : Text File, Encoding : UTF-8
-  
-  		freeMegaFileInfo(fileinfo) ;
+ int main( int argc, char** argv)
+ {
+    MegaFileInfo * fileinfo = getMegaFileInformation("/usr/package.json") ;
+  	
+    if (!fileinfo) 
+  	{ 
+        printf("The file does not exits or you may not have read permission.");
+        return 1 ;
+    }
+    else
+    {	
+        printf("Directory : %s\n", fileinfo->mBaseDir) ;
+        printf("Base Name : %s\n", fileinfo->mBaseName) ;
+        printf("File Extension : %s\n", fileinfo->mExtension) ;
+        printf("File Size : %lld Bytes\n", fileinfo->mFileSize ) ;
+        printf("Mime Type : %s\n", fileinfo->mMimeType) ;
+        printf("Mime Name : %s\n", fileinfo->mMimeName) ;
+        
+        if(fileinfo->mTextFile)
+        {
+            printf("File Type : Text File , Encoding : %s", fileinfo->mTextEncoding);
+        }
+        else printf("File Type : Binary File") ;
+        
+        // Output 
+        // Directory : /usr/
+        // Base Name : package
+        // File Extension : .json 
+        // File Size : 124564 Bytes
+        // Mime Type : application/json 
+        // Mime Name : JSON (JavaScript Object Notation)
+        // File Type : Text File, Encoding : UTF-8
+        
+        freeMegaFileInfo(fileinfo) ;
  	}
    
   ```
@@ -121,17 +123,17 @@ precompiled binaries that are located in win32 sub folder.
   
   int main( int argc, char** argv)
   {
-  	const char* file = "../data/MegaMimeTypes.txt" ;
-  
-  	if (isTextFile(file))
-  	{
-  		const char* enc = guessMegaTextFileEncoding(file) ;
-  		printf("The file is encode in %s", enc) ; //Output: UTF-8
-  	}
-  	else
-  	{
-  		printf("The file is a binary file") ;
-  	}
+    const char* file = "../data/MegaMimeTypes.txt" ;
+    
+    if (isTextFile(file))
+    {
+        const char* enc = guessMegaTextFileEncoding(file) ;
+        printf("The file is encode in %s", enc) ; //Output: UTF-8
+    }
+    else
+    {
+        printf("The file is a binary file") ;
+    }
   } 
   ```
 
@@ -142,16 +144,17 @@ precompiled binaries that are located in win32 sub folder.
   
   int main(int argc, char** argv)
   {
-  	bool istext = isTextFile("../data/formatMimes.py") ;
-   if(istext)
-  	{
-  		printf("The file is a text file") ;
-  	}
-   else
-  	{
-  		printf("The file is a binary file") ;
-  	}
-   
+    bool istext = isTextFile("../data/formatMimes.py") ;
+    
+    if(istext)
+    {
+        printf("The file is a text file") ;
+    }
+    else
+    {
+        printf("The file is a binary file") ;
+    }
+    
   }
   ```
   
