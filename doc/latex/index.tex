@@ -1,0 +1,145 @@
+Mega\+Mimes is a simple C Library that is used to get the mime type information about a file. It is a lightweight library that is tested accross all platforms. The library does not have any dependencies. The library determines the mime type of a file based on its extension. The library also includes functions to determine whether a file is a binary file or a textfile . The library is really simple to use. ~\newline
+~\newline
+ {\bfseries Installation} {\bfseries On} {\bfseries Unix} {\bfseries Systems} 
+\begin{DoxyCode}
+cd MegaMimes 
+make 
+sudo make install 
+\end{DoxyCode}
+
+
+{\bfseries On} {\bfseries Windows} ~\newline
+ It is recommended that you copy the two files in the src sub directory and directly include them in your project directory. This is easy because the who library is a single file. Other than that you can also use the precompiled binaries that are located in win32 sub folder.
+
+~\newline
+ {\bfseries Examples} ~\newline
+ {\bfseries Getting} {\bfseries the} {\bfseries mime} {\bfseries type} {\bfseries of} {\bfseries a} {\bfseries file}.~\newline
+
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{MegaMimes_8h}{MegaMimes.h}"}
+ 
+ \textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv)
+ \{
+    \textcolor{keywordtype}{char}* mimetype  = \hyperlink{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}{getMegaMimeType}(\textcolor{stringliteral}{"/etc/settings.ini"}) ; \textcolor{comment}{// returns ''}
+    
+    \textcolor{comment}{// must not necessarily be a file which exists on the disk. }
+    \textcolor{keywordtype}{char}* mimetype2 = \hyperlink{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}{getMegaMimeType}(\textcolor{stringliteral}{".mp4"}) ; \textcolor{comment}{// returns 'video/mp4'}
+    
+    \textcolor{keywordtype}{char}* mimetype3 = \hyperlink{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}{getMegaMimeType}(\textcolor{stringliteral}{"owen"}); \textcolor{comment}{// returns NULL ;}
+
+    \hyperlink{MegaMimes_8h_a874430e1d8513e70586046e68907039c}{freeMegaString}(mimetype);
+    \hyperlink{MegaMimes_8h_a874430e1d8513e70586046e68907039c}{freeMegaString}(mimetype2);
+    \hyperlink{MegaMimes_8h_a874430e1d8513e70586046e68907039c}{freeMegaString}(mimetype3);
+ \}
+\end{DoxyCode}
+
+
+{\bfseries Getting} {\bfseries The} {\bfseries File} {\bfseries Extension} {\bfseries Associated} {\bfseries With} {\bfseries A} {\bfseries Mime} {\bfseries Type} 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{MegaMimes_8h}{MegaMimes.h}"}
+ 
+ \textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv)
+ \{
+    \textcolor{keywordtype}{char}** extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"video/mp4"}) ;
+    \textcolor{comment}{// returns \{'*.mp4', NULL\}}
+    \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions);
+
+    \textcolor{comment}{// get all video file extensions}
+   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"video"}) ; 
+   \textcolor{comment}{// returns \{'*.3g2', '*.3gp', '*.avi', .... ,NULL\}}
+   \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions) ;
+
+   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"*"}) ;
+   \textcolor{comment}{// returns all file extensions}
+   \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions);
+
+   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"text/rr"}) ;
+   \textcolor{comment}{// returns NULL because no extension has that mime name }
+
+ \}
+\end{DoxyCode}
+
+
+{\bfseries Getting} {\bfseries Information} {\bfseries About} {\bfseries A} {\bfseries File} 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{MegaMimes_8h}{MegaMimes.h}"}
+ 
+ \textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv)
+ \{
+    \hyperlink{structMegaFileInfo}{MegaFileInfo}* fileinfo = \hyperlink{MegaMimes_8h_a9ac2a89da4c41ca04f094cabc5be14fa}{getMegaFileInformation}(\textcolor{stringliteral}{"/usr/package.json"}) 
+      ;
+    
+        \textcolor{keywordflow}{if} (!fileinfo) 
+        \{ 
+                printf(\textcolor{stringliteral}{"The file does not exits or you may not have read permission."});
+                \textcolor{keywordflow}{return} 1 ;
+        \}
+        \textcolor{keywordflow}{else}
+        \{   
+            printf(\textcolor{stringliteral}{"Directory : %s\(\backslash\)n"}, fileinfo->mBaseDir) ;
+            printf(\textcolor{stringliteral}{"Base Name : %s\(\backslash\)n"}, fileinfo->mBaseName) ;
+            printf(\textcolor{stringliteral}{"File Extension : %s\(\backslash\)n"}, fileinfo->mExtension) ;
+            printf(\textcolor{stringliteral}{"File Size : %lld Bytes\(\backslash\)n"}, fileinfo->mFileSize ) ;
+            printf(\textcolor{stringliteral}{"Mime Type : %s\(\backslash\)n"}, fileinfo->mMimeType) ;
+            printf(\textcolor{stringliteral}{"Mime Name : %s\(\backslash\)n"}, fileinfo->mMimeName) ;
+            
+            \textcolor{keywordflow}{if}(fileinfo->mTextFile)
+            \{
+                printf(\textcolor{stringliteral}{"File Type : Text File , Encoding : %s"}, fileinfo->mTextEncoding);
+            \}
+            \textcolor{keywordflow}{else} printf(\textcolor{stringliteral}{"File Type : Binary File"}) ;
+        \}
+        \textcolor{comment}{// Output }
+        \textcolor{comment}{// Directory : /usr/}
+        \textcolor{comment}{// Base Name : package}
+        \textcolor{comment}{// File Extension : .json }
+        \textcolor{comment}{// File Size : 124564 Bytes}
+        \textcolor{comment}{// Mime Type : application/json }
+        \textcolor{comment}{// Mime Name : JSON (JavaScript Object Notation)}
+        \textcolor{comment}{// File Type : Text File, Encoding : UTF-8}
+
+        \hyperlink{MegaMimes_8h_aa0a861f0f62193f58b8e51cdc388b03e}{freeMegaFileInfo}(fileinfo) ;
+ \}
+\end{DoxyCode}
+
+
+{\bfseries Determing} {\bfseries Whether} {\bfseries A} {\bfseries File} {\bfseries Is} {\bfseries A} {\bfseries Text} {\bfseries File} {\bfseries Or} {\bfseries Not} 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{MegaMimes_8h}{MegaMimes.h}"}
+
+\textcolor{keywordtype}{int} main(\textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv)
+\{
+    \textcolor{keywordtype}{bool} istext = \hyperlink{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}{isTextFile}(\textcolor{stringliteral}{"../data/formatMimes.py"}) ;
+    \textcolor{keywordflow}{if}(istext)
+    \{
+        printf(\textcolor{stringliteral}{"The file is a text file"}) ;
+    \}
+    \textcolor{keywordflow}{else}
+    \{
+        printf(\textcolor{stringliteral}{"The file is a binary file"}) ;
+    \}
+ 
+\}
+\end{DoxyCode}
+
+
+{\bfseries Determing} {\bfseries The} {\bfseries Encoding} {\bfseries Of} {\bfseries A} {\bfseries Text} {\bfseries File} 
+\begin{DoxyCode}
+\textcolor{preprocessor}{#include "\hyperlink{MegaMimes_8h}{MegaMimes.h}"}
+
+\textcolor{keywordtype}{int} main( \textcolor{keywordtype}{int} argc, \textcolor{keywordtype}{char}** argv)
+\{
+     \textcolor{keyword}{const} \textcolor{keywordtype}{char}* file = \textcolor{stringliteral}{"../data/MegaMimeTypes.txt"} ;
+
+     \textcolor{keywordflow}{if} (\hyperlink{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}{isTextFile}(file))
+     \{
+         \textcolor{keyword}{const} \textcolor{keywordtype}{char}* enc = guessMegaTextFileEncoding(file) ;
+         printf(\textcolor{stringliteral}{"The file is encode in %s"}, enc) ; \textcolor{comment}{//Output: UTF-8}
+     \}
+     \textcolor{keywordflow}{else}
+     \{
+         printf(\textcolor{stringliteral}{"The file is a binary file"}) ;
+     \}
+\} 
+\end{DoxyCode}
+ 

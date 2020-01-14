@@ -1,0 +1,3698 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<mimetypes>
+	<mimetype>
+		<extension>*.1</extension>
+		<name>Roff Manpage</name>
+		<type>text/troff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.3ds</extension>
+		<name>3DS</name>
+		<type>image/x-3ds</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.3fr</extension>
+		<name>Hasselblad raw image</name>
+		<type>image/x-raw-hasselblad</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.3g2</extension>
+		<name>3G2</name>
+		<type>video/3gpp2</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.3gp</extension>
+		<name>3GP</name>
+		<type>video/3gpp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.3mf</extension>
+		<name>3MF 3D Manufacturing Format</name>
+		<type>application/vnd.ms-package.3dmanufacturing-3dmodel+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.4th</extension>
+		<name>Forth source code</name>
+		<type>text/x-forth</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.669</extension>
+		<name>Module Music Formats (Mods)</name>
+		<type>audio/x-mod</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.6pl</extension>
+		<name>Perl 6</name>
+		<type>text/x-perl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.7z</extension>
+		<name>7-zip archive</name>
+		<type>application/x-7z-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.8svx</extension>
+		<name>8-Bit Sampled Voice</name>
+		<type>audio/8svx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ML</extension>
+		<name>Standard ML</name>
+		<type>text/x-ocaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.MYD</extension>
+		<name>MySQL MISAM Data</name>
+		<type>application/x-mysql-misam-data</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.MYI</extension>
+		<name>MySQL MISAM Compressed Index</name>
+		<type>application/x-mysql-misam-compressed-index</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.R</extension>
+		<name>R</name>
+		<type>text/x-rsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.TIF</extension>
+		<name>TIFF Uncompressed File with Exif Metadata</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.XXX</extension>
+		<name>Template:File Format/Preload</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.Z</extension>
+		<name>Compress</name>
+		<type>application/x-compress</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aa</extension>
+		<name>Audible.Com File Format</name>
+		<type>audio/x-pn-audibleaudio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ac3</extension>
+		<name>Dolby Digital AC-3</name>
+		<type>audio/ac3</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.acsm</extension>
+		<name>Adobe Content Server Message File</name>
+		<type>application/vnd.adobe.adept+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ada</extension>
+		<name>Ada source code</name>
+		<type>text/x-ada</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.adf</extension>
+		<name>AppleDouble</name>
+		<type>multipart/appledouble</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.afa</extension>
+		<name>Astrotite</name>
+		<type>application/x-astrotite-afa</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.afm</extension>
+		<name>Adobe Font Metric</name>
+		<type>application/x-font-adobe-metric</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ai</extension>
+		<name>Adobe Illustrator Artwork</name>
+		<type>application/illustrator</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aif</extension>
+		<name>Audio Interchange File Format</name>
+		<type>audio/x-aiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aifc</extension>
+		<name>Audio Interchange File Format (compressed)</name>
+		<type>audio/x-aiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aiff</extension>
+		<name>AIFF</name>
+		<type>audio/x-aiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.air</extension>
+		<name>Adobe Air 1.0</name>
+		<type>application/vnd.adobe.air-application-installer-package+zip;version="1.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aj</extension>
+		<name>AspectJ source code</name>
+		<type>text/x-aspectj</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.amr</extension>
+		<name>AMR, Adaptive Multi-Rate Speech Codec</name>
+		<type>audio/amr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.anim</extension>
+		<name>Unity3D Asset</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.anpa</extension>
+		<name>American Newspaper Publishers Association Wire Feeds</name>
+		<type>text/vnd.iptc.anpa</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ans</extension>
+		<name>7-bit ANSI Text</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.apl</extension>
+		<name>APL</name>
+		<type>text/apl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.apng</extension>
+		<name>Animated Portable Network Graphics</name>
+		<type>image/vnd.mozilla.apng</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.applescript</extension>
+		<name>AppleScript source code</name>
+		<type>text/x-applescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.apr</extension>
+		<name>Lotus Approach View File 97</name>
+		<type>application/vnd.lotus-approach;version="97"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.apt</extension>
+		<name>Lotus Approach View File</name>
+		<type>application/vnd.lotus-approach</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.arc</extension>
+		<name>Internet Archive 1.0</name>
+		<type>application/x-internet-archive;version="1.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.arw</extension>
+		<name>Sony raw image</name>
+		<type>image/x-raw-sony</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.as</extension>
+		<name>ActionScript source code</name>
+		<type>text/x-actionscript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asc</extension>
+		<name>7-bit ASCII Text</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asciidoc</extension>
+		<name>Asciidoc source code</name>
+		<type>text/x-asciidoc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asf</extension>
+		<name>Advanced Systems Format</name>
+		<type>application/vnd.ms-asf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asice</extension>
+		<name>Extended Associated Signature Container</name>
+		<type>application/vnd.etsi.asic-e+zip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asics</extension>
+		<name>Simple Associated Signature Container</name>
+		<type>application/vnd.etsi.asic-s+zip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asn</extension>
+		<name>ASN.1</name>
+		<type>text/x-ttcn-asn</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asp</extension>
+		<name>ASP</name>
+		<type>application/x-aspx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.aspx</extension>
+		<name>ASP .NET</name>
+		<type>text/aspdotnet</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.asy</extension>
+		<name>LTspice Symbol</name>
+		<type>text/x-spreadsheet</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.atom</extension>
+		<name>Atom</name>
+		<type>application/atom+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.au</extension>
+		<name>uLaw/AU Audio File</name>
+		<type>audio/basic</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.avi</extension>
+		<name>AVI (Audio Video Interleaved) File Format</name>
+		<type>video/msvideo</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.awb</extension>
+		<name>Adaptive Multi-Rate Wideband Audio</name>
+		<type>audio/amr-wb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.awk</extension>
+		<name>AWK script</name>
+		<type>text/x-awk</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.axc</extension>
+		<name>Axc</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.axx</extension>
+		<name>AxCrypt</name>
+		<type>application/x-axcrypt</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.b</extension>
+		<name>Brainfuck</name>
+		<type>text/x-brainfuck</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.b6z</extension>
+		<name>B6Z</name>
+		<type>application/x-b6z-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bas</extension>
+		<name>Basic source code</name>
+		<type>text/x-basic</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bay</extension>
+		<name>Casio raw image</name>
+		<type>image/x-raw-casio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bik</extension>
+		<name>Bink Video</name>
+		<type>video/vnd.radgamettools.bink</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bik2</extension>
+		<name>Bink Video Format 2</name>
+		<type>video/vnd.radgamettools.bink;version="2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bin</extension>
+		<name>MacBinary</name>
+		<type>application/x-macbinary</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bmp</extension>
+		<name>Windows bitmap</name>
+		<type>image/bmp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bpg</extension>
+		<name>Better Portable Graphics</name>
+		<type>image/x-bpg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bpm</extension>
+		<name>BizAgi Process Modeler</name>
+		<type>application/bizagi-modeler</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bsp</extension>
+		<name>BSP</name>
+		<type>model/vnd.valve.source.compiled-map</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.btf</extension>
+		<name>BigTIFF</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bw</extension>
+		<name>Silicon Graphics Image</name>
+		<type>image/x-sgi-bw</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.bz2</extension>
+		<name>Bzip2</name>
+		<type>application/x-bzip2</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.c</extension>
+		<name>C source code</name>
+		<type>text/x-csrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cab</extension>
+		<name>Cabinet</name>
+		<type>application/vnd.ms-cab-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cabal</extension>
+		<name>Cabal Config</name>
+		<type>text/x-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cap</extension>
+		<name>pcap Packet Capture</name>
+		<type>application/vnd.tcpdump.pcap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.catmaterial</extension>
+		<name>CATIA 5</name>
+		<type>application/octet-stream;version="5"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.catpart</extension>
+		<name>CATIA Model (Part Description) 5</name>
+		<type>application/octet-stream;version="5"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.catproduct</extension>
+		<name>CATIA Product Description 5</name>
+		<type>application/octet-stream;version="5"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cbl</extension>
+		<name>COBOL source code</name>
+		<type>text/x-cobol</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cbor</extension>
+		<name>Concise Binary Object Representation container</name>
+		<type>application/cbor</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cbz</extension>
+		<name>Comic Book Archive</name>
+		<type>application/x-cbr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cca</extension>
+		<name>cc:Mail Archive Email Format</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cda</extension>
+		<name>CD Audio</name>
+		<type>application/x-cdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cdf</extension>
+		<name>netCDF-3 Classic</name>
+		<type>application/x-netcdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cdx</extension>
+		<name>Chemical Draw Exchange Format</name>
+		<type>chemical/x-cdx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cfm</extension>
+		<name>ColdFusion source code</name>
+		<type>text/x-coldfusion</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cfs</extension>
+		<name>Compact File Set</name>
+		<type>application/x-cfs-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cgi</extension>
+		<name>CGI script</name>
+		<type>text/x-cgi</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cgm</extension>
+		<name>Computer Graphics Metafile</name>
+		<type>image/cgm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.chm</extension>
+		<name>Microsoft Compiled HTML Help</name>
+		<type>application/vnd.ms-htmlhelp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.chrt</extension>
+		<name>KChart File</name>
+		<type>application/x-kchart</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.chs</extension>
+		<name>C2hs Haskell</name>
+		<type>text/x-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cif</extension>
+		<name>CIF</name>
+		<type>chemical/x-cif</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ck</extension>
+		<name>ChucK</name>
+		<type>text/x-java</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cl</extension>
+		<name>Common Lisp source code</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.class</extension>
+		<name>Java Class File</name>
+		<type>application/x-java</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.clj</extension>
+		<name>Clojure source code</name>
+		<type>text/x-clojure</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cls</extension>
+		<name>Visual basic source code</name>
+		<type>text/x-vbasic</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cmake</extension>
+		<name>CMake</name>
+		<type>text/x-cmake</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cml</extension>
+		<name>CML</name>
+		<type>chemical/x-cml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cob</extension>
+		<name>COBOL</name>
+		<type>text/x-cobol</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cod</extension>
+		<name>Lightning Strike</name>
+		<type>image/cis-cod</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.coffee</extension>
+		<name>CoffeeScript</name>
+		<type>application/vnd.coffeescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cp</extension>
+		<name>Component Pascal</name>
+		<type>text/x-pascal</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cpio</extension>
+		<name>UNIX CPIO Archive</name>
+		<type>application/x-cpio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cpp</extension>
+		<name>C++ source code</name>
+		<type>text/x-c++src</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cr</extension>
+		<name>Crystal</name>
+		<type>text/x-crystal</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.crw</extension>
+		<name>Camera Image File Format</name>
+		<type>image/x-canon-crw</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.crx</extension>
+		<name>Chrome Extension Package</name>
+		<type>application/x-chrome-package</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cs</extension>
+		<name>C# source code</name>
+		<type>text/x-csharp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cshtml</extension>
+		<name>HTML+Razor</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cson</extension>
+		<name>CSON</name>
+		<type>text/x-coffeescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.csr</extension>
+		<name>PKCS10</name>
+		<type>application/pkcs10</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.css</extension>
+		<name>Cascading Style Sheet</name>
+		<type>text/css</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.csv</extension>
+		<name>Comma Separated Values</name>
+		<type>text/csv</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.csvs</extension>
+		<name>CSV Schema</name>
+		<type>text/csv-schema</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cu</extension>
+		<name>Cuda</name>
+		<type>text/x-c++src</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cur</extension>
+		<name>Microsoft Windows Cursor</name>
+		<type>image/x-win-bitmap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cwl</extension>
+		<name>Common Workflow Language</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.cy</extension>
+		<name>Cycript</name>
+		<type>text/javascript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.d</extension>
+		<name>D source code</name>
+		<type>text/x-d</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dae</extension>
+		<name>COLLADA</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dart</extension>
+		<name>Dart</name>
+		<type>application/dart</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dat</extension>
+		<name>MapInfo Data File (DAT)</name>
+		<type>application/dbase</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.db</extension>
+		<name>SQLite Database File Format</name>
+		<type>application/x-sqlite3</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dbf</extension>
+		<name>dBASE Table File Format (DBF)</name>
+		<type>application/x-dbf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dcm</extension>
+		<name>Digital Imaging and Communications in Medicine File Format</name>
+		<type>application/dicom</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dcr</extension>
+		<name>Shockwave (Director)</name>
+		<type>application/x-director</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dcx</extension>
+		<name>Multipage Zsoft Paintbrush Bitmap Graphics</name>
+		<type>image/x-dcx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.deb</extension>
+		<name>Deb</name>
+		<type>application/vnd.debian.binary-package</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.der</extension>
+		<name>DER encoded certificate</name>
+		<type>application/x-x509-ca-cert</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dex</extension>
+		<name>Dalvik Executable Format</name>
+		<type>application/x-dex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dgc</extension>
+		<name>DGCA</name>
+		<type>application/x-dgc-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.diff</extension>
+		<name>Diff</name>
+		<type>text/x-diff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dir</extension>
+		<name>Shockwave Movie</name>
+		<type>application/x-director</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dita</extension>
+		<name>DITA Topic</name>
+		<type>application/dita+xml;format=topic</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ditamap</extension>
+		<name>DITA Map</name>
+		<type>application/dita+xml;format=map</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ditaval</extension>
+		<name>DITA Conditional Processing Profile</name>
+		<type>application/dita+xml;format=val</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.diz</extension>
+		<name>FILE ID.DIZ</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.djv</extension>
+		<name>Secure DjVU</name>
+		<type>image/vnd.djvu</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.djvu</extension>
+		<name>DjVu</name>
+		<type>image/vnd.djvu</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dll</extension>
+		<name>Windows Portable Executable</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dls</extension>
+		<name>Downloadable Sounds Audio</name>
+		<type>audio/dls</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dmg</extension>
+		<name>Apple Disk Image</name>
+		<type>application/x-apple-diskimage</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dng</extension>
+		<name>Adobe Digital Negative</name>
+		<type>image/x-raw-adobe</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.doc</extension>
+		<name>Microsoft Word</name>
+		<type>application/msword</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dockerfile</extension>
+		<name>Dockerfile</name>
+		<type>text/x-dockerfile</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.docm</extension>
+		<name>Office Open XML Document (macro-enabled)</name>
+		<type>application/vnd.ms-word.document.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.docx</extension>
+		<name>OOXML Format Family -- ISO/IEC 29500 and ECMA 376</name>
+		<type>application/vnd.openxmlformats-officedocument.wordprocessingml.document</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dot</extension>
+		<name>Microsoft Word Document Template (Password Protected) 97-2003</name>
+		<type>application/msword;version="97-2003"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dotm</extension>
+		<name>Office Open XML Document Template (macro-enabled)</name>
+		<type>application/vnd.ms-word.template.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dotx</extension>
+		<name>Office Open XML Document Template</name>
+		<type>application/vnd.openxmlformats-officedocument.wordprocessingml.template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dpx</extension>
+		<name>Digital Moving-Picture Exchange (DPX), Version 2.0</name>
+		<type>image/x-dpx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.drc</extension>
+		<name>Ogg Packaged Dirac Video</name>
+		<type>video/x-dirac</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.druby</extension>
+		<name>Mirah</name>
+		<type>text/x-ruby</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dtd</extension>
+		<name>XML Document Type Definition (DTD)</name>
+		<type>application/xml-dtd</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dts</extension>
+		<name>DTS Coherent Acoustics (DCA) Audio</name>
+		<type>audio/vnd.dts</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dv</extension>
+		<name>Digital Video</name>
+		<type>video/dv</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dvi</extension>
+		<name>DVI (Device Independent File Format)</name>
+		<type>application/x-dvi</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dwf</extension>
+		<name>AutoCAD Design Web Format 6.0</name>
+		<type>application/dwf;version="6.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dwfx</extension>
+		<name>AutoCAD Design Web Format</name>
+		<type>model/vnd.dwfx+xps</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dwg</extension>
+		<name>AutoCad Drawing</name>
+		<type>image/vnd.dwg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dwl</extension>
+		<name>AutoCAD Database File Locking Information</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dx</extension>
+		<name>DEC Data Exchange File</name>
+		<type>application/dec-dx.</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dxb</extension>
+		<name>AutoCAD DXF simplified Binary</name>
+		<type>image/vnd.dxb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dxf</extension>
+		<name>AutoCAD DXF</name>
+		<type>image/vnd.dxf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dxr</extension>
+		<name>Play SID Audio 1</name>
+		<type>audio/prs.sid;version="1"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.dylan</extension>
+		<name>Dylan</name>
+		<type>text/x-dylan</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.e</extension>
+		<name>Eiffel source code</name>
+		<type>text/x-eiffel</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eb</extension>
+		<name>Easybuild</name>
+		<type>text/x-python</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ebnf</extension>
+		<name>EBNF</name>
+		<type>text/x-ebnf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ebuild</extension>
+		<name>Gentoo Ebuild</name>
+		<type>text/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ecl</extension>
+		<name>ECL</name>
+		<type>text/x-ecl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eclass</extension>
+		<name>Gentoo Eclass</name>
+		<type>text/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ecr</extension>
+		<name>HTML+ECR</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.edc</extension>
+		<name>Edje Data Collection</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.edn</extension>
+		<name>edn</name>
+		<type>text/x-clojure</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eex</extension>
+		<name>HTML+EEX</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.el</extension>
+		<name>Emacs Lisp source code</name>
+		<type>text/x-emacs-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.elc</extension>
+		<name>Emacs Lisp bytecode</name>
+		<type>application/x-elc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.elm</extension>
+		<name>Elm</name>
+		<type>text/x-elm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.em</extension>
+		<name>EmberScript</name>
+		<type>text/x-coffeescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.emf</extension>
+		<name>Enhanced Metafile</name>
+		<type>image/emf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eml</extension>
+		<name>Internet e-mail message format</name>
+		<type>message/rfc822</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.enr</extension>
+		<name>EndNote Import File</name>
+		<type>application/x-endnote-refer</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ens</extension>
+		<name>EndNote Style File</name>
+		<type>application/x-endnote-style</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.enz</extension>
+		<name>EndNote Connection File</name>
+		<type>application/x-endnote-connect</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eot</extension>
+		<name>Embedded OpenType</name>
+		<type>application/vnd.ms-fontobject</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.epj</extension>
+		<name>Ecere Projects</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eps</extension>
+		<name>Encapsulated PostScript (EPS) File Format, Version 3.x</name>
+		<type>application/postscript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.epub</extension>
+		<name>Electronic Publication</name>
+		<type>application/epub+zip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.eq</extension>
+		<name>EQ</name>
+		<type>text/x-csharp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.erb</extension>
+		<name>HTML+ERB</name>
+		<type>application/x-erb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.erf</extension>
+		<name>Epson raw image</name>
+		<type>image/x-raw-epson</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.erl</extension>
+		<name>Erlang source code</name>
+		<type>text/x-erlang</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.es</extension>
+		<name>ECMAScript</name>
+		<type>application/ecmascript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.exe</extension>
+		<name>DOS/Windows executable (EXE)</name>
+		<type>application/x-dosexec</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.exp</extension>
+		<name>Expect Script</name>
+		<type>text/x-expect</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.exr</extension>
+		<name>OpenEXR 2</name>
+		<type>image/x-exr;version="2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.f</extension>
+		<name>Fortran source code</name>
+		<type>text/x-fortran</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.f4a</extension>
+		<name>MPEG-4 Media File</name>
+		<type>video/mp4</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.f4m</extension>
+		<name>F4M</name>
+		<type>application/f4m</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.f90</extension>
+		<name>Fortran</name>
+		<type>text/x-fortran</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.factor</extension>
+		<name>Factor</name>
+		<type>text/x-factor</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fb2</extension>
+		<name>FictionBook document</name>
+		<type>application/x-fictionbook+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fdf</extension>
+		<name>Forms Data Format</name>
+		<type>application/vnd.fdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fff</extension>
+		<name>Imacon raw image</name>
+		<type>image/x-raw-imacon</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fh</extension>
+		<name>FreeHand image</name>
+		<type>image/x-freehand</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fig</extension>
+		<name>Matlab figure</name>
+		<type>application/x-matlab-data</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fits</extension>
+		<name>Flexible Image Transport System</name>
+		<type>image/fits</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.flac</extension>
+		<name>FLAC (Free Lossless Audio Codec), Version 1.1.2</name>
+		<type>audio/flac</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.flif</extension>
+		<name>Free Lossless Image Format (FLIF)</name>
+		<type>image/flif</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.flv</extension>
+		<name>FLV</name>
+		<type>video/x-flv</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fm</extension>
+		<name>FrameMaker</name>
+		<type>application/vnd.framemaker</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fmz</extension>
+		<name>form*Z Project File</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.folio</extension>
+		<name>Folio</name>
+		<type>application/vnd.adobe.folio+zip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fp7</extension>
+		<name>FileMaker Pro 7</name>
+		<type>application/x-filemaker</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fpx</extension>
+		<name>FlashPix</name>
+		<type>image/vnd.fpx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fref</extension>
+		<name>Freenet node reference</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fs</extension>
+		<name>F#</name>
+		<type>text/x-fsharp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.fth</extension>
+		<name>Forth</name>
+		<type>text/x-forth</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.g3</extension>
+		<name>CCITT Group 3</name>
+		<type>image/g3fax</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gbr</extension>
+		<name>Gerber Format</name>
+		<type>application/vnd.gerber</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gca</extension>
+		<name>GCA</name>
+		<type>application/x-gca-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.geo</extension>
+		<name>GeoGebra 1.0</name>
+		<type>application/vnd.geogebra.file;version="1.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gf</extension>
+		<name>Grammatical Framework</name>
+		<type>text/x-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ggb</extension>
+		<name>Ggb</name>
+		<type>application/vnd.geogebra.file</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gif</extension>
+		<name>Graphics Interchange Format</name>
+		<type>image/gif</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gitconfig</extension>
+		<name>Git Config</name>
+		<type>text/x-properties</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gitignore</extension>
+		<name>Ignore List</name>
+		<type>text/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.glf</extension>
+		<name>Glyph</name>
+		<type>text/x-tcl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gml</extension>
+		<name>Geography Markup Language</name>
+		<type>application/gml+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gn</extension>
+		<name>GN</name>
+		<type>text/x-python</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gnumeric</extension>
+		<name>Gnumeric</name>
+		<type>application/x-gnumeric</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.go</extension>
+		<name>Go source code</name>
+		<type>text/x-go</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.grb</extension>
+		<name>General Regularly-distributed Information in Binary form</name>
+		<type>application/x-grib</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.groovy</extension>
+		<name>Groovy source code</name>
+		<type>text/x-groovy</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gsp</extension>
+		<name>Groovy Server Pages</name>
+		<type>application/x-jsp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gtar</extension>
+		<name>GNU tar Compressed File Archive (GNU Tape Archive)</name>
+		<type>application/x-gtar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.gz</extension>
+		<name>Gzip Compressed Archive</name>
+		<type>application/gzip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.h</extension>
+		<name>C source code header</name>
+		<type>text/x-chdr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.haml</extension>
+		<name>HAML source code</name>
+		<type>text/x-haml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hcl</extension>
+		<name>HCL</name>
+		<type>text/x-ruby</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hdf</extension>
+		<name>Hierarchical Data Format File</name>
+		<type>application/x-hdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hdp</extension>
+		<name>HD Photo, Version 1.0 (Windows Media Photo)</name>
+		<type>image/vnd.ms-photo</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hdr</extension>
+		<name>Radiance HDR</name>
+		<type>image/vnd.radiance</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hh</extension>
+		<name>Hack</name>
+		<type>application/x-httpd-php</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hpgl</extension>
+		<name>Hewlett Packard Graphics Language</name>
+		<type>application/vnd.hp-hpgl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hpp</extension>
+		<name>C++ source code header</name>
+		<type>text/x-c++hdr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hqx</extension>
+		<name>BinHex</name>
+		<type>application/mac-binhex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hs</extension>
+		<name>Haskell source code</name>
+		<type>text/x-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.htm</extension>
+		<name>Hypertext Markup Language</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.html</extension>
+		<name>HyperText Markup Language</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.http</extension>
+		<name>HTTP</name>
+		<type>message/http</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.hx</extension>
+		<name>Haxe source code</name>
+		<type>text/x-haxe</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ibooks</extension>
+		<name>Apple iBook format</name>
+		<type>application/x-ibooks+zip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ico</extension>
+		<name>ICO</name>
+		<type>image/vnd.microsoft.icon</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ics</extension>
+		<name>Internet Calendar and Scheduling format</name>
+		<type>text/calendar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.idl</extension>
+		<name>Inteface Definition Language</name>
+		<type>text/x-idl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.idml</extension>
+		<name>IDML</name>
+		<type>application/vnd.adobe.indesign-idml-package</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.iges</extension>
+		<name>Initial Graphics Exchange Specification (IGES) 5.x</name>
+		<type>model/iges;version="5.x"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.igs</extension>
+		<name>Initial Graphics Exchange Specification Format</name>
+		<type>model/iges</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.iiq</extension>
+		<name>Phase One raw image</name>
+		<type>image/x-raw-phaseone</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ind</extension>
+		<name>Adobe InDesign Document Generic</name>
+		<type>application/octet-stream;version="generic"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.indd</extension>
+		<name>Adobe InDesign document</name>
+		<type>application/x-adobe-indesign</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.inf</extension>
+		<name>Windows Setup File</name>
+		<type>application/inf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ini</extension>
+		<name>Configuration file</name>
+		<type>text/x-ini</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.inx</extension>
+		<name>Adobe InDesign Interchange format</name>
+		<type>application/x-adobe-indesign-interchange</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ipa</extension>
+		<name>Apple iOS IPA AppStore file</name>
+		<type>application/x-itunes-ipa</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ipynb</extension>
+		<name>Jupyter Notebook</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.irclog</extension>
+		<name>IRC log</name>
+		<type>text/mirc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.iso</extension>
+		<name>ISO Disk Image File Format</name>
+		<type>application/x-iso9660-image</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.itk</extension>
+		<name>Tcl script</name>
+		<type>application/x-tcl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.j2c</extension>
+		<name>JPEG 2000 Codestream</name>
+		<type>image/x-jp2-codestream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jade</extension>
+		<name>Pug</name>
+		<type>text/x-pug</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jar</extension>
+		<name>Java Archive</name>
+		<type>application/java-archive</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.java</extension>
+		<name>Java source code</name>
+		<type>text/x-java</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jinja</extension>
+		<name>HTML+Django</name>
+		<type>text/x-django</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jl</extension>
+		<name>Julia</name>
+		<type>text/x-julia</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jls</extension>
+		<name>JPEG-LS</name>
+		<type>image/jls</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jng</extension>
+		<name>JPEG Network Graphics</name>
+		<type>image/x-jng</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jnilib</extension>
+		<name>Java Native Library for OSX</name>
+		<type>application/x-java-jnilib</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jp2</extension>
+		<name>JPEG 2000</name>
+		<type>image/jpx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jpe</extension>
+		<name>Raw JPEG Stream</name>
+		<type>image/jpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jpf</extension>
+		<name>JPX (JPEG 2000 part 2)</name>
+		<type>image/jpx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jpg</extension>
+		<name>Joint Photographic Experts Group</name>
+		<type>image/jpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jpm</extension>
+		<name>JPEG 2000 Part 6 (JPM)</name>
+		<type>image/jpm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jq</extension>
+		<name>JSONiq</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.js</extension>
+		<name>JavaScript Source Code</name>
+		<type>application/javascript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.json</extension>
+		<name>JSON (JavaScript Object Notation)</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.json-patch</extension>
+		<name>JSON Patch</name>
+		<type>application/json-patch+json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.json5</extension>
+		<name>JSON5</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jsonld</extension>
+		<name>JSON-LD</name>
+		<type>application/ld+json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jsp</extension>
+		<name>Java Server Pages</name>
+		<type>application/x-jsp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jsx</extension>
+		<name>JSX</name>
+		<type>text/jsx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.jxr</extension>
+		<name>JPEG Extended Range</name>
+		<type>image/jxr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.k25</extension>
+		<name>Kodak raw image</name>
+		<type>image/x-raw-kodak</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kicad_pcb</extension>
+		<name>KiCad Layout</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kid</extension>
+		<name>Genshi</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kil</extension>
+		<name>KIllustrator File</name>
+		<type>application/x-killustrator</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kit</extension>
+		<name>Kit</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kml</extension>
+		<name>Keyhole Markup Language</name>
+		<type>application/vnd.google-earth.kml+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kmz</extension>
+		<name>Keyhole Markup Language (Container)</name>
+		<type>application/vnd.google-earth.kmz</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kpr</extension>
+		<name>KPresenter File</name>
+		<type>application/x-kpresenter</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kra</extension>
+		<name>Krita Document Format</name>
+		<type>application/x-krita</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ksp</extension>
+		<name>KSpread File</name>
+		<type>application/x-kspread</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kt</extension>
+		<name>Kotlin</name>
+		<type>text/x-kotlin</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ktx</extension>
+		<name>Khronos Texture File</name>
+		<type>image/ktx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.kwd</extension>
+		<name>KWord File</name>
+		<type>application/x-kword</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.l</extension>
+		<name>Lex/Flex source code</name>
+		<type>text/x-lex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.latex</extension>
+		<name>LaTeX Source Document</name>
+		<type>application/x-latex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.latte</extension>
+		<name>Latte</name>
+		<type>text/x-smarty</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.less</extension>
+		<name>LESS source code</name>
+		<type>text/x-less</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lfe</extension>
+		<name>LFE</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lha</extension>
+		<name>LHA</name>
+		<type>application/x-lzh-compressed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lhs</extension>
+		<name>Literate Haskell</name>
+		<type>text/x-literate-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lisp</extension>
+		<name>Common Lisp</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.log</extension>
+		<name>application log</name>
+		<type>text/x-log</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lookml</extension>
+		<name>LookML</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ls</extension>
+		<name>LiveScript</name>
+		<type>text/x-livescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lua</extension>
+		<name>Lua source code</name>
+		<type>text/x-lua</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lvproj</extension>
+		<name>LabVIEW</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lwp</extension>
+		<name>Lotus Word Pro</name>
+		<type>application/vnd.lotus-wordpro</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lz</extension>
+		<name>Lzip</name>
+		<type>application/x-lzip</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.lzma</extension>
+		<name>LZMA Alone</name>
+		<type>application/x-lzma</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.m</extension>
+		<name>Objective-C source code</name>
+		<type>text/x-objcsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.m3</extension>
+		<name>Modula source code</name>
+		<type>text/x-modula</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.m3u</extension>
+		<name>MP3 Playlist File</name>
+		<type>audio/x-mpegurl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.maff</extension>
+		<name>MAFF</name>
+		<type>application/x-maff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mak</extension>
+		<name>Makefile</name>
+		<type>text/x-cmake</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.marko</extension>
+		<name>Marko</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mas</extension>
+		<name>Lotus Freelance Smartmaster Graphics</name>
+		<type>application/vnd.lotus-freelance</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mat</extension>
+		<name>MAT-File Level 5 File Format</name>
+		<type>application/matlab-mat</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mathematica</extension>
+		<name>Mathematica</name>
+		<type>text/x-mathematica</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.matlab</extension>
+		<name>MATLAB</name>
+		<type>text/x-octave</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.maxpat</extension>
+		<name>Max</name>
+		<type>application/json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mbox</extension>
+		<name>MBOX Email Format</name>
+		<type>application/mbox</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mbx</extension>
+		<name>Mbox</name>
+		<type>application/mbox</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mcw</extension>
+		<name>Microsoft Word for Macintosh Document 5.0</name>
+		<type>application/msword;version="5.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.md</extension>
+		<name>Markdown</name>
+		<type>text/markdown</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mdi</extension>
+		<name>Microsoft Document Imaging</name>
+		<type>image/vnd.ms-modi</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mef</extension>
+		<name>Mamiya raw image</name>
+		<type>image/x-raw-mamiya</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.metal</extension>
+		<name>Metal</name>
+		<type>text/x-c++src</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mht</extension>
+		<name>Microsoft Web Archive</name>
+		<type>multipart/related</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mid</extension>
+		<name>Musical Instrument Digital Interface</name>
+		<type>audio/midi</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mif</extension>
+		<name>FrameMaker Interchange Format</name>
+		<type>application/x-mif</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mix</extension>
+		<name>MIX (PhotoDraw)</name>
+		<type>image/vnd.mix</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mj2</extension>
+		<name>MJ2 (Motion JPEG 2000)</name>
+		<type>video/mj2</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mkv</extension>
+		<name>Matroska Multimedia Container</name>
+		<type>video/x-matroska</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ml</extension>
+		<name>OCaml</name>
+		<type>text/x-ocaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mlp</extension>
+		<name>Dolby MLP Lossless Audio</name>
+		<type>audio/vnd.dolby.mlp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mm</extension>
+		<name>Mm</name>
+		<type>application/x-freemind</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mmp</extension>
+		<name>MindManager</name>
+		<type>application/vnd.mindjet.mindmanager</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mmr</extension>
+		<name>Xerox EDMICS-MMR</name>
+		<type>image/vnd.fujixerox.edmics-mmr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mng</extension>
+		<name>Multiple-image Network Graphics</name>
+		<type>video/x-mng</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mo</extension>
+		<name>Modelica</name>
+		<type>text/x-modelica</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mobi</extension>
+		<name>Mobipocket File Format</name>
+		<type>application/x-mobipocket-ebook</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mod</extension>
+		<name>CATIA Model 4</name>
+		<type>application/octet-stream;version="4"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mol</extension>
+		<name>MOL</name>
+		<type>chemical/x-mdl-molfile</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mos</extension>
+		<name>Leaf raw image</name>
+		<type>image/x-raw-leaf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mov</extension>
+		<name>QuickTime File Format</name>
+		<type>video/quicktime</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mp1</extension>
+		<name>MPEG Audio Layer I</name>
+		<type>audio/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mp2</extension>
+		<name>MPEG Audio Stream, Layer II</name>
+		<type>audio/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mp3</extension>
+		<name>MP3 File Format</name>
+		<type>audio/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mp4</extension>
+		<name>MPEG-4 File Format, Version 2</name>
+		<type>video/mp4</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mpeg</extension>
+		<name>MPEG Movie Clip</name>
+		<type>video/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mpg</extension>
+		<name>MPEG-1</name>
+		<type>video/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mpga</extension>
+		<name>MPEG-1 Audio Layer 3</name>
+		<type>audio/mpeg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mpp</extension>
+		<name>Microsoft Project 2010</name>
+		<type>application/vnd.ms-project;version="2010"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mpx</extension>
+		<name>Microsoft Project Export File 4.0</name>
+		<type>application/x-project;version="4.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mrc</extension>
+		<name>MARC</name>
+		<type>application/marc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mrw</extension>
+		<name>Minolta raw image</name>
+		<type>image/x-raw-minolta</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.msg</extension>
+		<name>Microsoft Outlook Message</name>
+		<type>application/vnd.ms-outlook</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.msi</extension>
+		<name>Microsoft Windows Installer</name>
+		<type>application/x-msi</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mso</extension>
+		<name>ActiveMime</name>
+		<type>application/x-mso</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mtml</extension>
+		<name>MTML</name>
+		<type>text/html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.muf</extension>
+		<name>MUF</name>
+		<type>text/x-forth</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mumps</extension>
+		<name>M</name>
+		<type>text/x-mumps</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mxf</extension>
+		<name>Material Exchange Format (MXF)</name>
+		<type>application/mxf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mxl</extension>
+		<name>Compressed Music XML</name>
+		<type>application/vnd.recordare.musicxml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.mxmf</extension>
+		<name>Mobile eXtensible Music Format</name>
+		<type>audio/mobile-xmf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.n3</extension>
+		<name>Notation3</name>
+		<type>text/n3</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nap</extension>
+		<name>NAPLPS</name>
+		<type>image/naplps</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nb</extension>
+		<name>Mathematica Notebook</name>
+		<type>application/mathematica</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nc</extension>
+		<name>NetCDF-3 (Network Common Data Form, version 3)</name>
+		<type>application/x-netcdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nef</extension>
+		<name>Nikon raw image</name>
+		<type>image/x-raw-nikon</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nfo</extension>
+		<name>NFO</name>
+		<type>text/x-nfo</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nginxconf</extension>
+		<name>Nginx</name>
+		<type>text/x-nginx-conf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nif</extension>
+		<name>Notation Interchange File Format</name>
+		<type>application/vnd.music-niff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nl</extension>
+		<name>NewLisp</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nlogo</extension>
+		<name>NetLogo</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ns2</extension>
+		<name>Lotus Notes Database 2</name>
+		<type>application/vnd.lotus-notes;version="2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ns3</extension>
+		<name>Lotus Notes Database 3</name>
+		<type>application/vnd.lotus-notes;version="3"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ns4</extension>
+		<name>Lotus Notes Database 4</name>
+		<type>application/vnd.lotus-notes;version="4"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nsf</extension>
+		<name>Notes Storage Facility</name>
+		<type>application/vnd.lotus-notes</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nsi</extension>
+		<name>NSIS</name>
+		<type>text/x-nsis</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ntf</extension>
+		<name>National Imagery Transmission Format</name>
+		<type>application/vnd.nitf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nu</extension>
+		<name>Nu</name>
+		<type>text/x-scheme</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.numpy</extension>
+		<name>NumPy</name>
+		<type>text/x-python</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.nut</extension>
+		<name>Squirrel</name>
+		<type>text/x-c++src</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ocaml</extension>
+		<name>Ocaml source code</name>
+		<type>text/x-ocaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odb</extension>
+		<name>OpenDocument Database Front End Document Format (ODB), Version 1.2,  ISO 26300-1:2015</name>
+		<type>application/vnd.oasis.opendocument.database</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odc</extension>
+		<name>OpenDocument v1.0: Chart document</name>
+		<type>application/vnd.oasis.opendocument.chart</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odf</extension>
+		<name>OpenDocument v1.0: Formula document</name>
+		<type>application/vnd.oasis.opendocument.formula</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odft</extension>
+		<name>OpenDocument v1.0: Formula document used as template</name>
+		<type>application/vnd.oasis.opendocument.formula-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odg</extension>
+		<name>OpenDocument Drawing</name>
+		<type>application/vnd.oasis.opendocument.graphics</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odi</extension>
+		<name>OpenDocument v1.0: Image document</name>
+		<type>application/vnd.oasis.opendocument.image</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odm</extension>
+		<name>OpenDocument</name>
+		<type>application/vnd.oasis.opendocument.text-master</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odp</extension>
+		<name>OpenDocument Presentation</name>
+		<type>application/vnd.oasis.opendocument.presentation</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ods</extension>
+		<name>OpenDocument Spreadsheet</name>
+		<type>application/vnd.oasis.opendocument.spreadsheet</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.odt</extension>
+		<name>OpenDocument Text</name>
+		<type>application/vnd.oasis.opendocument.text</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ofx</extension>
+		<name>Open Financial Exchange 2.1.1</name>
+		<type>application/x-ofx;version="2.1.1"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.oga</extension>
+		<name>Ogg Vorbis Audio</name>
+		<type>audio/ogg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ogg</extension>
+		<name>Ogg Vorbis Codec Compressed Multimedia File</name>
+		<type>audio/ogg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ogm</extension>
+		<name>Ogg Packaged OGM Video</name>
+		<type>video/x-ogm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ogv</extension>
+		<name>Ogg Vorbis Video</name>
+		<type>video/ogg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ogx</extension>
+		<name>Ogg Skeleton</name>
+		<type>application/ogg</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.one</extension>
+		<name>Microsoft OneNote</name>
+		<type>application/msonenote</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.opf</extension>
+		<name>DTB (Digital Talking Book), 2005</name>
+		<type>application/x-dtbook+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.opus</extension>
+		<name>Ogg Opus Codec Compressed WAV File</name>
+		<type>audio/opus</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ora</extension>
+		<name>OpenRaster</name>
+		<type>image/openraster</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.orf</extension>
+		<name>Olympus raw image</name>
+		<type>image/x-raw-olympus</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.otc</extension>
+		<name>OpenDocument v1.0: Chart document used as template</name>
+		<type>application/vnd.oasis.opendocument.chart-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.otf</extension>
+		<name>OpenType Font</name>
+		<type>application/x-font-otf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.otg</extension>
+		<name>OpenDocument v1.0: Graphics document used as template</name>
+		<type>application/vnd.oasis.opendocument.graphics-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.oth</extension>
+		<name>OpenDocument v1.0: Text document used as template for HTML documents</name>
+		<type>application/vnd.oasis.opendocument.text-web</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.oti</extension>
+		<name>OpenDocument v1.0: Image document used as template</name>
+		<type>application/vnd.oasis.opendocument.image-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.otm</extension>
+		<name>OpenDocument v1.0: Global Text document</name>
+		<type>application/vnd.oasis.opendocument.text-master</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.otp</extension>
+		<name>OpenDocument v1.0: Presentation document used as template</name>
+		<type>application/vnd.oasis.opendocument.presentation-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ots</extension>
+		<name>OpenDocument v1.0: Spreadsheet document used as template</name>
+		<type>application/vnd.oasis.opendocument.spreadsheet-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ott</extension>
+		<name>OpenDocument v1.0: Text document used as template</name>
+		<type>application/vnd.oasis.opendocument.text-template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.oxps</extension>
+		<name>OpenXPS</name>
+		<type>application/oxps</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.oz</extension>
+		<name>Oz</name>
+		<type>text/x-oz</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.p</extension>
+		<name>Pascal source code</name>
+		<type>text/x-pascal</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.p65</extension>
+		<name>Pagemaker Document (Generic)</name>
+		<type>application/vnd.pagemaker</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pab</extension>
+		<name>Personal Folder File</name>
+		<type>application/vnd.ms-outlook</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pack</extension>
+		<name>Package (Web)</name>
+		<type>application/package</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pam</extension>
+		<name>Portable Arbitrary Map</name>
+		<type>image/x-portable-arbitrarymap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pas</extension>
+		<name>Pascal</name>
+		<type>text/x-pascal</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pbm</extension>
+		<name>Netpbm formats</name>
+		<type>image/x-portable-bitmap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pcap</extension>
+		<name>TCPDump pcap packet capture</name>
+		<type>application/vnd.tcpdump.pcap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pcapng</extension>
+		<name>pcap Next Generation Packet Capture</name>
+		<type>application/vnd.tcpdump.pcap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pcl</extension>
+		<name>PCL</name>
+		<type>application/vnd.hp-pcl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pct</extension>
+		<name>Macintosh PICT Image 2.0</name>
+		<type>image/x-pict;version="2.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pcx</extension>
+		<name>PCX</name>
+		<type>image/vnd.zbrush.pcx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pdb</extension>
+		<name>Palm OS Database</name>
+		<type>application/vnd.palm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pdf</extension>
+		<name>Portable Document Format</name>
+		<type>application/pdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pfm</extension>
+		<name>Printer Font Metric</name>
+		<type>application/x-font-printer-metric</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pfr</extension>
+		<name>PFR</name>
+		<type>application/font-tdpfr</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pgm</extension>
+		<name>Portable Graymap Graphic</name>
+		<type>image/x-portable-graymap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pgn</extension>
+		<name>PGN</name>
+		<type>application/x-chess-pgn</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pgsql</extension>
+		<name>PLpgSQL</name>
+		<type>text/x-sql</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.php</extension>
+		<name>PHP script</name>
+		<type>text/x-php</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.phtml</extension>
+		<name>HTML+PHP</name>
+		<type>application/x-httpd-php</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pic</extension>
+		<name>Apple Macintosh QuickDraw/PICT Format</name>
+		<type>image/x-pict</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pict</extension>
+		<name>PICT</name>
+		<type>image/x-pict</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pkpass</extension>
+		<name>PKPass</name>
+		<type>application/vnd.apple.pkpass</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pl</extension>
+		<name>Perl script</name>
+		<type>text/x-perl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pls</extension>
+		<name>PLSQL</name>
+		<type>text/x-plsql</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.png</extension>
+		<name>Portable Network Graphics</name>
+		<type>image/png</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pnm</extension>
+		<name>Portable Any Map</name>
+		<type>image/x-portable-anymap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pod</extension>
+		<name>Pod</name>
+		<type>text/x-perl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.por</extension>
+		<name>SPSS Portable File, ASCII encoding</name>
+		<type>application/x-spss-por</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.potm</extension>
+		<name>Microsoft PowerPoint Macro-Enabled Template 2007</name>
+		<type>application/vnd.ms-powerpoint.template.macroenabled.12;version="2007"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.potx</extension>
+		<name>Office Open XML Presentation Template</name>
+		<type>application/vnd.openxmlformats-officedocument.presentationml.template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pp</extension>
+		<name>Puppet</name>
+		<type>text/x-puppet</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ppam</extension>
+		<name>Office Open XML Presentation Add-in (macro-enabled)</name>
+		<type>application/vnd.ms-powerpoint.addin.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ppm</extension>
+		<name>Portable Pixel Map - ASCII</name>
+		<type>image/x-portable-pixmap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pps</extension>
+		<name>Microsoft Powerpoint Presentation Show 97-2003</name>
+		<type>application/vnd.ms-powerpoint;version="97-2003"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ppsm</extension>
+		<name>Office Open XML Presentation Slideshow (macro-enabled)</name>
+		<type>application/vnd.ms-powerpoint.slideshow.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ppsx</extension>
+		<name>Office Open XML Presentation Slideshow</name>
+		<type>application/vnd.openxmlformats-officedocument.presentationml.slideshow</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ppt</extension>
+		<name>Microsoft Powerpoint Presentation</name>
+		<type>application/vnd.ms-powerpoint</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pptm</extension>
+		<name>Office Open XML Presentation (macro-enabled)</name>
+		<type>application/vnd.ms-powerpoint.presentation.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pptx</extension>
+		<name>Office Open XML Presentation</name>
+		<type>application/vnd.openxmlformats-officedocument.presentationml.presentation</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.prc</extension>
+		<name>PRC (Palm OS)</name>
+		<type>application/vnd.palm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pro</extension>
+		<name>Prolog source code</name>
+		<type>text/x-prolog</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.project</extension>
+		<name>CATIA Project 4</name>
+		<type>application/octet-stream;version="4"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.properties</extension>
+		<name>Java Properties</name>
+		<type>text/properties</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.proto</extension>
+		<name>Protocol Buffer</name>
+		<type>text/x-protobuf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ps</extension>
+		<name>PostScript</name>
+		<type>application/postscript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ps1</extension>
+		<name>PowerShell</name>
+		<type>application/x-powershell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.psb</extension>
+		<name>Adobe Photoshop Large Document Format</name>
+		<type>image/vnd.adobe.photoshop</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.psd</extension>
+		<name>Adobe Photoshop</name>
+		<type>image/vnd.adobe.photoshop</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.psid</extension>
+		<name>Play SID Audio 2</name>
+		<type>audio/prs.sid;version="2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pst</extension>
+		<name>Outlook Personal Folders File Format</name>
+		<type>application/vnd.ms-outlook-pst</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ptx</extension>
+		<name>Pentax raw image</name>
+		<type>image/x-raw-pentax</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.purs</extension>
+		<name>PureScript</name>
+		<type>text/x-haskell</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pxn</extension>
+		<name>Logitech raw image</name>
+		<type>image/x-raw-logitech</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.py</extension>
+		<name>Python script</name>
+		<type>text/x-python</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.pyx</extension>
+		<name>Cython</name>
+		<type>text/x-cython</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.qcd</extension>
+		<name>Quark Xpress Data File</name>
+		<type>application/vnd.quark.quarkxpress</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.qcp</extension>
+		<name>QCP Audio File Format</name>
+		<type>audio/qcelp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.qif</extension>
+		<name>Quicken Interchange Format</name>
+		<type>application/qif</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.qxp</extension>
+		<name>QuarkXPress</name>
+		<type>application/vnd.quark.quarkxpress</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.qxp report</extension>
+		<name>Quark Xpress Report File</name>
+		<type>application/vnd.quark.quarkxpress</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.r</extension>
+		<name>R source code</name>
+		<type>text/x-rsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.r3d</extension>
+		<name>Red raw image</name>
+		<type>image/x-raw-red</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ra</extension>
+		<name>RealAudio</name>
+		<type>audio/vnd.rn-realaudio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.raf</extension>
+		<name>Fuji raw image</name>
+		<type>image/x-raw-fuji</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ram</extension>
+		<name>RealAudio Metafile</name>
+		<type>audio/vnd.rn-realaudio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.raml</extension>
+		<name>RAML</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rar</extension>
+		<name>RAR</name>
+		<type>application/vnd.rar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rar </extension>
+		<name>RAR Archive File Format Family</name>
+		<type>application/vnd.rar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ras</extension>
+		<name>Sun Raster Image</name>
+		<type>image/x-sun-raster</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.raw</extension>
+		<name>Panasonic raw image</name>
+		<type>image/x-raw-panasonic</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rb</extension>
+		<name>Ruby source code</name>
+		<type>text/x-ruby</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rdf</extension>
+		<name>RDF</name>
+		<type>application/rdf+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.re</extension>
+		<name>Reason</name>
+		<type>text/x-rustsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.reg</extension>
+		<name>Windows Registry Entries</name>
+		<type>text/x-properties</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rest</extension>
+		<name>reStructuredText source code</name>
+		<type>text/x-rst</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rexx</extension>
+		<name>Rexx source code</name>
+		<type>text/x-rexx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rf64</extension>
+		<name>Broadcast WAVE 0 WAVEFORMATEXTENSIBLE Encoding</name>
+		<type>audio/x-wav;version="0waveformatextensibleencoding"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rfa</extension>
+		<name>Revit Family File</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rft</extension>
+		<name>Revit Family Template</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rg</extension>
+		<name>Rouge</name>
+		<type>text/x-clojure</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rgb</extension>
+		<name>Silicon Graphics RGB Bitmap</name>
+		<type>image/x-rgb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rhtml</extension>
+		<name>RHTML</name>
+		<type>application/x-erb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rlc</extension>
+		<name>Xerox EDMICS-RLC</name>
+		<type>image/vnd.fujixerox.edmics-rlc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rm</extension>
+		<name>RealAudio, Version 10</name>
+		<type>application/vnd.rn-realmedia</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rmd</extension>
+		<name>RMarkdown</name>
+		<type>text/x-gfm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rmi</extension>
+		<name>RIFF-based MIDI File Format</name>
+		<type>audio/mid</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rmp</extension>
+		<name>RealMedia Player Plug-in</name>
+		<type>audio/x-pn-realaudio-plugin</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.roff</extension>
+		<name>Roff</name>
+		<type>text/troff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rpm</extension>
+		<name>RedHat Package Manager</name>
+		<type>application/x-rpm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rs</extension>
+		<name>Rust</name>
+		<type>text/x-rustsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rss</extension>
+		<name>RSS</name>
+		<type>application/rss+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rst</extension>
+		<name>reStructuredText</name>
+		<type>text/x-rst</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rte</extension>
+		<name>Revit Template</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rtf</extension>
+		<name>Rich Text Format File</name>
+		<type>application/rtf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rv</extension>
+		<name>Real Video</name>
+		<type>video/vnd.rn-realvideo</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rvg</extension>
+		<name>Revit External Group</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rvt</extension>
+		<name>Revit Project</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rws</extension>
+		<name>Revit Workspace</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.rwz</extension>
+		<name>Rawzor raw image</name>
+		<type>image/x-raw-rawzor</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.s</extension>
+		<name>Assembler source code</name>
+		<type>text/x-asm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.s7m</extension>
+		<name>SAS DMDB Data Mining Database File</name>
+		<type>application/x-sas-dmdb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sa7</extension>
+		<name>SAS Access Descriptor</name>
+		<type>application/x-sas-access</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sage</extension>
+		<name>Sage</name>
+		<type>text/x-python</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sam</extension>
+		<name>AMI Professional Document</name>
+		<type>application/vnd.lotus-wordpro</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sas</extension>
+		<name>SAS Program</name>
+		<type>application/x-sas</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sas7bbak</extension>
+		<name>SAS Backup</name>
+		<type>application/x-sas-backup</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sass</extension>
+		<name>Sass</name>
+		<type>text/x-sass</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sav</extension>
+		<name>SPSS System Data File Format Family (.sav)</name>
+		<type>application/x-spss-sav</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sc7</extension>
+		<name>SAS Catalog</name>
+		<type>application/x-sas-catalog</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.scala</extension>
+		<name>Scala source code</name>
+		<type>text/x-scala</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sch</extension>
+		<name>Eagle</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.scm</extension>
+		<name>Scheme source code</name>
+		<type>text/x-scheme</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.scores</extension>
+		<name>Xbill.scores</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.scss</extension>
+		<name>SCSS</name>
+		<type>text/x-scss</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sd7</extension>
+		<name>SAS Data Set</name>
+		<type>application/x-sas-data</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sda</extension>
+		<name>SDA (StarOffice)</name>
+		<type>application/vnd.stardivision.draw</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sdc</extension>
+		<name>SDC</name>
+		<type>application/vnd.stardivision.calc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sdn</extension>
+		<name>Steel Detailing Neutral Format</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sdw</extension>
+		<name>StarOffice binary formats</name>
+		<type>application/vnd.stardivision.writer</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sed</extension>
+		<name>Sed code</name>
+		<type>text/x-sed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sf7</extension>
+		<name>SAS FDB Consolidation Database File</name>
+		<type>application/x-sas-fdb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sfd</extension>
+		<name>Spline Font Database</name>
+		<type>application/vnd.font-fontforge-sfd</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sgm</extension>
+		<name>Standard Generalized Markup Language</name>
+		<type>text/sgml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sgml</extension>
+		<name>SGML</name>
+		<type>text/sgml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sh</extension>
+		<name>UNIX/LINUX Shell Script</name>
+		<type>application/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sh-session</extension>
+		<name>ShellSession</name>
+		<type>text/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.shar</extension>
+		<name>Shell Archive Format</name>
+		<type>application/x-shar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.shtml</extension>
+		<name>Server Side Includes</name>
+		<type>text/x-server-parsed-html</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.si7</extension>
+		<name>SAS Data Set Index</name>
+		<type>application/x-sas-data-index</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sid</extension>
+		<name>SID</name>
+		<type>audio/prs.sid</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sit</extension>
+		<name>StuffIt</name>
+		<type>application/x-stuffit</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sitx</extension>
+		<name>StuffIt X</name>
+		<type>application/x-stuffitx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.skb</extension>
+		<name>SketchUp Document</name>
+		<type>application/octet-stream</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.skp</extension>
+		<name>SSEYO Koan File</name>
+		<type>application/vnd.koan</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sla</extension>
+		<name>Scribus</name>
+		<type>application/vnd.scribus</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sld</extension>
+		<name>AutoCAD Slide</name>
+		<type>application/sld</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sldm</extension>
+		<name>Microsoft PowerPoint Macro-Enabled Slide 2007</name>
+		<type>application/vnd.ms-powerpoint.slide.macroenabled.12;version="2007"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sldprt</extension>
+		<name>SolidWorks CAD program</name>
+		<type>application/sldworks</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.slim</extension>
+		<name>Slim</name>
+		<type>text/x-slim</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sls</extension>
+		<name>SaltStack</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sm7</extension>
+		<name>SAS MDDB Multi-Dimensional Database File</name>
+		<type>application/x-sas-mddb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.smi</extension>
+		<name>SMIL Multimedia</name>
+		<type>application/smil+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.smk</extension>
+		<name>Smacker</name>
+		<type>video/vnd.radgamettools.smacker</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.soy</extension>
+		<name>Closure Templates</name>
+		<type>text/x-soy</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sp7</extension>
+		<name>SAS Permanent Utility</name>
+		<type>application/x-sas-putility</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sparql</extension>
+		<name>SPARQL</name>
+		<type>application/sparql-query</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.spec</extension>
+		<name>RPM Spec</name>
+		<type>text/x-rpm-spec</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.spl</extension>
+		<name>Macromedia FutureSplash File</name>
+		<type>application/x-futuresplash</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.spx</extension>
+		<name>Ogg Speex Audio Format</name>
+		<type>audio/speex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sql</extension>
+		<name>SQL code</name>
+		<type>text/x-sql</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sr7</extension>
+		<name>SAS Item Store (ItemStor) File</name>
+		<type>application/x-sas-itemstor</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.srl</extension>
+		<name>Sereal binary serialization format</name>
+		<type>application/sereal</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.srt</extension>
+		<name>SRecode Template</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ss7</extension>
+		<name>SAS Stored Program (DATA Step)</name>
+		<type>application/x-sas-program-data</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ssml</extension>
+		<name>Speech Synthesis Markup Language</name>
+		<type>application/ssml+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.st</extension>
+		<name>Smalltalk source code</name>
+		<type>text/x-stsrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.st7</extension>
+		<name>SAS Audit</name>
+		<type>application/x-sas-audit</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.stw</extension>
+		<name>STW</name>
+		<type>application/vnd.sun.xml.writer.template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.stx</extension>
+		<name>SAS Transport File</name>
+		<type>application/x-sas-transport</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.su7</extension>
+		<name>SAS Utility</name>
+		<type>application/x-sas-utility</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sublime-build</extension>
+		<name>JSON with Comments</name>
+		<type>text/javascript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sv</extension>
+		<name>SystemVerilog</name>
+		<type>text/x-systemverilog</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sv7</extension>
+		<name>SAS Data Set View</name>
+		<type>application/x-sas-view</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.svf</extension>
+		<name>Simple Vector Format</name>
+		<type>image/vnd.svf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.svg</extension>
+		<name>Scalable Vector Graphics</name>
+		<type>image/svg+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.svgz</extension>
+		<name>Scalable Vector Graphics Compressed</name>
+		<type>image/svg+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.swf</extension>
+		<name>SWF</name>
+		<type>application/vnd.adobe.flash-movie</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.swift</extension>
+		<name>Swift</name>
+		<type>text/x-swift</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sxc</extension>
+		<name>OpenOffice Calc 1.0</name>
+		<type>application/vnd.sun.xml.calc;version="1.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sxd</extension>
+		<name>SXD</name>
+		<type>application/vnd.sun.xml.draw</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sxi</extension>
+		<name>SXI</name>
+		<type>application/vnd.sun.xml.impress</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sxw</extension>
+		<name>OpenOffice.org XML</name>
+		<type>application/vnd.sun.xml.writer</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.sz</extension>
+		<name>Snappy Framed</name>
+		<type>application/x-snappy-framed</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.t</extension>
+		<name>TADS</name>
+		<type>application/x-tads</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tap</extension>
+		<name>TAP (Tencent)</name>
+		<type>image/vnd.tencent.tap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tar</extension>
+		<name>Tape Archive</name>
+		<type>application/x-tar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tcl</extension>
+		<name>Tcl</name>
+		<type>text/x-tcl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tcsh</extension>
+		<name>Tcsh</name>
+		<type>text/x-sh</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tex</extension>
+		<name>TeX Source</name>
+		<type>text/x-tex</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.textile</extension>
+		<name>Textile</name>
+		<type>text/x-textile</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tfw</extension>
+		<name>ESRI World File</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tfx</extension>
+		<name>Tagged Image File Format for Internet Fax (TIFF-FX)</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.thmx</extension>
+		<name>Microsoft Office Theme</name>
+		<type>application/vnd.ms-officetheme</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tif</extension>
+		<name>Tagged Image File Format for Image Technology (TIFF/IT)</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tif </extension>
+		<name>Digital Raster Graphic as TIFF</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tiff</extension>
+		<name>Tagged Image File Format</name>
+		<type>image/tiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.toml</extension>
+		<name>TOML</name>
+		<type>text/x-toml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.torrent</extension>
+		<name>Torrent file</name>
+		<type>application/x-bittorrent</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tpl</extension>
+		<name>Smarty</name>
+		<type>text/x-smarty</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ts</extension>
+		<name>TypeScript</name>
+		<type>application/typescript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tsv</extension>
+		<name>Tab-separated values</name>
+		<type>text/tab-separated-values</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.tta</extension>
+		<name>True Audio 1</name>
+		<type>audio/tta;version="1"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ttf</extension>
+		<name>TrueType Font</name>
+		<type>application/x-font-ttf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ttl</extension>
+		<name>Turtle</name>
+		<type>text/turtle</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.twig</extension>
+		<name>Twig</name>
+		<type>text/x-twig</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.txt</extension>
+		<name>Plain text</name>
+		<type>text/plain</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.u3d</extension>
+		<name>Universal 3D (U3D) format family. ECMA-363, Editions 1-4</name>
+		<type>model/u3d</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.uc</extension>
+		<name>UnrealScript</name>
+		<type>text/x-java</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.ulx</extension>
+		<name>Glulx</name>
+		<type>application/x-glulx</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.uno</extension>
+		<name>Uno</name>
+		<type>text/x-csharp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.upc</extension>
+		<name>Unified Parallel C</name>
+		<type>text/x-csrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.url</extension>
+		<name>Internet Shortcut</name>
+		<type>application/x-url</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.v</extension>
+		<name>Verilog source code</name>
+		<type>text/x-verilog</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vb</extension>
+		<name>Visual Basic</name>
+		<type>text/x-vb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vbs</extension>
+		<name>VBScript source code</name>
+		<type>text/x-vbscript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vcd</extension>
+		<name>Virtual CD-ROM CD Image File</name>
+		<type>application/x-cdlink</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vcf</extension>
+		<name>VCard</name>
+		<type>text/vcard</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vcs</extension>
+		<name>VCalendar format</name>
+		<type>text/x-vcalendar</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vdx</extension>
+		<name>Microsoft Visio XML Drawing 2003-2010</name>
+		<type>application/vnd.visio;version="2003-2010"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vhd</extension>
+		<name>VHDL source code</name>
+		<type>text/x-vhdl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vhdl</extension>
+		<name>VHDL</name>
+		<type>text/x-vhdl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.viv</extension>
+		<name>VivoActive</name>
+		<type>video/vnd-vivo</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vmdk</extension>
+		<name>Virtual Disk Format</name>
+		<type>application/x-vmdk</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vmt</extension>
+		<name>Valve Material Type</name>
+		<type>application/vnd.valve.source.material</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.volt</extension>
+		<name>Volt</name>
+		<type>text/x-d</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vot</extension>
+		<name>VOTable</name>
+		<type>application/x-votable+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vpb</extension>
+		<name>Quantel VPB image</name>
+		<type>image/vpb</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vsd</extension>
+		<name>Microsoft Visio Diagram</name>
+		<type>application/vnd.visio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vsdm</extension>
+		<name>Office Open XML Visio Drawing (macro-enabled)</name>
+		<type>application/vnd.ms-visio.drawing.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vsdx</extension>
+		<name>Visio VSDX Drawing File Format</name>
+		<type>application/vnd.visio</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vssm</extension>
+		<name>Office Open XML Visio Stencil (macro-enabled)</name>
+		<type>application/vnd.ms-visio.stencil.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vssx</extension>
+		<name>Office Open XML Visio Stencil (macro-free)</name>
+		<type>application/vnd.ms-visio.stencil</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vstm</extension>
+		<name>Office Open XML Visio Template (macro-enabled)</name>
+		<type>application/vnd.ms-visio.template.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vstx</extension>
+		<name>Office Open XML Visio Template (macro-free)</name>
+		<type>application/vnd.ms-visio.template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vtf</extension>
+		<name>Valve Texture Format</name>
+		<type>image/vnd.valve.source.texture</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vtt</extension>
+		<name>Web Video Text Tracks Format</name>
+		<type>text/vtt</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.vwx</extension>
+		<name>Vectorworks 2015</name>
+		<type>application/vnd.vectorworks;version="2015"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.w50</extension>
+		<name>WordPerfect for MS-DOS Document 5.0</name>
+		<type>application/vnd.wordperfect;version="5.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.w51</extension>
+		<name>WordPerfect for MS-DOS/Windows Document 5.1</name>
+		<type>application/vnd.wordperfect;version="5.1"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.w52</extension>
+		<name>WordPerfect for Windows Document 5.2</name>
+		<type>application/vnd.wordperfect;version="5.2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.warc</extension>
+		<name>WARC, Web ARChive file format</name>
+		<type>application/warc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wast</extension>
+		<name>WebAssembly</name>
+		<type>text/x-common-lisp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wav</extension>
+		<name>Waveform Audio</name>
+		<type>audio/x-wav</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wbmp</extension>
+		<name>Wireless Bitmap File Format</name>
+		<type>image/vnd.wap.wbmp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.webapp</extension>
+		<name>Open Web App Manifest</name>
+		<type>application/x-web-app-manifest+json</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.webidl</extension>
+		<name>WebIDL</name>
+		<type>text/x-webidl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.webm</extension>
+		<name>WebM</name>
+		<type>video/webm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.webp</extension>
+		<name>WebP</name>
+		<type>image/webp</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wisp</extension>
+		<name>wisp</name>
+		<type>text/x-clojure</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wk1</extension>
+		<name>Lotus 1-2-3 Worksheet 2.0</name>
+		<type>application/vnd.lotus-1-2-3;version="2.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wk3</extension>
+		<name>Lotus 1-2-3 Worksheet 3.0</name>
+		<type>application/vnd.lotus-1-2-3;version="3.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wk4</extension>
+		<name>Lotus 1-2-3 Worksheet 4-5</name>
+		<type>application/vnd.lotus-1-2-3;version="4-5"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wks</extension>
+		<name>Lotus 1-2-3</name>
+		<type>application/vnd.lotus-1-2-3</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wma</extension>
+		<name>WMA (Windows Media Audio) File Format</name>
+		<type>audio/x-ms-wma</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wmf</extension>
+		<name>Windows Metafile</name>
+		<type>image/wmf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wmlc</extension>
+		<name>Compiled WML Document</name>
+		<type>application/vnd.wap.wmlc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wmls</extension>
+		<name>WML Script</name>
+		<type>text/vnd.wap.wmlscript</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wmlsc</extension>
+		<name>Compiled WML Script</name>
+		<type>application/vnd.wap.wmlscriptc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wmv</extension>
+		<name>WMV (Windows Media Video) File Format</name>
+		<type>video/x-ms-wmv</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.woff</extension>
+		<name>Web Open Font Format</name>
+		<type>application/font-woff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wp4</extension>
+		<name>WordPerfect 4.0/4.1/4.2</name>
+		<type>application/vnd.wordperfect;version="4.0/4.1/4.2"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wpd</extension>
+		<name>WordPerfect</name>
+		<type>application/vnd.wordperfect</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wpl</extension>
+		<name>Windows Media Playlist</name>
+		<type>application/vnd.ms-wpl</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wrl</extension>
+		<name>VRML</name>
+		<type>model/vrml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.wsz</extension>
+		<name>Winamp Skin</name>
+		<type>interface/x-winamp-skin</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.x3d</extension>
+		<name>X3D</name>
+		<type>model/x3d+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.x3f</extension>
+		<name>Sigma raw image</name>
+		<type>image/x-raw-sigma</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xap</extension>
+		<name>Silverlight</name>
+		<type>application/x-silverlight-app</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xar</extension>
+		<name>Xar (vector graphics)</name>
+		<type>application/vnd.xara</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xbm</extension>
+		<name>XBM</name>
+		<type>image/x-xbitmap</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xc</extension>
+		<name>XC</name>
+		<type>text/x-csrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xcf</extension>
+		<name>GIMP Image File</name>
+		<type>image/xcf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xdm</extension>
+		<name>X-Windows Screen Dump File X10</name>
+		<type>image/x-xwindowdump;version="x10"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xfdf</extension>
+		<name>XFDF</name>
+		<type>application/vnd.adobe.xfdf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xhtml</extension>
+		<name>Extensible HyperText Markup Language (XHTML), 1.0</name>
+		<type>application/xhtml+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xif</extension>
+		<name>XIFF</name>
+		<type>image/vnd.xiff</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xla</extension>
+		<name>Microsoft Excel Macro 4.0</name>
+		<type>application/vnd.ms-excel;version="4.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlam</extension>
+		<name>Office Open XML Workbook Add-in (macro-enabled)</name>
+		<type>application/vnd.ms-excel.addin.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlc</extension>
+		<name>Microsoft Excel Chart 3.0</name>
+		<type>application/vnd.ms-excel;version="3.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlm</extension>
+		<name>Microsoft Excel Macro 3.0</name>
+		<type>application/vnd.ms-excel;version="3.0"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xls</extension>
+		<name>Microsoft Excel Spreadsheet</name>
+		<type>application/vnd.ms-excel</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlsb</extension>
+		<name>Microsoft Excel 2007 Binary Spreadsheet</name>
+		<type>application/vnd.ms-excel.sheet.binary.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlsm</extension>
+		<name>Office Open XML Workbook (macro-enabled)</name>
+		<type>application/vnd.ms-excel.sheet.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlsx</extension>
+		<name>Office Open XML Workbook</name>
+		<type>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xltm</extension>
+		<name>Office Open XML Workbook Template (macro-enabled)</name>
+		<type>application/vnd.ms-excel.template.macroenabled.12</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xltx</extension>
+		<name>Office Open XML Workbook Template</name>
+		<type>application/vnd.openxmlformats-officedocument.spreadsheetml.template</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xlw</extension>
+		<name>Microsoft Excel 4.0 Workbook (xls) 4W</name>
+		<type>application/vnd.ms-excel;version="4w"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xm</extension>
+		<name>Extended Module Audio File</name>
+		<type>audio/xm</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xmf</extension>
+		<name>XMF, eXtensible Music File Format, Version 1.0</name>
+		<type>audio/mobile-xmf</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xmind</extension>
+		<name>XMind Pro</name>
+		<type>application/x-xmind</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xml</extension>
+		<name>Extensible Markup Language</name>
+		<type>application/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xmt</extension>
+		<name>MPEG-4, eXtensible MPEG-4 Textual Format (XMT)</name>
+		<type>application/mpeg4-iod-xmt</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xpi</extension>
+		<name>Cross-Platform Installer Module</name>
+		<type>application/x-xpinstall</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xpl</extension>
+		<name>XProc</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xpm</extension>
+		<name>X-Windows Pixmap Image X10</name>
+		<type>image/x-xpixmap;version="x10"</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xps</extension>
+		<name>Open XML Paper Specification</name>
+		<type>application/oxps</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xpt</extension>
+		<name>SAS Transport File Format (XPORT) Family </name>
+		<type>application/x-sas-xport</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xq</extension>
+		<name>XQuery source code</name>
+		<type>application/xquery</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xquery</extension>
+		<name>XQuery</name>
+		<type>application/xquery</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xs</extension>
+		<name>XS</name>
+		<type>text/x-csrc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xsd</extension>
+		<name>XML Schema Definition</name>
+		<type>application/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xsl</extension>
+		<name>Extensible Stylesheet Language</name>
+		<type>application/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xslfo</extension>
+		<name>XSL Format</name>
+		<type>application/xslfo+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xslt</extension>
+		<name>XSL Transformations</name>
+		<type>application/xslt+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xsp-config</extension>
+		<name>XPages</name>
+		<type>text/xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xspf</extension>
+		<name>XML Shareable Playlist Format</name>
+		<type>application/xspf+xml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xwd</extension>
+		<name>X Windows Dump</name>
+		<type>image/x-xwindowdump</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.xz</extension>
+		<name>XZ</name>
+		<type>application/x-xz</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.y</extension>
+		<name>Yacc/Bison source code</name>
+		<type>text/x-yacc</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.yaml</extension>
+		<name>YAML source code</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.yml</extension>
+		<name>YAML</name>
+		<type>text/x-yaml</type>
+	</mimetype>
+	<mimetype>
+		<extension>*.zip</extension>
+		<name>Compressed Archive File</name>
+		<type>application/zip</type>
+	</mimetype>
+</mimetypes>

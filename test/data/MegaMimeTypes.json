@@ -1,0 +1,3698 @@
+{
+	"mimetype": [
+    {
+        "extension":"*.1",
+        "name":"Roff Manpage",
+        "type":"text/troff"
+    },
+    {
+        "extension":"*.3ds",
+        "name":"3DS",
+        "type":"image/x-3ds"
+    },
+    {
+        "extension":"*.3fr",
+        "name":"Hasselblad raw image",
+        "type":"image/x-raw-hasselblad"
+    },
+    {
+        "extension":"*.3g2",
+        "name":"3G2",
+        "type":"video/3gpp2"
+    },
+    {
+        "extension":"*.3gp",
+        "name":"3GP",
+        "type":"video/3gpp"
+    },
+    {
+        "extension":"*.3mf",
+        "name":"3MF 3D Manufacturing Format",
+        "type":"application/vnd.ms-package.3dmanufacturing-3dmodel+xml"
+    },
+    {
+        "extension":"*.4th",
+        "name":"Forth source code",
+        "type":"text/x-forth"
+    },
+    {
+        "extension":"*.669",
+        "name":"Module Music Formats (Mods)",
+        "type":"audio/x-mod"
+    },
+    {
+        "extension":"*.6pl",
+        "name":"Perl 6",
+        "type":"text/x-perl"
+    },
+    {
+        "extension":"*.7z",
+        "name":"7-zip archive",
+        "type":"application/x-7z-compressed"
+    },
+    {
+        "extension":"*.8svx",
+        "name":"8-Bit Sampled Voice",
+        "type":"audio/8svx"
+    },
+    {
+        "extension":"*.ML",
+        "name":"Standard ML",
+        "type":"text/x-ocaml"
+    },
+    {
+        "extension":"*.MYD",
+        "name":"MySQL MISAM Data",
+        "type":"application/x-mysql-misam-data"
+    },
+    {
+        "extension":"*.MYI",
+        "name":"MySQL MISAM Compressed Index",
+        "type":"application/x-mysql-misam-compressed-index"
+    },
+    {
+        "extension":"*.R",
+        "name":"R",
+        "type":"text/x-rsrc"
+    },
+    {
+        "extension":"*.TIF",
+        "name":"TIFF Uncompressed File with Exif Metadata",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.XXX",
+        "name":"Template:File Format/Preload",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.Z",
+        "name":"Compress",
+        "type":"application/x-compress"
+    },
+    {
+        "extension":"*.aa",
+        "name":"Audible.Com File Format",
+        "type":"audio/x-pn-audibleaudio"
+    },
+    {
+        "extension":"*.ac3",
+        "name":"Dolby Digital AC-3",
+        "type":"audio/ac3"
+    },
+    {
+        "extension":"*.acsm",
+        "name":"Adobe Content Server Message File",
+        "type":"application/vnd.adobe.adept+xml"
+    },
+    {
+        "extension":"*.ada",
+        "name":"Ada source code",
+        "type":"text/x-ada"
+    },
+    {
+        "extension":"*.adf",
+        "name":"AppleDouble",
+        "type":"multipart/appledouble"
+    },
+    {
+        "extension":"*.afa",
+        "name":"Astrotite",
+        "type":"application/x-astrotite-afa"
+    },
+    {
+        "extension":"*.afm",
+        "name":"Adobe Font Metric",
+        "type":"application/x-font-adobe-metric"
+    },
+    {
+        "extension":"*.ai",
+        "name":"Adobe Illustrator Artwork",
+        "type":"application/illustrator"
+    },
+    {
+        "extension":"*.aif",
+        "name":"Audio Interchange File Format",
+        "type":"audio/x-aiff"
+    },
+    {
+        "extension":"*.aifc",
+        "name":"Audio Interchange File Format (compressed)",
+        "type":"audio/x-aiff"
+    },
+    {
+        "extension":"*.aiff",
+        "name":"AIFF",
+        "type":"audio/x-aiff"
+    },
+    {
+        "extension":"*.air",
+        "name":"Adobe Air 1.0",
+        "type":"application/vnd.adobe.air-application-installer-package+zip;version=\"1.0\""
+    },
+    {
+        "extension":"*.aj",
+        "name":"AspectJ source code",
+        "type":"text/x-aspectj"
+    },
+    {
+        "extension":"*.amr",
+        "name":"AMR, Adaptive Multi-Rate Speech Codec",
+        "type":"audio/amr"
+    },
+    {
+        "extension":"*.anim",
+        "name":"Unity3D Asset",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.anpa",
+        "name":"American Newspaper Publishers Association Wire Feeds",
+        "type":"text/vnd.iptc.anpa"
+    },
+    {
+        "extension":"*.ans",
+        "name":"7-bit ANSI Text",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.apl",
+        "name":"APL",
+        "type":"text/apl"
+    },
+    {
+        "extension":"*.apng",
+        "name":"Animated Portable Network Graphics",
+        "type":"image/vnd.mozilla.apng"
+    },
+    {
+        "extension":"*.applescript",
+        "name":"AppleScript source code",
+        "type":"text/x-applescript"
+    },
+    {
+        "extension":"*.apr",
+        "name":"Lotus Approach View File 97",
+        "type":"application/vnd.lotus-approach;version=\"97\""
+    },
+    {
+        "extension":"*.apt",
+        "name":"Lotus Approach View File",
+        "type":"application/vnd.lotus-approach"
+    },
+    {
+        "extension":"*.arc",
+        "name":"Internet Archive 1.0",
+        "type":"application/x-internet-archive;version=\"1.0\""
+    },
+    {
+        "extension":"*.arw",
+        "name":"Sony raw image",
+        "type":"image/x-raw-sony"
+    },
+    {
+        "extension":"*.as",
+        "name":"ActionScript source code",
+        "type":"text/x-actionscript"
+    },
+    {
+        "extension":"*.asc",
+        "name":"7-bit ASCII Text",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.asciidoc",
+        "name":"Asciidoc source code",
+        "type":"text/x-asciidoc"
+    },
+    {
+        "extension":"*.asf",
+        "name":"Advanced Systems Format",
+        "type":"application/vnd.ms-asf"
+    },
+    {
+        "extension":"*.asice",
+        "name":"Extended Associated Signature Container",
+        "type":"application/vnd.etsi.asic-e+zip"
+    },
+    {
+        "extension":"*.asics",
+        "name":"Simple Associated Signature Container",
+        "type":"application/vnd.etsi.asic-s+zip"
+    },
+    {
+        "extension":"*.asn",
+        "name":"ASN.1",
+        "type":"text/x-ttcn-asn"
+    },
+    {
+        "extension":"*.asp",
+        "name":"ASP",
+        "type":"application/x-aspx"
+    },
+    {
+        "extension":"*.aspx",
+        "name":"ASP .NET",
+        "type":"text/aspdotnet"
+    },
+    {
+        "extension":"*.asy",
+        "name":"LTspice Symbol",
+        "type":"text/x-spreadsheet"
+    },
+    {
+        "extension":"*.atom",
+        "name":"Atom",
+        "type":"application/atom+xml"
+    },
+    {
+        "extension":"*.au",
+        "name":"uLaw/AU Audio File",
+        "type":"audio/basic"
+    },
+    {
+        "extension":"*.avi",
+        "name":"AVI (Audio Video Interleaved) File Format",
+        "type":"video/msvideo"
+    },
+    {
+        "extension":"*.awb",
+        "name":"Adaptive Multi-Rate Wideband Audio",
+        "type":"audio/amr-wb"
+    },
+    {
+        "extension":"*.awk",
+        "name":"AWK script",
+        "type":"text/x-awk"
+    },
+    {
+        "extension":"*.axc",
+        "name":"Axc",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.axx",
+        "name":"AxCrypt",
+        "type":"application/x-axcrypt"
+    },
+    {
+        "extension":"*.b",
+        "name":"Brainfuck",
+        "type":"text/x-brainfuck"
+    },
+    {
+        "extension":"*.b6z",
+        "name":"B6Z",
+        "type":"application/x-b6z-compressed"
+    },
+    {
+        "extension":"*.bas",
+        "name":"Basic source code",
+        "type":"text/x-basic"
+    },
+    {
+        "extension":"*.bay",
+        "name":"Casio raw image",
+        "type":"image/x-raw-casio"
+    },
+    {
+        "extension":"*.bik",
+        "name":"Bink Video",
+        "type":"video/vnd.radgamettools.bink"
+    },
+    {
+        "extension":"*.bik2",
+        "name":"Bink Video Format 2",
+        "type":"video/vnd.radgamettools.bink;version=\"2\""
+    },
+    {
+        "extension":"*.bin",
+        "name":"MacBinary",
+        "type":"application/x-macbinary"
+    },
+    {
+        "extension":"*.bmp",
+        "name":"Windows bitmap",
+        "type":"image/bmp"
+    },
+    {
+        "extension":"*.bpg",
+        "name":"Better Portable Graphics",
+        "type":"image/x-bpg"
+    },
+    {
+        "extension":"*.bpm",
+        "name":"BizAgi Process Modeler",
+        "type":"application/bizagi-modeler"
+    },
+    {
+        "extension":"*.bsp",
+        "name":"BSP",
+        "type":"model/vnd.valve.source.compiled-map"
+    },
+    {
+        "extension":"*.btf",
+        "name":"BigTIFF",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.bw",
+        "name":"Silicon Graphics Image",
+        "type":"image/x-sgi-bw"
+    },
+    {
+        "extension":"*.bz2",
+        "name":"Bzip2",
+        "type":"application/x-bzip2"
+    },
+    {
+        "extension":"*.c",
+        "name":"C source code",
+        "type":"text/x-csrc"
+    },
+    {
+        "extension":"*.cab",
+        "name":"Cabinet",
+        "type":"application/vnd.ms-cab-compressed"
+    },
+    {
+        "extension":"*.cabal",
+        "name":"Cabal Config",
+        "type":"text/x-haskell"
+    },
+    {
+        "extension":"*.cap",
+        "name":"pcap Packet Capture",
+        "type":"application/vnd.tcpdump.pcap"
+    },
+    {
+        "extension":"*.catmaterial",
+        "name":"CATIA 5",
+        "type":"application/octet-stream;version=\"5\""
+    },
+    {
+        "extension":"*.catpart",
+        "name":"CATIA Model (Part Description) 5",
+        "type":"application/octet-stream;version=\"5\""
+    },
+    {
+        "extension":"*.catproduct",
+        "name":"CATIA Product Description 5",
+        "type":"application/octet-stream;version=\"5\""
+    },
+    {
+        "extension":"*.cbl",
+        "name":"COBOL source code",
+        "type":"text/x-cobol"
+    },
+    {
+        "extension":"*.cbor",
+        "name":"Concise Binary Object Representation container",
+        "type":"application/cbor"
+    },
+    {
+        "extension":"*.cbz",
+        "name":"Comic Book Archive",
+        "type":"application/x-cbr"
+    },
+    {
+        "extension":"*.cca",
+        "name":"cc:Mail Archive Email Format",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.cda",
+        "name":"CD Audio",
+        "type":"application/x-cdf"
+    },
+    {
+        "extension":"*.cdf",
+        "name":"netCDF-3 Classic",
+        "type":"application/x-netcdf"
+    },
+    {
+        "extension":"*.cdx",
+        "name":"Chemical Draw Exchange Format",
+        "type":"chemical/x-cdx"
+    },
+    {
+        "extension":"*.cfm",
+        "name":"ColdFusion source code",
+        "type":"text/x-coldfusion"
+    },
+    {
+        "extension":"*.cfs",
+        "name":"Compact File Set",
+        "type":"application/x-cfs-compressed"
+    },
+    {
+        "extension":"*.cgi",
+        "name":"CGI script",
+        "type":"text/x-cgi"
+    },
+    {
+        "extension":"*.cgm",
+        "name":"Computer Graphics Metafile",
+        "type":"image/cgm"
+    },
+    {
+        "extension":"*.chm",
+        "name":"Microsoft Compiled HTML Help",
+        "type":"application/vnd.ms-htmlhelp"
+    },
+    {
+        "extension":"*.chrt",
+        "name":"KChart File",
+        "type":"application/x-kchart"
+    },
+    {
+        "extension":"*.chs",
+        "name":"C2hs Haskell",
+        "type":"text/x-haskell"
+    },
+    {
+        "extension":"*.cif",
+        "name":"CIF",
+        "type":"chemical/x-cif"
+    },
+    {
+        "extension":"*.ck",
+        "name":"ChucK",
+        "type":"text/x-java"
+    },
+    {
+        "extension":"*.cl",
+        "name":"Common Lisp source code",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.class",
+        "name":"Java Class File",
+        "type":"application/x-java"
+    },
+    {
+        "extension":"*.clj",
+        "name":"Clojure source code",
+        "type":"text/x-clojure"
+    },
+    {
+        "extension":"*.cls",
+        "name":"Visual basic source code",
+        "type":"text/x-vbasic"
+    },
+    {
+        "extension":"*.cmake",
+        "name":"CMake",
+        "type":"text/x-cmake"
+    },
+    {
+        "extension":"*.cml",
+        "name":"CML",
+        "type":"chemical/x-cml"
+    },
+    {
+        "extension":"*.cob",
+        "name":"COBOL",
+        "type":"text/x-cobol"
+    },
+    {
+        "extension":"*.cod",
+        "name":"Lightning Strike",
+        "type":"image/cis-cod"
+    },
+    {
+        "extension":"*.coffee",
+        "name":"CoffeeScript",
+        "type":"application/vnd.coffeescript"
+    },
+    {
+        "extension":"*.cp",
+        "name":"Component Pascal",
+        "type":"text/x-pascal"
+    },
+    {
+        "extension":"*.cpio",
+        "name":"UNIX CPIO Archive",
+        "type":"application/x-cpio"
+    },
+    {
+        "extension":"*.cpp",
+        "name":"C++ source code",
+        "type":"text/x-c++src"
+    },
+    {
+        "extension":"*.cr",
+        "name":"Crystal",
+        "type":"text/x-crystal"
+    },
+    {
+        "extension":"*.crw",
+        "name":"Camera Image File Format",
+        "type":"image/x-canon-crw"
+    },
+    {
+        "extension":"*.crx",
+        "name":"Chrome Extension Package",
+        "type":"application/x-chrome-package"
+    },
+    {
+        "extension":"*.cs",
+        "name":"C# source code",
+        "type":"text/x-csharp"
+    },
+    {
+        "extension":"*.cshtml",
+        "name":"HTML+Razor",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.cson",
+        "name":"CSON",
+        "type":"text/x-coffeescript"
+    },
+    {
+        "extension":"*.csr",
+        "name":"PKCS10",
+        "type":"application/pkcs10"
+    },
+    {
+        "extension":"*.css",
+        "name":"Cascading Style Sheet",
+        "type":"text/css"
+    },
+    {
+        "extension":"*.csv",
+        "name":"Comma Separated Values",
+        "type":"text/csv"
+    },
+    {
+        "extension":"*.csvs",
+        "name":"CSV Schema",
+        "type":"text/csv-schema"
+    },
+    {
+        "extension":"*.cu",
+        "name":"Cuda",
+        "type":"text/x-c++src"
+    },
+    {
+        "extension":"*.cur",
+        "name":"Microsoft Windows Cursor",
+        "type":"image/x-win-bitmap"
+    },
+    {
+        "extension":"*.cwl",
+        "name":"Common Workflow Language",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.cy",
+        "name":"Cycript",
+        "type":"text/javascript"
+    },
+    {
+        "extension":"*.d",
+        "name":"D source code",
+        "type":"text/x-d"
+    },
+    {
+        "extension":"*.dae",
+        "name":"COLLADA",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.dart",
+        "name":"Dart",
+        "type":"application/dart"
+    },
+    {
+        "extension":"*.dat",
+        "name":"MapInfo Data File (DAT)",
+        "type":"application/dbase"
+    },
+    {
+        "extension":"*.db",
+        "name":"SQLite Database File Format",
+        "type":"application/x-sqlite3"
+    },
+    {
+        "extension":"*.dbf",
+        "name":"dBASE Table File Format (DBF)",
+        "type":"application/x-dbf"
+    },
+    {
+        "extension":"*.dcm",
+        "name":"Digital Imaging and Communications in Medicine File Format",
+        "type":"application/dicom"
+    },
+    {
+        "extension":"*.dcr",
+        "name":"Shockwave (Director)",
+        "type":"application/x-director"
+    },
+    {
+        "extension":"*.dcx",
+        "name":"Multipage Zsoft Paintbrush Bitmap Graphics",
+        "type":"image/x-dcx"
+    },
+    {
+        "extension":"*.deb",
+        "name":"Deb",
+        "type":"application/vnd.debian.binary-package"
+    },
+    {
+        "extension":"*.der",
+        "name":"DER encoded certificate",
+        "type":"application/x-x509-ca-cert"
+    },
+    {
+        "extension":"*.dex",
+        "name":"Dalvik Executable Format",
+        "type":"application/x-dex"
+    },
+    {
+        "extension":"*.dgc",
+        "name":"DGCA",
+        "type":"application/x-dgc-compressed"
+    },
+    {
+        "extension":"*.diff",
+        "name":"Diff",
+        "type":"text/x-diff"
+    },
+    {
+        "extension":"*.dir",
+        "name":"Shockwave Movie",
+        "type":"application/x-director"
+    },
+    {
+        "extension":"*.dita",
+        "name":"DITA Topic",
+        "type":"application/dita+xml;format=topic"
+    },
+    {
+        "extension":"*.ditamap",
+        "name":"DITA Map",
+        "type":"application/dita+xml;format=map"
+    },
+    {
+        "extension":"*.ditaval",
+        "name":"DITA Conditional Processing Profile",
+        "type":"application/dita+xml;format=val"
+    },
+    {
+        "extension":"*.diz",
+        "name":"FILE ID.DIZ",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.djv",
+        "name":"Secure DjVU",
+        "type":"image/vnd.djvu"
+    },
+    {
+        "extension":"*.djvu",
+        "name":"DjVu",
+        "type":"image/vnd.djvu"
+    },
+    {
+        "extension":"*.dll",
+        "name":"Windows Portable Executable",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.dls",
+        "name":"Downloadable Sounds Audio",
+        "type":"audio/dls"
+    },
+    {
+        "extension":"*.dmg",
+        "name":"Apple Disk Image",
+        "type":"application/x-apple-diskimage"
+    },
+    {
+        "extension":"*.dng",
+        "name":"Adobe Digital Negative",
+        "type":"image/x-raw-adobe"
+    },
+    {
+        "extension":"*.doc",
+        "name":"Microsoft Word",
+        "type":"application/msword"
+    },
+    {
+        "extension":"*.dockerfile",
+        "name":"Dockerfile",
+        "type":"text/x-dockerfile"
+    },
+    {
+        "extension":"*.docm",
+        "name":"Office Open XML Document (macro-enabled)",
+        "type":"application/vnd.ms-word.document.macroenabled.12"
+    },
+    {
+        "extension":"*.docx",
+        "name":"OOXML Format Family -- ISO/IEC 29500 and ECMA 376",
+        "type":"application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    },
+    {
+        "extension":"*.dot",
+        "name":"Microsoft Word Document Template (Password Protected) 97-2003",
+        "type":"application/msword;version=\"97-2003\""
+    },
+    {
+        "extension":"*.dotm",
+        "name":"Office Open XML Document Template (macro-enabled)",
+        "type":"application/vnd.ms-word.template.macroenabled.12"
+    },
+    {
+        "extension":"*.dotx",
+        "name":"Office Open XML Document Template",
+        "type":"application/vnd.openxmlformats-officedocument.wordprocessingml.template"
+    },
+    {
+        "extension":"*.dpx",
+        "name":"Digital Moving-Picture Exchange (DPX), Version 2.0",
+        "type":"image/x-dpx"
+    },
+    {
+        "extension":"*.drc",
+        "name":"Ogg Packaged Dirac Video",
+        "type":"video/x-dirac"
+    },
+    {
+        "extension":"*.druby",
+        "name":"Mirah",
+        "type":"text/x-ruby"
+    },
+    {
+        "extension":"*.dtd",
+        "name":"XML Document Type Definition (DTD)",
+        "type":"application/xml-dtd"
+    },
+    {
+        "extension":"*.dts",
+        "name":"DTS Coherent Acoustics (DCA) Audio",
+        "type":"audio/vnd.dts"
+    },
+    {
+        "extension":"*.dv",
+        "name":"Digital Video",
+        "type":"video/dv"
+    },
+    {
+        "extension":"*.dvi",
+        "name":"DVI (Device Independent File Format)",
+        "type":"application/x-dvi"
+    },
+    {
+        "extension":"*.dwf",
+        "name":"AutoCAD Design Web Format 6.0",
+        "type":"application/dwf;version=\"6.0\""
+    },
+    {
+        "extension":"*.dwfx",
+        "name":"AutoCAD Design Web Format",
+        "type":"model/vnd.dwfx+xps"
+    },
+    {
+        "extension":"*.dwg",
+        "name":"AutoCad Drawing",
+        "type":"image/vnd.dwg"
+    },
+    {
+        "extension":"*.dwl",
+        "name":"AutoCAD Database File Locking Information",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.dx",
+        "name":"DEC Data Exchange File",
+        "type":"application/dec-dx."
+    },
+    {
+        "extension":"*.dxb",
+        "name":"AutoCAD DXF simplified Binary",
+        "type":"image/vnd.dxb"
+    },
+    {
+        "extension":"*.dxf",
+        "name":"AutoCAD DXF",
+        "type":"image/vnd.dxf"
+    },
+    {
+        "extension":"*.dxr",
+        "name":"Play SID Audio 1",
+        "type":"audio/prs.sid;version=\"1\""
+    },
+    {
+        "extension":"*.dylan",
+        "name":"Dylan",
+        "type":"text/x-dylan"
+    },
+    {
+        "extension":"*.e",
+        "name":"Eiffel source code",
+        "type":"text/x-eiffel"
+    },
+    {
+        "extension":"*.eb",
+        "name":"Easybuild",
+        "type":"text/x-python"
+    },
+    {
+        "extension":"*.ebnf",
+        "name":"EBNF",
+        "type":"text/x-ebnf"
+    },
+    {
+        "extension":"*.ebuild",
+        "name":"Gentoo Ebuild",
+        "type":"text/x-sh"
+    },
+    {
+        "extension":"*.ecl",
+        "name":"ECL",
+        "type":"text/x-ecl"
+    },
+    {
+        "extension":"*.eclass",
+        "name":"Gentoo Eclass",
+        "type":"text/x-sh"
+    },
+    {
+        "extension":"*.ecr",
+        "name":"HTML+ECR",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.edc",
+        "name":"Edje Data Collection",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.edn",
+        "name":"edn",
+        "type":"text/x-clojure"
+    },
+    {
+        "extension":"*.eex",
+        "name":"HTML+EEX",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.el",
+        "name":"Emacs Lisp source code",
+        "type":"text/x-emacs-lisp"
+    },
+    {
+        "extension":"*.elc",
+        "name":"Emacs Lisp bytecode",
+        "type":"application/x-elc"
+    },
+    {
+        "extension":"*.elm",
+        "name":"Elm",
+        "type":"text/x-elm"
+    },
+    {
+        "extension":"*.em",
+        "name":"EmberScript",
+        "type":"text/x-coffeescript"
+    },
+    {
+        "extension":"*.emf",
+        "name":"Enhanced Metafile",
+        "type":"image/emf"
+    },
+    {
+        "extension":"*.eml",
+        "name":"Internet e-mail message format",
+        "type":"message/rfc822"
+    },
+    {
+        "extension":"*.enr",
+        "name":"EndNote Import File",
+        "type":"application/x-endnote-refer"
+    },
+    {
+        "extension":"*.ens",
+        "name":"EndNote Style File",
+        "type":"application/x-endnote-style"
+    },
+    {
+        "extension":"*.enz",
+        "name":"EndNote Connection File",
+        "type":"application/x-endnote-connect"
+    },
+    {
+        "extension":"*.eot",
+        "name":"Embedded OpenType",
+        "type":"application/vnd.ms-fontobject"
+    },
+    {
+        "extension":"*.epj",
+        "name":"Ecere Projects",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.eps",
+        "name":"Encapsulated PostScript (EPS) File Format, Version 3.x",
+        "type":"application/postscript"
+    },
+    {
+        "extension":"*.epub",
+        "name":"Electronic Publication",
+        "type":"application/epub+zip"
+    },
+    {
+        "extension":"*.eq",
+        "name":"EQ",
+        "type":"text/x-csharp"
+    },
+    {
+        "extension":"*.erb",
+        "name":"HTML+ERB",
+        "type":"application/x-erb"
+    },
+    {
+        "extension":"*.erf",
+        "name":"Epson raw image",
+        "type":"image/x-raw-epson"
+    },
+    {
+        "extension":"*.erl",
+        "name":"Erlang source code",
+        "type":"text/x-erlang"
+    },
+    {
+        "extension":"*.es",
+        "name":"ECMAScript",
+        "type":"application/ecmascript"
+    },
+    {
+        "extension":"*.exe",
+        "name":"DOS/Windows executable (EXE)",
+        "type":"application/x-dosexec"
+    },
+    {
+        "extension":"*.exp",
+        "name":"Expect Script",
+        "type":"text/x-expect"
+    },
+    {
+        "extension":"*.exr",
+        "name":"OpenEXR 2",
+        "type":"image/x-exr;version=\"2\""
+    },
+    {
+        "extension":"*.f",
+        "name":"Fortran source code",
+        "type":"text/x-fortran"
+    },
+    {
+        "extension":"*.f4a",
+        "name":"MPEG-4 Media File",
+        "type":"video/mp4"
+    },
+    {
+        "extension":"*.f4m",
+        "name":"F4M",
+        "type":"application/f4m"
+    },
+    {
+        "extension":"*.f90",
+        "name":"Fortran",
+        "type":"text/x-fortran"
+    },
+    {
+        "extension":"*.factor",
+        "name":"Factor",
+        "type":"text/x-factor"
+    },
+    {
+        "extension":"*.fb2",
+        "name":"FictionBook document",
+        "type":"application/x-fictionbook+xml"
+    },
+    {
+        "extension":"*.fdf",
+        "name":"Forms Data Format",
+        "type":"application/vnd.fdf"
+    },
+    {
+        "extension":"*.fff",
+        "name":"Imacon raw image",
+        "type":"image/x-raw-imacon"
+    },
+    {
+        "extension":"*.fh",
+        "name":"FreeHand image",
+        "type":"image/x-freehand"
+    },
+    {
+        "extension":"*.fig",
+        "name":"Matlab figure",
+        "type":"application/x-matlab-data"
+    },
+    {
+        "extension":"*.fits",
+        "name":"Flexible Image Transport System",
+        "type":"image/fits"
+    },
+    {
+        "extension":"*.flac",
+        "name":"FLAC (Free Lossless Audio Codec), Version 1.1.2",
+        "type":"audio/flac"
+    },
+    {
+        "extension":"*.flif",
+        "name":"Free Lossless Image Format (FLIF)",
+        "type":"image/flif"
+    },
+    {
+        "extension":"*.flv",
+        "name":"FLV",
+        "type":"video/x-flv"
+    },
+    {
+        "extension":"*.fm",
+        "name":"FrameMaker",
+        "type":"application/vnd.framemaker"
+    },
+    {
+        "extension":"*.fmz",
+        "name":"form*Z Project File",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.folio",
+        "name":"Folio",
+        "type":"application/vnd.adobe.folio+zip"
+    },
+    {
+        "extension":"*.fp7",
+        "name":"FileMaker Pro 7",
+        "type":"application/x-filemaker"
+    },
+    {
+        "extension":"*.fpx",
+        "name":"FlashPix",
+        "type":"image/vnd.fpx"
+    },
+    {
+        "extension":"*.fref",
+        "name":"Freenet node reference",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.fs",
+        "name":"F#",
+        "type":"text/x-fsharp"
+    },
+    {
+        "extension":"*.fth",
+        "name":"Forth",
+        "type":"text/x-forth"
+    },
+    {
+        "extension":"*.g3",
+        "name":"CCITT Group 3",
+        "type":"image/g3fax"
+    },
+    {
+        "extension":"*.gbr",
+        "name":"Gerber Format",
+        "type":"application/vnd.gerber"
+    },
+    {
+        "extension":"*.gca",
+        "name":"GCA",
+        "type":"application/x-gca-compressed"
+    },
+    {
+        "extension":"*.geo",
+        "name":"GeoGebra 1.0",
+        "type":"application/vnd.geogebra.file;version=\"1.0\""
+    },
+    {
+        "extension":"*.gf",
+        "name":"Grammatical Framework",
+        "type":"text/x-haskell"
+    },
+    {
+        "extension":"*.ggb",
+        "name":"Ggb",
+        "type":"application/vnd.geogebra.file"
+    },
+    {
+        "extension":"*.gif",
+        "name":"Graphics Interchange Format",
+        "type":"image/gif"
+    },
+    {
+        "extension":"*.gitconfig",
+        "name":"Git Config",
+        "type":"text/x-properties"
+    },
+    {
+        "extension":"*.gitignore",
+        "name":"Ignore List",
+        "type":"text/x-sh"
+    },
+    {
+        "extension":"*.glf",
+        "name":"Glyph",
+        "type":"text/x-tcl"
+    },
+    {
+        "extension":"*.gml",
+        "name":"Geography Markup Language",
+        "type":"application/gml+xml"
+    },
+    {
+        "extension":"*.gn",
+        "name":"GN",
+        "type":"text/x-python"
+    },
+    {
+        "extension":"*.gnumeric",
+        "name":"Gnumeric",
+        "type":"application/x-gnumeric"
+    },
+    {
+        "extension":"*.go",
+        "name":"Go source code",
+        "type":"text/x-go"
+    },
+    {
+        "extension":"*.grb",
+        "name":"General Regularly-distributed Information in Binary form",
+        "type":"application/x-grib"
+    },
+    {
+        "extension":"*.groovy",
+        "name":"Groovy source code",
+        "type":"text/x-groovy"
+    },
+    {
+        "extension":"*.gsp",
+        "name":"Groovy Server Pages",
+        "type":"application/x-jsp"
+    },
+    {
+        "extension":"*.gtar",
+        "name":"GNU tar Compressed File Archive (GNU Tape Archive)",
+        "type":"application/x-gtar"
+    },
+    {
+        "extension":"*.gz",
+        "name":"Gzip Compressed Archive",
+        "type":"application/gzip"
+    },
+    {
+        "extension":"*.h",
+        "name":"C source code header",
+        "type":"text/x-chdr"
+    },
+    {
+        "extension":"*.haml",
+        "name":"HAML source code",
+        "type":"text/x-haml"
+    },
+    {
+        "extension":"*.hcl",
+        "name":"HCL",
+        "type":"text/x-ruby"
+    },
+    {
+        "extension":"*.hdf",
+        "name":"Hierarchical Data Format File",
+        "type":"application/x-hdf"
+    },
+    {
+        "extension":"*.hdp",
+        "name":"HD Photo, Version 1.0 (Windows Media Photo)",
+        "type":"image/vnd.ms-photo"
+    },
+    {
+        "extension":"*.hdr",
+        "name":"Radiance HDR",
+        "type":"image/vnd.radiance"
+    },
+    {
+        "extension":"*.hh",
+        "name":"Hack",
+        "type":"application/x-httpd-php"
+    },
+    {
+        "extension":"*.hpgl",
+        "name":"Hewlett Packard Graphics Language",
+        "type":"application/vnd.hp-hpgl"
+    },
+    {
+        "extension":"*.hpp",
+        "name":"C++ source code header",
+        "type":"text/x-c++hdr"
+    },
+    {
+        "extension":"*.hqx",
+        "name":"BinHex",
+        "type":"application/mac-binhex"
+    },
+    {
+        "extension":"*.hs",
+        "name":"Haskell source code",
+        "type":"text/x-haskell"
+    },
+    {
+        "extension":"*.htm",
+        "name":"Hypertext Markup Language",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.html",
+        "name":"HyperText Markup Language",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.http",
+        "name":"HTTP",
+        "type":"message/http"
+    },
+    {
+        "extension":"*.hx",
+        "name":"Haxe source code",
+        "type":"text/x-haxe"
+    },
+    {
+        "extension":"*.ibooks",
+        "name":"Apple iBook format",
+        "type":"application/x-ibooks+zip"
+    },
+    {
+        "extension":"*.ico",
+        "name":"ICO",
+        "type":"image/vnd.microsoft.icon"
+    },
+    {
+        "extension":"*.ics",
+        "name":"Internet Calendar and Scheduling format",
+        "type":"text/calendar"
+    },
+    {
+        "extension":"*.idl",
+        "name":"Inteface Definition Language",
+        "type":"text/x-idl"
+    },
+    {
+        "extension":"*.idml",
+        "name":"IDML",
+        "type":"application/vnd.adobe.indesign-idml-package"
+    },
+    {
+        "extension":"*.iges",
+        "name":"Initial Graphics Exchange Specification (IGES) 5.x",
+        "type":"model/iges;version=\"5.x\""
+    },
+    {
+        "extension":"*.igs",
+        "name":"Initial Graphics Exchange Specification Format",
+        "type":"model/iges"
+    },
+    {
+        "extension":"*.iiq",
+        "name":"Phase One raw image",
+        "type":"image/x-raw-phaseone"
+    },
+    {
+        "extension":"*.ind",
+        "name":"Adobe InDesign Document Generic",
+        "type":"application/octet-stream;version=\"generic\""
+    },
+    {
+        "extension":"*.indd",
+        "name":"Adobe InDesign document",
+        "type":"application/x-adobe-indesign"
+    },
+    {
+        "extension":"*.inf",
+        "name":"Windows Setup File",
+        "type":"application/inf"
+    },
+    {
+        "extension":"*.ini",
+        "name":"Configuration file",
+        "type":"text/x-ini"
+    },
+    {
+        "extension":"*.inx",
+        "name":"Adobe InDesign Interchange format",
+        "type":"application/x-adobe-indesign-interchange"
+    },
+    {
+        "extension":"*.ipa",
+        "name":"Apple iOS IPA AppStore file",
+        "type":"application/x-itunes-ipa"
+    },
+    {
+        "extension":"*.ipynb",
+        "name":"Jupyter Notebook",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.irclog",
+        "name":"IRC log",
+        "type":"text/mirc"
+    },
+    {
+        "extension":"*.iso",
+        "name":"ISO Disk Image File Format",
+        "type":"application/x-iso9660-image"
+    },
+    {
+        "extension":"*.itk",
+        "name":"Tcl script",
+        "type":"application/x-tcl"
+    },
+    {
+        "extension":"*.j2c",
+        "name":"JPEG 2000 Codestream",
+        "type":"image/x-jp2-codestream"
+    },
+    {
+        "extension":"*.jade",
+        "name":"Pug",
+        "type":"text/x-pug"
+    },
+    {
+        "extension":"*.jar",
+        "name":"Java Archive",
+        "type":"application/java-archive"
+    },
+    {
+        "extension":"*.java",
+        "name":"Java source code",
+        "type":"text/x-java"
+    },
+    {
+        "extension":"*.jinja",
+        "name":"HTML+Django",
+        "type":"text/x-django"
+    },
+    {
+        "extension":"*.jl",
+        "name":"Julia",
+        "type":"text/x-julia"
+    },
+    {
+        "extension":"*.jls",
+        "name":"JPEG-LS",
+        "type":"image/jls"
+    },
+    {
+        "extension":"*.jng",
+        "name":"JPEG Network Graphics",
+        "type":"image/x-jng"
+    },
+    {
+        "extension":"*.jnilib",
+        "name":"Java Native Library for OSX",
+        "type":"application/x-java-jnilib"
+    },
+    {
+        "extension":"*.jp2",
+        "name":"JPEG 2000",
+        "type":"image/jpx"
+    },
+    {
+        "extension":"*.jpe",
+        "name":"Raw JPEG Stream",
+        "type":"image/jpeg"
+    },
+    {
+        "extension":"*.jpf",
+        "name":"JPX (JPEG 2000 part 2)",
+        "type":"image/jpx"
+    },
+    {
+        "extension":"*.jpg",
+        "name":"Joint Photographic Experts Group",
+        "type":"image/jpeg"
+    },
+    {
+        "extension":"*.jpm",
+        "name":"JPEG 2000 Part 6 (JPM)",
+        "type":"image/jpm"
+    },
+    {
+        "extension":"*.jq",
+        "name":"JSONiq",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.js",
+        "name":"JavaScript Source Code",
+        "type":"application/javascript"
+    },
+    {
+        "extension":"*.json",
+        "name":"JSON (JavaScript Object Notation)",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.json-patch",
+        "name":"JSON Patch",
+        "type":"application/json-patch+json"
+    },
+    {
+        "extension":"*.json5",
+        "name":"JSON5",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.jsonld",
+        "name":"JSON-LD",
+        "type":"application/ld+json"
+    },
+    {
+        "extension":"*.jsp",
+        "name":"Java Server Pages",
+        "type":"application/x-jsp"
+    },
+    {
+        "extension":"*.jsx",
+        "name":"JSX",
+        "type":"text/jsx"
+    },
+    {
+        "extension":"*.jxr",
+        "name":"JPEG Extended Range",
+        "type":"image/jxr"
+    },
+    {
+        "extension":"*.k25",
+        "name":"Kodak raw image",
+        "type":"image/x-raw-kodak"
+    },
+    {
+        "extension":"*.kicad_pcb",
+        "name":"KiCad Layout",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.kid",
+        "name":"Genshi",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.kil",
+        "name":"KIllustrator File",
+        "type":"application/x-killustrator"
+    },
+    {
+        "extension":"*.kit",
+        "name":"Kit",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.kml",
+        "name":"Keyhole Markup Language",
+        "type":"application/vnd.google-earth.kml+xml"
+    },
+    {
+        "extension":"*.kmz",
+        "name":"Keyhole Markup Language (Container)",
+        "type":"application/vnd.google-earth.kmz"
+    },
+    {
+        "extension":"*.kpr",
+        "name":"KPresenter File",
+        "type":"application/x-kpresenter"
+    },
+    {
+        "extension":"*.kra",
+        "name":"Krita Document Format",
+        "type":"application/x-krita"
+    },
+    {
+        "extension":"*.ksp",
+        "name":"KSpread File",
+        "type":"application/x-kspread"
+    },
+    {
+        "extension":"*.kt",
+        "name":"Kotlin",
+        "type":"text/x-kotlin"
+    },
+    {
+        "extension":"*.ktx",
+        "name":"Khronos Texture File",
+        "type":"image/ktx"
+    },
+    {
+        "extension":"*.kwd",
+        "name":"KWord File",
+        "type":"application/x-kword"
+    },
+    {
+        "extension":"*.l",
+        "name":"Lex/Flex source code",
+        "type":"text/x-lex"
+    },
+    {
+        "extension":"*.latex",
+        "name":"LaTeX Source Document",
+        "type":"application/x-latex"
+    },
+    {
+        "extension":"*.latte",
+        "name":"Latte",
+        "type":"text/x-smarty"
+    },
+    {
+        "extension":"*.less",
+        "name":"LESS source code",
+        "type":"text/x-less"
+    },
+    {
+        "extension":"*.lfe",
+        "name":"LFE",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.lha",
+        "name":"LHA",
+        "type":"application/x-lzh-compressed"
+    },
+    {
+        "extension":"*.lhs",
+        "name":"Literate Haskell",
+        "type":"text/x-literate-haskell"
+    },
+    {
+        "extension":"*.lisp",
+        "name":"Common Lisp",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.log",
+        "name":"application log",
+        "type":"text/x-log"
+    },
+    {
+        "extension":"*.lookml",
+        "name":"LookML",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.ls",
+        "name":"LiveScript",
+        "type":"text/x-livescript"
+    },
+    {
+        "extension":"*.lua",
+        "name":"Lua source code",
+        "type":"text/x-lua"
+    },
+    {
+        "extension":"*.lvproj",
+        "name":"LabVIEW",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.lwp",
+        "name":"Lotus Word Pro",
+        "type":"application/vnd.lotus-wordpro"
+    },
+    {
+        "extension":"*.lz",
+        "name":"Lzip",
+        "type":"application/x-lzip"
+    },
+    {
+        "extension":"*.lzma",
+        "name":"LZMA Alone",
+        "type":"application/x-lzma"
+    },
+    {
+        "extension":"*.m",
+        "name":"Objective-C source code",
+        "type":"text/x-objcsrc"
+    },
+    {
+        "extension":"*.m3",
+        "name":"Modula source code",
+        "type":"text/x-modula"
+    },
+    {
+        "extension":"*.m3u",
+        "name":"MP3 Playlist File",
+        "type":"audio/x-mpegurl"
+    },
+    {
+        "extension":"*.maff",
+        "name":"MAFF",
+        "type":"application/x-maff"
+    },
+    {
+        "extension":"*.mak",
+        "name":"Makefile",
+        "type":"text/x-cmake"
+    },
+    {
+        "extension":"*.marko",
+        "name":"Marko",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.mas",
+        "name":"Lotus Freelance Smartmaster Graphics",
+        "type":"application/vnd.lotus-freelance"
+    },
+    {
+        "extension":"*.mat",
+        "name":"MAT-File Level 5 File Format",
+        "type":"application/matlab-mat"
+    },
+    {
+        "extension":"*.mathematica",
+        "name":"Mathematica",
+        "type":"text/x-mathematica"
+    },
+    {
+        "extension":"*.matlab",
+        "name":"MATLAB",
+        "type":"text/x-octave"
+    },
+    {
+        "extension":"*.maxpat",
+        "name":"Max",
+        "type":"application/json"
+    },
+    {
+        "extension":"*.mbox",
+        "name":"MBOX Email Format",
+        "type":"application/mbox"
+    },
+    {
+        "extension":"*.mbx",
+        "name":"Mbox",
+        "type":"application/mbox"
+    },
+    {
+        "extension":"*.mcw",
+        "name":"Microsoft Word for Macintosh Document 5.0",
+        "type":"application/msword;version=\"5.0\""
+    },
+    {
+        "extension":"*.md",
+        "name":"Markdown",
+        "type":"text/markdown"
+    },
+    {
+        "extension":"*.mdi",
+        "name":"Microsoft Document Imaging",
+        "type":"image/vnd.ms-modi"
+    },
+    {
+        "extension":"*.mef",
+        "name":"Mamiya raw image",
+        "type":"image/x-raw-mamiya"
+    },
+    {
+        "extension":"*.metal",
+        "name":"Metal",
+        "type":"text/x-c++src"
+    },
+    {
+        "extension":"*.mht",
+        "name":"Microsoft Web Archive",
+        "type":"multipart/related"
+    },
+    {
+        "extension":"*.mid",
+        "name":"Musical Instrument Digital Interface",
+        "type":"audio/midi"
+    },
+    {
+        "extension":"*.mif",
+        "name":"FrameMaker Interchange Format",
+        "type":"application/x-mif"
+    },
+    {
+        "extension":"*.mix",
+        "name":"MIX (PhotoDraw)",
+        "type":"image/vnd.mix"
+    },
+    {
+        "extension":"*.mj2",
+        "name":"MJ2 (Motion JPEG 2000)",
+        "type":"video/mj2"
+    },
+    {
+        "extension":"*.mkv",
+        "name":"Matroska Multimedia Container",
+        "type":"video/x-matroska"
+    },
+    {
+        "extension":"*.ml",
+        "name":"OCaml",
+        "type":"text/x-ocaml"
+    },
+    {
+        "extension":"*.mlp",
+        "name":"Dolby MLP Lossless Audio",
+        "type":"audio/vnd.dolby.mlp"
+    },
+    {
+        "extension":"*.mm",
+        "name":"Mm",
+        "type":"application/x-freemind"
+    },
+    {
+        "extension":"*.mmp",
+        "name":"MindManager",
+        "type":"application/vnd.mindjet.mindmanager"
+    },
+    {
+        "extension":"*.mmr",
+        "name":"Xerox EDMICS-MMR",
+        "type":"image/vnd.fujixerox.edmics-mmr"
+    },
+    {
+        "extension":"*.mng",
+        "name":"Multiple-image Network Graphics",
+        "type":"video/x-mng"
+    },
+    {
+        "extension":"*.mo",
+        "name":"Modelica",
+        "type":"text/x-modelica"
+    },
+    {
+        "extension":"*.mobi",
+        "name":"Mobipocket File Format",
+        "type":"application/x-mobipocket-ebook"
+    },
+    {
+        "extension":"*.mod",
+        "name":"CATIA Model 4",
+        "type":"application/octet-stream;version=\"4\""
+    },
+    {
+        "extension":"*.mol",
+        "name":"MOL",
+        "type":"chemical/x-mdl-molfile"
+    },
+    {
+        "extension":"*.mos",
+        "name":"Leaf raw image",
+        "type":"image/x-raw-leaf"
+    },
+    {
+        "extension":"*.mov",
+        "name":"QuickTime File Format",
+        "type":"video/quicktime"
+    },
+    {
+        "extension":"*.mp1",
+        "name":"MPEG Audio Layer I",
+        "type":"audio/mpeg"
+    },
+    {
+        "extension":"*.mp2",
+        "name":"MPEG Audio Stream, Layer II",
+        "type":"audio/mpeg"
+    },
+    {
+        "extension":"*.mp3",
+        "name":"MP3 File Format",
+        "type":"audio/mpeg"
+    },
+    {
+        "extension":"*.mp4",
+        "name":"MPEG-4 File Format, Version 2",
+        "type":"video/mp4"
+    },
+    {
+        "extension":"*.mpeg",
+        "name":"MPEG Movie Clip",
+        "type":"video/mpeg"
+    },
+    {
+        "extension":"*.mpg",
+        "name":"MPEG-1",
+        "type":"video/mpeg"
+    },
+    {
+        "extension":"*.mpga",
+        "name":"MPEG-1 Audio Layer 3",
+        "type":"audio/mpeg"
+    },
+    {
+        "extension":"*.mpp",
+        "name":"Microsoft Project 2010",
+        "type":"application/vnd.ms-project;version=\"2010\""
+    },
+    {
+        "extension":"*.mpx",
+        "name":"Microsoft Project Export File 4.0",
+        "type":"application/x-project;version=\"4.0\""
+    },
+    {
+        "extension":"*.mrc",
+        "name":"MARC",
+        "type":"application/marc"
+    },
+    {
+        "extension":"*.mrw",
+        "name":"Minolta raw image",
+        "type":"image/x-raw-minolta"
+    },
+    {
+        "extension":"*.msg",
+        "name":"Microsoft Outlook Message",
+        "type":"application/vnd.ms-outlook"
+    },
+    {
+        "extension":"*.msi",
+        "name":"Microsoft Windows Installer",
+        "type":"application/x-msi"
+    },
+    {
+        "extension":"*.mso",
+        "name":"ActiveMime",
+        "type":"application/x-mso"
+    },
+    {
+        "extension":"*.mtml",
+        "name":"MTML",
+        "type":"text/html"
+    },
+    {
+        "extension":"*.muf",
+        "name":"MUF",
+        "type":"text/x-forth"
+    },
+    {
+        "extension":"*.mumps",
+        "name":"M",
+        "type":"text/x-mumps"
+    },
+    {
+        "extension":"*.mxf",
+        "name":"Material Exchange Format (MXF)",
+        "type":"application/mxf"
+    },
+    {
+        "extension":"*.mxl",
+        "name":"Compressed Music XML",
+        "type":"application/vnd.recordare.musicxml"
+    },
+    {
+        "extension":"*.mxmf",
+        "name":"Mobile eXtensible Music Format",
+        "type":"audio/mobile-xmf"
+    },
+    {
+        "extension":"*.n3",
+        "name":"Notation3",
+        "type":"text/n3"
+    },
+    {
+        "extension":"*.nap",
+        "name":"NAPLPS",
+        "type":"image/naplps"
+    },
+    {
+        "extension":"*.nb",
+        "name":"Mathematica Notebook",
+        "type":"application/mathematica"
+    },
+    {
+        "extension":"*.nc",
+        "name":"NetCDF-3 (Network Common Data Form, version 3)",
+        "type":"application/x-netcdf"
+    },
+    {
+        "extension":"*.nef",
+        "name":"Nikon raw image",
+        "type":"image/x-raw-nikon"
+    },
+    {
+        "extension":"*.nfo",
+        "name":"NFO",
+        "type":"text/x-nfo"
+    },
+    {
+        "extension":"*.nginxconf",
+        "name":"Nginx",
+        "type":"text/x-nginx-conf"
+    },
+    {
+        "extension":"*.nif",
+        "name":"Notation Interchange File Format",
+        "type":"application/vnd.music-niff"
+    },
+    {
+        "extension":"*.nl",
+        "name":"NewLisp",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.nlogo",
+        "name":"NetLogo",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.ns2",
+        "name":"Lotus Notes Database 2",
+        "type":"application/vnd.lotus-notes;version=\"2\""
+    },
+    {
+        "extension":"*.ns3",
+        "name":"Lotus Notes Database 3",
+        "type":"application/vnd.lotus-notes;version=\"3\""
+    },
+    {
+        "extension":"*.ns4",
+        "name":"Lotus Notes Database 4",
+        "type":"application/vnd.lotus-notes;version=\"4\""
+    },
+    {
+        "extension":"*.nsf",
+        "name":"Notes Storage Facility",
+        "type":"application/vnd.lotus-notes"
+    },
+    {
+        "extension":"*.nsi",
+        "name":"NSIS",
+        "type":"text/x-nsis"
+    },
+    {
+        "extension":"*.ntf",
+        "name":"National Imagery Transmission Format",
+        "type":"application/vnd.nitf"
+    },
+    {
+        "extension":"*.nu",
+        "name":"Nu",
+        "type":"text/x-scheme"
+    },
+    {
+        "extension":"*.numpy",
+        "name":"NumPy",
+        "type":"text/x-python"
+    },
+    {
+        "extension":"*.nut",
+        "name":"Squirrel",
+        "type":"text/x-c++src"
+    },
+    {
+        "extension":"*.ocaml",
+        "name":"Ocaml source code",
+        "type":"text/x-ocaml"
+    },
+    {
+        "extension":"*.odb",
+        "name":"OpenDocument Database Front End Document Format (ODB), Version 1.2,  ISO 26300-1:2015",
+        "type":"application/vnd.oasis.opendocument.database"
+    },
+    {
+        "extension":"*.odc",
+        "name":"OpenDocument v1.0: Chart document",
+        "type":"application/vnd.oasis.opendocument.chart"
+    },
+    {
+        "extension":"*.odf",
+        "name":"OpenDocument v1.0: Formula document",
+        "type":"application/vnd.oasis.opendocument.formula"
+    },
+    {
+        "extension":"*.odft",
+        "name":"OpenDocument v1.0: Formula document used as template",
+        "type":"application/vnd.oasis.opendocument.formula-template"
+    },
+    {
+        "extension":"*.odg",
+        "name":"OpenDocument Drawing",
+        "type":"application/vnd.oasis.opendocument.graphics"
+    },
+    {
+        "extension":"*.odi",
+        "name":"OpenDocument v1.0: Image document",
+        "type":"application/vnd.oasis.opendocument.image"
+    },
+    {
+        "extension":"*.odm",
+        "name":"OpenDocument",
+        "type":"application/vnd.oasis.opendocument.text-master"
+    },
+    {
+        "extension":"*.odp",
+        "name":"OpenDocument Presentation",
+        "type":"application/vnd.oasis.opendocument.presentation"
+    },
+    {
+        "extension":"*.ods",
+        "name":"OpenDocument Spreadsheet",
+        "type":"application/vnd.oasis.opendocument.spreadsheet"
+    },
+    {
+        "extension":"*.odt",
+        "name":"OpenDocument Text",
+        "type":"application/vnd.oasis.opendocument.text"
+    },
+    {
+        "extension":"*.ofx",
+        "name":"Open Financial Exchange 2.1.1",
+        "type":"application/x-ofx;version=\"2.1.1\""
+    },
+    {
+        "extension":"*.oga",
+        "name":"Ogg Vorbis Audio",
+        "type":"audio/ogg"
+    },
+    {
+        "extension":"*.ogg",
+        "name":"Ogg Vorbis Codec Compressed Multimedia File",
+        "type":"audio/ogg"
+    },
+    {
+        "extension":"*.ogm",
+        "name":"Ogg Packaged OGM Video",
+        "type":"video/x-ogm"
+    },
+    {
+        "extension":"*.ogv",
+        "name":"Ogg Vorbis Video",
+        "type":"video/ogg"
+    },
+    {
+        "extension":"*.ogx",
+        "name":"Ogg Skeleton",
+        "type":"application/ogg"
+    },
+    {
+        "extension":"*.one",
+        "name":"Microsoft OneNote",
+        "type":"application/msonenote"
+    },
+    {
+        "extension":"*.opf",
+        "name":"DTB (Digital Talking Book), 2005",
+        "type":"application/x-dtbook+xml"
+    },
+    {
+        "extension":"*.opus",
+        "name":"Ogg Opus Codec Compressed WAV File",
+        "type":"audio/opus"
+    },
+    {
+        "extension":"*.ora",
+        "name":"OpenRaster",
+        "type":"image/openraster"
+    },
+    {
+        "extension":"*.orf",
+        "name":"Olympus raw image",
+        "type":"image/x-raw-olympus"
+    },
+    {
+        "extension":"*.otc",
+        "name":"OpenDocument v1.0: Chart document used as template",
+        "type":"application/vnd.oasis.opendocument.chart-template"
+    },
+    {
+        "extension":"*.otf",
+        "name":"OpenType Font",
+        "type":"application/x-font-otf"
+    },
+    {
+        "extension":"*.otg",
+        "name":"OpenDocument v1.0: Graphics document used as template",
+        "type":"application/vnd.oasis.opendocument.graphics-template"
+    },
+    {
+        "extension":"*.oth",
+        "name":"OpenDocument v1.0: Text document used as template for HTML documents",
+        "type":"application/vnd.oasis.opendocument.text-web"
+    },
+    {
+        "extension":"*.oti",
+        "name":"OpenDocument v1.0: Image document used as template",
+        "type":"application/vnd.oasis.opendocument.image-template"
+    },
+    {
+        "extension":"*.otm",
+        "name":"OpenDocument v1.0: Global Text document",
+        "type":"application/vnd.oasis.opendocument.text-master"
+    },
+    {
+        "extension":"*.otp",
+        "name":"OpenDocument v1.0: Presentation document used as template",
+        "type":"application/vnd.oasis.opendocument.presentation-template"
+    },
+    {
+        "extension":"*.ots",
+        "name":"OpenDocument v1.0: Spreadsheet document used as template",
+        "type":"application/vnd.oasis.opendocument.spreadsheet-template"
+    },
+    {
+        "extension":"*.ott",
+        "name":"OpenDocument v1.0: Text document used as template",
+        "type":"application/vnd.oasis.opendocument.text-template"
+    },
+    {
+        "extension":"*.oxps",
+        "name":"OpenXPS",
+        "type":"application/oxps"
+    },
+    {
+        "extension":"*.oz",
+        "name":"Oz",
+        "type":"text/x-oz"
+    },
+    {
+        "extension":"*.p",
+        "name":"Pascal source code",
+        "type":"text/x-pascal"
+    },
+    {
+        "extension":"*.p65",
+        "name":"Pagemaker Document (Generic)",
+        "type":"application/vnd.pagemaker"
+    },
+    {
+        "extension":"*.pab",
+        "name":"Personal Folder File",
+        "type":"application/vnd.ms-outlook"
+    },
+    {
+        "extension":"*.pack",
+        "name":"Package (Web)",
+        "type":"application/package"
+    },
+    {
+        "extension":"*.pam",
+        "name":"Portable Arbitrary Map",
+        "type":"image/x-portable-arbitrarymap"
+    },
+    {
+        "extension":"*.pas",
+        "name":"Pascal",
+        "type":"text/x-pascal"
+    },
+    {
+        "extension":"*.pbm",
+        "name":"Netpbm formats",
+        "type":"image/x-portable-bitmap"
+    },
+    {
+        "extension":"*.pcap",
+        "name":"TCPDump pcap packet capture",
+        "type":"application/vnd.tcpdump.pcap"
+    },
+    {
+        "extension":"*.pcapng",
+        "name":"pcap Next Generation Packet Capture",
+        "type":"application/vnd.tcpdump.pcap"
+    },
+    {
+        "extension":"*.pcl",
+        "name":"PCL",
+        "type":"application/vnd.hp-pcl"
+    },
+    {
+        "extension":"*.pct",
+        "name":"Macintosh PICT Image 2.0",
+        "type":"image/x-pict;version=\"2.0\""
+    },
+    {
+        "extension":"*.pcx",
+        "name":"PCX",
+        "type":"image/vnd.zbrush.pcx"
+    },
+    {
+        "extension":"*.pdb",
+        "name":"Palm OS Database",
+        "type":"application/vnd.palm"
+    },
+    {
+        "extension":"*.pdf",
+        "name":"Portable Document Format",
+        "type":"application/pdf"
+    },
+    {
+        "extension":"*.pfm",
+        "name":"Printer Font Metric",
+        "type":"application/x-font-printer-metric"
+    },
+    {
+        "extension":"*.pfr",
+        "name":"PFR",
+        "type":"application/font-tdpfr"
+    },
+    {
+        "extension":"*.pgm",
+        "name":"Portable Graymap Graphic",
+        "type":"image/x-portable-graymap"
+    },
+    {
+        "extension":"*.pgn",
+        "name":"PGN",
+        "type":"application/x-chess-pgn"
+    },
+    {
+        "extension":"*.pgsql",
+        "name":"PLpgSQL",
+        "type":"text/x-sql"
+    },
+    {
+        "extension":"*.php",
+        "name":"PHP script",
+        "type":"text/x-php"
+    },
+    {
+        "extension":"*.phtml",
+        "name":"HTML+PHP",
+        "type":"application/x-httpd-php"
+    },
+    {
+        "extension":"*.pic",
+        "name":"Apple Macintosh QuickDraw/PICT Format",
+        "type":"image/x-pict"
+    },
+    {
+        "extension":"*.pict",
+        "name":"PICT",
+        "type":"image/x-pict"
+    },
+    {
+        "extension":"*.pkpass",
+        "name":"PKPass",
+        "type":"application/vnd.apple.pkpass"
+    },
+    {
+        "extension":"*.pl",
+        "name":"Perl script",
+        "type":"text/x-perl"
+    },
+    {
+        "extension":"*.pls",
+        "name":"PLSQL",
+        "type":"text/x-plsql"
+    },
+    {
+        "extension":"*.png",
+        "name":"Portable Network Graphics",
+        "type":"image/png"
+    },
+    {
+        "extension":"*.pnm",
+        "name":"Portable Any Map",
+        "type":"image/x-portable-anymap"
+    },
+    {
+        "extension":"*.pod",
+        "name":"Pod",
+        "type":"text/x-perl"
+    },
+    {
+        "extension":"*.por",
+        "name":"SPSS Portable File, ASCII encoding",
+        "type":"application/x-spss-por"
+    },
+    {
+        "extension":"*.potm",
+        "name":"Microsoft PowerPoint Macro-Enabled Template 2007",
+        "type":"application/vnd.ms-powerpoint.template.macroenabled.12;version=\"2007\""
+    },
+    {
+        "extension":"*.potx",
+        "name":"Office Open XML Presentation Template",
+        "type":"application/vnd.openxmlformats-officedocument.presentationml.template"
+    },
+    {
+        "extension":"*.pp",
+        "name":"Puppet",
+        "type":"text/x-puppet"
+    },
+    {
+        "extension":"*.ppam",
+        "name":"Office Open XML Presentation Add-in (macro-enabled)",
+        "type":"application/vnd.ms-powerpoint.addin.macroenabled.12"
+    },
+    {
+        "extension":"*.ppm",
+        "name":"Portable Pixel Map - ASCII",
+        "type":"image/x-portable-pixmap"
+    },
+    {
+        "extension":"*.pps",
+        "name":"Microsoft Powerpoint Presentation Show 97-2003",
+        "type":"application/vnd.ms-powerpoint;version=\"97-2003\""
+    },
+    {
+        "extension":"*.ppsm",
+        "name":"Office Open XML Presentation Slideshow (macro-enabled)",
+        "type":"application/vnd.ms-powerpoint.slideshow.macroenabled.12"
+    },
+    {
+        "extension":"*.ppsx",
+        "name":"Office Open XML Presentation Slideshow",
+        "type":"application/vnd.openxmlformats-officedocument.presentationml.slideshow"
+    },
+    {
+        "extension":"*.ppt",
+        "name":"Microsoft Powerpoint Presentation",
+        "type":"application/vnd.ms-powerpoint"
+    },
+    {
+        "extension":"*.pptm",
+        "name":"Office Open XML Presentation (macro-enabled)",
+        "type":"application/vnd.ms-powerpoint.presentation.macroenabled.12"
+    },
+    {
+        "extension":"*.pptx",
+        "name":"Office Open XML Presentation",
+        "type":"application/vnd.openxmlformats-officedocument.presentationml.presentation"
+    },
+    {
+        "extension":"*.prc",
+        "name":"PRC (Palm OS)",
+        "type":"application/vnd.palm"
+    },
+    {
+        "extension":"*.pro",
+        "name":"Prolog source code",
+        "type":"text/x-prolog"
+    },
+    {
+        "extension":"*.project",
+        "name":"CATIA Project 4",
+        "type":"application/octet-stream;version=\"4\""
+    },
+    {
+        "extension":"*.properties",
+        "name":"Java Properties",
+        "type":"text/properties"
+    },
+    {
+        "extension":"*.proto",
+        "name":"Protocol Buffer",
+        "type":"text/x-protobuf"
+    },
+    {
+        "extension":"*.ps",
+        "name":"PostScript",
+        "type":"application/postscript"
+    },
+    {
+        "extension":"*.ps1",
+        "name":"PowerShell",
+        "type":"application/x-powershell"
+    },
+    {
+        "extension":"*.psb",
+        "name":"Adobe Photoshop Large Document Format",
+        "type":"image/vnd.adobe.photoshop"
+    },
+    {
+        "extension":"*.psd",
+        "name":"Adobe Photoshop",
+        "type":"image/vnd.adobe.photoshop"
+    },
+    {
+        "extension":"*.psid",
+        "name":"Play SID Audio 2",
+        "type":"audio/prs.sid;version=\"2\""
+    },
+    {
+        "extension":"*.pst",
+        "name":"Outlook Personal Folders File Format",
+        "type":"application/vnd.ms-outlook-pst"
+    },
+    {
+        "extension":"*.ptx",
+        "name":"Pentax raw image",
+        "type":"image/x-raw-pentax"
+    },
+    {
+        "extension":"*.purs",
+        "name":"PureScript",
+        "type":"text/x-haskell"
+    },
+    {
+        "extension":"*.pxn",
+        "name":"Logitech raw image",
+        "type":"image/x-raw-logitech"
+    },
+    {
+        "extension":"*.py",
+        "name":"Python script",
+        "type":"text/x-python"
+    },
+    {
+        "extension":"*.pyx",
+        "name":"Cython",
+        "type":"text/x-cython"
+    },
+    {
+        "extension":"*.qcd",
+        "name":"Quark Xpress Data File",
+        "type":"application/vnd.quark.quarkxpress"
+    },
+    {
+        "extension":"*.qcp",
+        "name":"QCP Audio File Format",
+        "type":"audio/qcelp"
+    },
+    {
+        "extension":"*.qif",
+        "name":"Quicken Interchange Format",
+        "type":"application/qif"
+    },
+    {
+        "extension":"*.qxp",
+        "name":"QuarkXPress",
+        "type":"application/vnd.quark.quarkxpress"
+    },
+    {
+        "extension":"*.qxp report",
+        "name":"Quark Xpress Report File",
+        "type":"application/vnd.quark.quarkxpress"
+    },
+    {
+        "extension":"*.r",
+        "name":"R source code",
+        "type":"text/x-rsrc"
+    },
+    {
+        "extension":"*.r3d",
+        "name":"Red raw image",
+        "type":"image/x-raw-red"
+    },
+    {
+        "extension":"*.ra",
+        "name":"RealAudio",
+        "type":"audio/vnd.rn-realaudio"
+    },
+    {
+        "extension":"*.raf",
+        "name":"Fuji raw image",
+        "type":"image/x-raw-fuji"
+    },
+    {
+        "extension":"*.ram",
+        "name":"RealAudio Metafile",
+        "type":"audio/vnd.rn-realaudio"
+    },
+    {
+        "extension":"*.raml",
+        "name":"RAML",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.rar",
+        "name":"RAR",
+        "type":"application/vnd.rar"
+    },
+    {
+        "extension":"*.rar ",
+        "name":"RAR Archive File Format Family",
+        "type":"application/vnd.rar"
+    },
+    {
+        "extension":"*.ras",
+        "name":"Sun Raster Image",
+        "type":"image/x-sun-raster"
+    },
+    {
+        "extension":"*.raw",
+        "name":"Panasonic raw image",
+        "type":"image/x-raw-panasonic"
+    },
+    {
+        "extension":"*.rb",
+        "name":"Ruby source code",
+        "type":"text/x-ruby"
+    },
+    {
+        "extension":"*.rdf",
+        "name":"RDF",
+        "type":"application/rdf+xml"
+    },
+    {
+        "extension":"*.re",
+        "name":"Reason",
+        "type":"text/x-rustsrc"
+    },
+    {
+        "extension":"*.reg",
+        "name":"Windows Registry Entries",
+        "type":"text/x-properties"
+    },
+    {
+        "extension":"*.rest",
+        "name":"reStructuredText source code",
+        "type":"text/x-rst"
+    },
+    {
+        "extension":"*.rexx",
+        "name":"Rexx source code",
+        "type":"text/x-rexx"
+    },
+    {
+        "extension":"*.rf64",
+        "name":"Broadcast WAVE 0 WAVEFORMATEXTENSIBLE Encoding",
+        "type":"audio/x-wav;version=\"0waveformatextensibleencoding\""
+    },
+    {
+        "extension":"*.rfa",
+        "name":"Revit Family File",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rft",
+        "name":"Revit Family Template",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rg",
+        "name":"Rouge",
+        "type":"text/x-clojure"
+    },
+    {
+        "extension":"*.rgb",
+        "name":"Silicon Graphics RGB Bitmap",
+        "type":"image/x-rgb"
+    },
+    {
+        "extension":"*.rhtml",
+        "name":"RHTML",
+        "type":"application/x-erb"
+    },
+    {
+        "extension":"*.rlc",
+        "name":"Xerox EDMICS-RLC",
+        "type":"image/vnd.fujixerox.edmics-rlc"
+    },
+    {
+        "extension":"*.rm",
+        "name":"RealAudio, Version 10",
+        "type":"application/vnd.rn-realmedia"
+    },
+    {
+        "extension":"*.rmd",
+        "name":"RMarkdown",
+        "type":"text/x-gfm"
+    },
+    {
+        "extension":"*.rmi",
+        "name":"RIFF-based MIDI File Format",
+        "type":"audio/mid"
+    },
+    {
+        "extension":"*.rmp",
+        "name":"RealMedia Player Plug-in",
+        "type":"audio/x-pn-realaudio-plugin"
+    },
+    {
+        "extension":"*.roff",
+        "name":"Roff",
+        "type":"text/troff"
+    },
+    {
+        "extension":"*.rpm",
+        "name":"RedHat Package Manager",
+        "type":"application/x-rpm"
+    },
+    {
+        "extension":"*.rs",
+        "name":"Rust",
+        "type":"text/x-rustsrc"
+    },
+    {
+        "extension":"*.rss",
+        "name":"RSS",
+        "type":"application/rss+xml"
+    },
+    {
+        "extension":"*.rst",
+        "name":"reStructuredText",
+        "type":"text/x-rst"
+    },
+    {
+        "extension":"*.rte",
+        "name":"Revit Template",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rtf",
+        "name":"Rich Text Format File",
+        "type":"application/rtf"
+    },
+    {
+        "extension":"*.rv",
+        "name":"Real Video",
+        "type":"video/vnd.rn-realvideo"
+    },
+    {
+        "extension":"*.rvg",
+        "name":"Revit External Group",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rvt",
+        "name":"Revit Project",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rws",
+        "name":"Revit Workspace",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.rwz",
+        "name":"Rawzor raw image",
+        "type":"image/x-raw-rawzor"
+    },
+    {
+        "extension":"*.s",
+        "name":"Assembler source code",
+        "type":"text/x-asm"
+    },
+    {
+        "extension":"*.s7m",
+        "name":"SAS DMDB Data Mining Database File",
+        "type":"application/x-sas-dmdb"
+    },
+    {
+        "extension":"*.sa7",
+        "name":"SAS Access Descriptor",
+        "type":"application/x-sas-access"
+    },
+    {
+        "extension":"*.sage",
+        "name":"Sage",
+        "type":"text/x-python"
+    },
+    {
+        "extension":"*.sam",
+        "name":"AMI Professional Document",
+        "type":"application/vnd.lotus-wordpro"
+    },
+    {
+        "extension":"*.sas",
+        "name":"SAS Program",
+        "type":"application/x-sas"
+    },
+    {
+        "extension":"*.sas7bbak",
+        "name":"SAS Backup",
+        "type":"application/x-sas-backup"
+    },
+    {
+        "extension":"*.sass",
+        "name":"Sass",
+        "type":"text/x-sass"
+    },
+    {
+        "extension":"*.sav",
+        "name":"SPSS System Data File Format Family (.sav)",
+        "type":"application/x-spss-sav"
+    },
+    {
+        "extension":"*.sc7",
+        "name":"SAS Catalog",
+        "type":"application/x-sas-catalog"
+    },
+    {
+        "extension":"*.scala",
+        "name":"Scala source code",
+        "type":"text/x-scala"
+    },
+    {
+        "extension":"*.sch",
+        "name":"Eagle",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.scm",
+        "name":"Scheme source code",
+        "type":"text/x-scheme"
+    },
+    {
+        "extension":"*.scores",
+        "name":"Xbill.scores",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.scss",
+        "name":"SCSS",
+        "type":"text/x-scss"
+    },
+    {
+        "extension":"*.sd7",
+        "name":"SAS Data Set",
+        "type":"application/x-sas-data"
+    },
+    {
+        "extension":"*.sda",
+        "name":"SDA (StarOffice)",
+        "type":"application/vnd.stardivision.draw"
+    },
+    {
+        "extension":"*.sdc",
+        "name":"SDC",
+        "type":"application/vnd.stardivision.calc"
+    },
+    {
+        "extension":"*.sdn",
+        "name":"Steel Detailing Neutral Format",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.sdw",
+        "name":"StarOffice binary formats",
+        "type":"application/vnd.stardivision.writer"
+    },
+    {
+        "extension":"*.sed",
+        "name":"Sed code",
+        "type":"text/x-sed"
+    },
+    {
+        "extension":"*.sf7",
+        "name":"SAS FDB Consolidation Database File",
+        "type":"application/x-sas-fdb"
+    },
+    {
+        "extension":"*.sfd",
+        "name":"Spline Font Database",
+        "type":"application/vnd.font-fontforge-sfd"
+    },
+    {
+        "extension":"*.sgm",
+        "name":"Standard Generalized Markup Language",
+        "type":"text/sgml"
+    },
+    {
+        "extension":"*.sgml",
+        "name":"SGML",
+        "type":"text/sgml"
+    },
+    {
+        "extension":"*.sh",
+        "name":"UNIX/LINUX Shell Script",
+        "type":"application/x-sh"
+    },
+    {
+        "extension":"*.sh-session",
+        "name":"ShellSession",
+        "type":"text/x-sh"
+    },
+    {
+        "extension":"*.shar",
+        "name":"Shell Archive Format",
+        "type":"application/x-shar"
+    },
+    {
+        "extension":"*.shtml",
+        "name":"Server Side Includes",
+        "type":"text/x-server-parsed-html"
+    },
+    {
+        "extension":"*.si7",
+        "name":"SAS Data Set Index",
+        "type":"application/x-sas-data-index"
+    },
+    {
+        "extension":"*.sid",
+        "name":"SID",
+        "type":"audio/prs.sid"
+    },
+    {
+        "extension":"*.sit",
+        "name":"StuffIt",
+        "type":"application/x-stuffit"
+    },
+    {
+        "extension":"*.sitx",
+        "name":"StuffIt X",
+        "type":"application/x-stuffitx"
+    },
+    {
+        "extension":"*.skb",
+        "name":"SketchUp Document",
+        "type":"application/octet-stream"
+    },
+    {
+        "extension":"*.skp",
+        "name":"SSEYO Koan File",
+        "type":"application/vnd.koan"
+    },
+    {
+        "extension":"*.sla",
+        "name":"Scribus",
+        "type":"application/vnd.scribus"
+    },
+    {
+        "extension":"*.sld",
+        "name":"AutoCAD Slide",
+        "type":"application/sld"
+    },
+    {
+        "extension":"*.sldm",
+        "name":"Microsoft PowerPoint Macro-Enabled Slide 2007",
+        "type":"application/vnd.ms-powerpoint.slide.macroenabled.12;version=\"2007\""
+    },
+    {
+        "extension":"*.sldprt",
+        "name":"SolidWorks CAD program",
+        "type":"application/sldworks"
+    },
+    {
+        "extension":"*.slim",
+        "name":"Slim",
+        "type":"text/x-slim"
+    },
+    {
+        "extension":"*.sls",
+        "name":"SaltStack",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.sm7",
+        "name":"SAS MDDB Multi-Dimensional Database File",
+        "type":"application/x-sas-mddb"
+    },
+    {
+        "extension":"*.smi",
+        "name":"SMIL Multimedia",
+        "type":"application/smil+xml"
+    },
+    {
+        "extension":"*.smk",
+        "name":"Smacker",
+        "type":"video/vnd.radgamettools.smacker"
+    },
+    {
+        "extension":"*.soy",
+        "name":"Closure Templates",
+        "type":"text/x-soy"
+    },
+    {
+        "extension":"*.sp7",
+        "name":"SAS Permanent Utility",
+        "type":"application/x-sas-putility"
+    },
+    {
+        "extension":"*.sparql",
+        "name":"SPARQL",
+        "type":"application/sparql-query"
+    },
+    {
+        "extension":"*.spec",
+        "name":"RPM Spec",
+        "type":"text/x-rpm-spec"
+    },
+    {
+        "extension":"*.spl",
+        "name":"Macromedia FutureSplash File",
+        "type":"application/x-futuresplash"
+    },
+    {
+        "extension":"*.spx",
+        "name":"Ogg Speex Audio Format",
+        "type":"audio/speex"
+    },
+    {
+        "extension":"*.sql",
+        "name":"SQL code",
+        "type":"text/x-sql"
+    },
+    {
+        "extension":"*.sr7",
+        "name":"SAS Item Store (ItemStor) File",
+        "type":"application/x-sas-itemstor"
+    },
+    {
+        "extension":"*.srl",
+        "name":"Sereal binary serialization format",
+        "type":"application/sereal"
+    },
+    {
+        "extension":"*.srt",
+        "name":"SRecode Template",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.ss7",
+        "name":"SAS Stored Program (DATA Step)",
+        "type":"application/x-sas-program-data"
+    },
+    {
+        "extension":"*.ssml",
+        "name":"Speech Synthesis Markup Language",
+        "type":"application/ssml+xml"
+    },
+    {
+        "extension":"*.st",
+        "name":"Smalltalk source code",
+        "type":"text/x-stsrc"
+    },
+    {
+        "extension":"*.st7",
+        "name":"SAS Audit",
+        "type":"application/x-sas-audit"
+    },
+    {
+        "extension":"*.stw",
+        "name":"STW",
+        "type":"application/vnd.sun.xml.writer.template"
+    },
+    {
+        "extension":"*.stx",
+        "name":"SAS Transport File",
+        "type":"application/x-sas-transport"
+    },
+    {
+        "extension":"*.su7",
+        "name":"SAS Utility",
+        "type":"application/x-sas-utility"
+    },
+    {
+        "extension":"*.sublime-build",
+        "name":"JSON with Comments",
+        "type":"text/javascript"
+    },
+    {
+        "extension":"*.sv",
+        "name":"SystemVerilog",
+        "type":"text/x-systemverilog"
+    },
+    {
+        "extension":"*.sv7",
+        "name":"SAS Data Set View",
+        "type":"application/x-sas-view"
+    },
+    {
+        "extension":"*.svf",
+        "name":"Simple Vector Format",
+        "type":"image/vnd.svf"
+    },
+    {
+        "extension":"*.svg",
+        "name":"Scalable Vector Graphics",
+        "type":"image/svg+xml"
+    },
+    {
+        "extension":"*.svgz",
+        "name":"Scalable Vector Graphics Compressed",
+        "type":"image/svg+xml"
+    },
+    {
+        "extension":"*.swf",
+        "name":"SWF",
+        "type":"application/vnd.adobe.flash-movie"
+    },
+    {
+        "extension":"*.swift",
+        "name":"Swift",
+        "type":"text/x-swift"
+    },
+    {
+        "extension":"*.sxc",
+        "name":"OpenOffice Calc 1.0",
+        "type":"application/vnd.sun.xml.calc;version=\"1.0\""
+    },
+    {
+        "extension":"*.sxd",
+        "name":"SXD",
+        "type":"application/vnd.sun.xml.draw"
+    },
+    {
+        "extension":"*.sxi",
+        "name":"SXI",
+        "type":"application/vnd.sun.xml.impress"
+    },
+    {
+        "extension":"*.sxw",
+        "name":"OpenOffice.org XML",
+        "type":"application/vnd.sun.xml.writer"
+    },
+    {
+        "extension":"*.sz",
+        "name":"Snappy Framed",
+        "type":"application/x-snappy-framed"
+    },
+    {
+        "extension":"*.t",
+        "name":"TADS",
+        "type":"application/x-tads"
+    },
+    {
+        "extension":"*.tap",
+        "name":"TAP (Tencent)",
+        "type":"image/vnd.tencent.tap"
+    },
+    {
+        "extension":"*.tar",
+        "name":"Tape Archive",
+        "type":"application/x-tar"
+    },
+    {
+        "extension":"*.tcl",
+        "name":"Tcl",
+        "type":"text/x-tcl"
+    },
+    {
+        "extension":"*.tcsh",
+        "name":"Tcsh",
+        "type":"text/x-sh"
+    },
+    {
+        "extension":"*.tex",
+        "name":"TeX Source",
+        "type":"text/x-tex"
+    },
+    {
+        "extension":"*.textile",
+        "name":"Textile",
+        "type":"text/x-textile"
+    },
+    {
+        "extension":"*.tfw",
+        "name":"ESRI World File",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.tfx",
+        "name":"Tagged Image File Format for Internet Fax (TIFF-FX)",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.thmx",
+        "name":"Microsoft Office Theme",
+        "type":"application/vnd.ms-officetheme"
+    },
+    {
+        "extension":"*.tif",
+        "name":"Tagged Image File Format for Image Technology (TIFF/IT)",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.tif ",
+        "name":"Digital Raster Graphic as TIFF",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.tiff",
+        "name":"Tagged Image File Format",
+        "type":"image/tiff"
+    },
+    {
+        "extension":"*.toml",
+        "name":"TOML",
+        "type":"text/x-toml"
+    },
+    {
+        "extension":"*.torrent",
+        "name":"Torrent file",
+        "type":"application/x-bittorrent"
+    },
+    {
+        "extension":"*.tpl",
+        "name":"Smarty",
+        "type":"text/x-smarty"
+    },
+    {
+        "extension":"*.ts",
+        "name":"TypeScript",
+        "type":"application/typescript"
+    },
+    {
+        "extension":"*.tsv",
+        "name":"Tab-separated values",
+        "type":"text/tab-separated-values"
+    },
+    {
+        "extension":"*.tta",
+        "name":"True Audio 1",
+        "type":"audio/tta;version=\"1\""
+    },
+    {
+        "extension":"*.ttf",
+        "name":"TrueType Font",
+        "type":"application/x-font-ttf"
+    },
+    {
+        "extension":"*.ttl",
+        "name":"Turtle",
+        "type":"text/turtle"
+    },
+    {
+        "extension":"*.twig",
+        "name":"Twig",
+        "type":"text/x-twig"
+    },
+    {
+        "extension":"*.txt",
+        "name":"Plain text",
+        "type":"text/plain"
+    },
+    {
+        "extension":"*.u3d",
+        "name":"Universal 3D (U3D) format family. ECMA-363, Editions 1-4",
+        "type":"model/u3d"
+    },
+    {
+        "extension":"*.uc",
+        "name":"UnrealScript",
+        "type":"text/x-java"
+    },
+    {
+        "extension":"*.ulx",
+        "name":"Glulx",
+        "type":"application/x-glulx"
+    },
+    {
+        "extension":"*.uno",
+        "name":"Uno",
+        "type":"text/x-csharp"
+    },
+    {
+        "extension":"*.upc",
+        "name":"Unified Parallel C",
+        "type":"text/x-csrc"
+    },
+    {
+        "extension":"*.url",
+        "name":"Internet Shortcut",
+        "type":"application/x-url"
+    },
+    {
+        "extension":"*.v",
+        "name":"Verilog source code",
+        "type":"text/x-verilog"
+    },
+    {
+        "extension":"*.vb",
+        "name":"Visual Basic",
+        "type":"text/x-vb"
+    },
+    {
+        "extension":"*.vbs",
+        "name":"VBScript source code",
+        "type":"text/x-vbscript"
+    },
+    {
+        "extension":"*.vcd",
+        "name":"Virtual CD-ROM CD Image File",
+        "type":"application/x-cdlink"
+    },
+    {
+        "extension":"*.vcf",
+        "name":"VCard",
+        "type":"text/vcard"
+    },
+    {
+        "extension":"*.vcs",
+        "name":"VCalendar format",
+        "type":"text/x-vcalendar"
+    },
+    {
+        "extension":"*.vdx",
+        "name":"Microsoft Visio XML Drawing 2003-2010",
+        "type":"application/vnd.visio;version=\"2003-2010\""
+    },
+    {
+        "extension":"*.vhd",
+        "name":"VHDL source code",
+        "type":"text/x-vhdl"
+    },
+    {
+        "extension":"*.vhdl",
+        "name":"VHDL",
+        "type":"text/x-vhdl"
+    },
+    {
+        "extension":"*.viv",
+        "name":"VivoActive",
+        "type":"video/vnd-vivo"
+    },
+    {
+        "extension":"*.vmdk",
+        "name":"Virtual Disk Format",
+        "type":"application/x-vmdk"
+    },
+    {
+        "extension":"*.vmt",
+        "name":"Valve Material Type",
+        "type":"application/vnd.valve.source.material"
+    },
+    {
+        "extension":"*.volt",
+        "name":"Volt",
+        "type":"text/x-d"
+    },
+    {
+        "extension":"*.vot",
+        "name":"VOTable",
+        "type":"application/x-votable+xml"
+    },
+    {
+        "extension":"*.vpb",
+        "name":"Quantel VPB image",
+        "type":"image/vpb"
+    },
+    {
+        "extension":"*.vsd",
+        "name":"Microsoft Visio Diagram",
+        "type":"application/vnd.visio"
+    },
+    {
+        "extension":"*.vsdm",
+        "name":"Office Open XML Visio Drawing (macro-enabled)",
+        "type":"application/vnd.ms-visio.drawing.macroenabled.12"
+    },
+    {
+        "extension":"*.vsdx",
+        "name":"Visio VSDX Drawing File Format",
+        "type":"application/vnd.visio"
+    },
+    {
+        "extension":"*.vssm",
+        "name":"Office Open XML Visio Stencil (macro-enabled)",
+        "type":"application/vnd.ms-visio.stencil.macroenabled.12"
+    },
+    {
+        "extension":"*.vssx",
+        "name":"Office Open XML Visio Stencil (macro-free)",
+        "type":"application/vnd.ms-visio.stencil"
+    },
+    {
+        "extension":"*.vstm",
+        "name":"Office Open XML Visio Template (macro-enabled)",
+        "type":"application/vnd.ms-visio.template.macroenabled.12"
+    },
+    {
+        "extension":"*.vstx",
+        "name":"Office Open XML Visio Template (macro-free)",
+        "type":"application/vnd.ms-visio.template"
+    },
+    {
+        "extension":"*.vtf",
+        "name":"Valve Texture Format",
+        "type":"image/vnd.valve.source.texture"
+    },
+    {
+        "extension":"*.vtt",
+        "name":"Web Video Text Tracks Format",
+        "type":"text/vtt"
+    },
+    {
+        "extension":"*.vwx",
+        "name":"Vectorworks 2015",
+        "type":"application/vnd.vectorworks;version=\"2015\""
+    },
+    {
+        "extension":"*.w50",
+        "name":"WordPerfect for MS-DOS Document 5.0",
+        "type":"application/vnd.wordperfect;version=\"5.0\""
+    },
+    {
+        "extension":"*.w51",
+        "name":"WordPerfect for MS-DOS/Windows Document 5.1",
+        "type":"application/vnd.wordperfect;version=\"5.1\""
+    },
+    {
+        "extension":"*.w52",
+        "name":"WordPerfect for Windows Document 5.2",
+        "type":"application/vnd.wordperfect;version=\"5.2\""
+    },
+    {
+        "extension":"*.warc",
+        "name":"WARC, Web ARChive file format",
+        "type":"application/warc"
+    },
+    {
+        "extension":"*.wast",
+        "name":"WebAssembly",
+        "type":"text/x-common-lisp"
+    },
+    {
+        "extension":"*.wav",
+        "name":"Waveform Audio",
+        "type":"audio/x-wav"
+    },
+    {
+        "extension":"*.wbmp",
+        "name":"Wireless Bitmap File Format",
+        "type":"image/vnd.wap.wbmp"
+    },
+    {
+        "extension":"*.webapp",
+        "name":"Open Web App Manifest",
+        "type":"application/x-web-app-manifest+json"
+    },
+    {
+        "extension":"*.webidl",
+        "name":"WebIDL",
+        "type":"text/x-webidl"
+    },
+    {
+        "extension":"*.webm",
+        "name":"WebM",
+        "type":"video/webm"
+    },
+    {
+        "extension":"*.webp",
+        "name":"WebP",
+        "type":"image/webp"
+    },
+    {
+        "extension":"*.wisp",
+        "name":"wisp",
+        "type":"text/x-clojure"
+    },
+    {
+        "extension":"*.wk1",
+        "name":"Lotus 1-2-3 Worksheet 2.0",
+        "type":"application/vnd.lotus-1-2-3;version=\"2.0\""
+    },
+    {
+        "extension":"*.wk3",
+        "name":"Lotus 1-2-3 Worksheet 3.0",
+        "type":"application/vnd.lotus-1-2-3;version=\"3.0\""
+    },
+    {
+        "extension":"*.wk4",
+        "name":"Lotus 1-2-3 Worksheet 4-5",
+        "type":"application/vnd.lotus-1-2-3;version=\"4-5\""
+    },
+    {
+        "extension":"*.wks",
+        "name":"Lotus 1-2-3",
+        "type":"application/vnd.lotus-1-2-3"
+    },
+    {
+        "extension":"*.wma",
+        "name":"WMA (Windows Media Audio) File Format",
+        "type":"audio/x-ms-wma"
+    },
+    {
+        "extension":"*.wmf",
+        "name":"Windows Metafile",
+        "type":"image/wmf"
+    },
+    {
+        "extension":"*.wmlc",
+        "name":"Compiled WML Document",
+        "type":"application/vnd.wap.wmlc"
+    },
+    {
+        "extension":"*.wmls",
+        "name":"WML Script",
+        "type":"text/vnd.wap.wmlscript"
+    },
+    {
+        "extension":"*.wmlsc",
+        "name":"Compiled WML Script",
+        "type":"application/vnd.wap.wmlscriptc"
+    },
+    {
+        "extension":"*.wmv",
+        "name":"WMV (Windows Media Video) File Format",
+        "type":"video/x-ms-wmv"
+    },
+    {
+        "extension":"*.woff",
+        "name":"Web Open Font Format",
+        "type":"application/font-woff"
+    },
+    {
+        "extension":"*.wp4",
+        "name":"WordPerfect 4.0/4.1/4.2",
+        "type":"application/vnd.wordperfect;version=\"4.0/4.1/4.2\""
+    },
+    {
+        "extension":"*.wpd",
+        "name":"WordPerfect",
+        "type":"application/vnd.wordperfect"
+    },
+    {
+        "extension":"*.wpl",
+        "name":"Windows Media Playlist",
+        "type":"application/vnd.ms-wpl"
+    },
+    {
+        "extension":"*.wrl",
+        "name":"VRML",
+        "type":"model/vrml"
+    },
+    {
+        "extension":"*.wsz",
+        "name":"Winamp Skin",
+        "type":"interface/x-winamp-skin"
+    },
+    {
+        "extension":"*.x3d",
+        "name":"X3D",
+        "type":"model/x3d+xml"
+    },
+    {
+        "extension":"*.x3f",
+        "name":"Sigma raw image",
+        "type":"image/x-raw-sigma"
+    },
+    {
+        "extension":"*.xap",
+        "name":"Silverlight",
+        "type":"application/x-silverlight-app"
+    },
+    {
+        "extension":"*.xar",
+        "name":"Xar (vector graphics)",
+        "type":"application/vnd.xara"
+    },
+    {
+        "extension":"*.xbm",
+        "name":"XBM",
+        "type":"image/x-xbitmap"
+    },
+    {
+        "extension":"*.xc",
+        "name":"XC",
+        "type":"text/x-csrc"
+    },
+    {
+        "extension":"*.xcf",
+        "name":"GIMP Image File",
+        "type":"image/xcf"
+    },
+    {
+        "extension":"*.xdm",
+        "name":"X-Windows Screen Dump File X10",
+        "type":"image/x-xwindowdump;version=\"x10\""
+    },
+    {
+        "extension":"*.xfdf",
+        "name":"XFDF",
+        "type":"application/vnd.adobe.xfdf"
+    },
+    {
+        "extension":"*.xhtml",
+        "name":"Extensible HyperText Markup Language (XHTML), 1.0",
+        "type":"application/xhtml+xml"
+    },
+    {
+        "extension":"*.xif",
+        "name":"XIFF",
+        "type":"image/vnd.xiff"
+    },
+    {
+        "extension":"*.xla",
+        "name":"Microsoft Excel Macro 4.0",
+        "type":"application/vnd.ms-excel;version=\"4.0\""
+    },
+    {
+        "extension":"*.xlam",
+        "name":"Office Open XML Workbook Add-in (macro-enabled)",
+        "type":"application/vnd.ms-excel.addin.macroenabled.12"
+    },
+    {
+        "extension":"*.xlc",
+        "name":"Microsoft Excel Chart 3.0",
+        "type":"application/vnd.ms-excel;version=\"3.0\""
+    },
+    {
+        "extension":"*.xlm",
+        "name":"Microsoft Excel Macro 3.0",
+        "type":"application/vnd.ms-excel;version=\"3.0\""
+    },
+    {
+        "extension":"*.xls",
+        "name":"Microsoft Excel Spreadsheet",
+        "type":"application/vnd.ms-excel"
+    },
+    {
+        "extension":"*.xlsb",
+        "name":"Microsoft Excel 2007 Binary Spreadsheet",
+        "type":"application/vnd.ms-excel.sheet.binary.macroenabled.12"
+    },
+    {
+        "extension":"*.xlsm",
+        "name":"Office Open XML Workbook (macro-enabled)",
+        "type":"application/vnd.ms-excel.sheet.macroenabled.12"
+    },
+    {
+        "extension":"*.xlsx",
+        "name":"Office Open XML Workbook",
+        "type":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    },
+    {
+        "extension":"*.xltm",
+        "name":"Office Open XML Workbook Template (macro-enabled)",
+        "type":"application/vnd.ms-excel.template.macroenabled.12"
+    },
+    {
+        "extension":"*.xltx",
+        "name":"Office Open XML Workbook Template",
+        "type":"application/vnd.openxmlformats-officedocument.spreadsheetml.template"
+    },
+    {
+        "extension":"*.xlw",
+        "name":"Microsoft Excel 4.0 Workbook (xls) 4W",
+        "type":"application/vnd.ms-excel;version=\"4w\""
+    },
+    {
+        "extension":"*.xm",
+        "name":"Extended Module Audio File",
+        "type":"audio/xm"
+    },
+    {
+        "extension":"*.xmf",
+        "name":"XMF, eXtensible Music File Format, Version 1.0",
+        "type":"audio/mobile-xmf"
+    },
+    {
+        "extension":"*.xmind",
+        "name":"XMind Pro",
+        "type":"application/x-xmind"
+    },
+    {
+        "extension":"*.xml",
+        "name":"Extensible Markup Language",
+        "type":"application/xml"
+    },
+    {
+        "extension":"*.xmt",
+        "name":"MPEG-4, eXtensible MPEG-4 Textual Format (XMT)",
+        "type":"application/mpeg4-iod-xmt"
+    },
+    {
+        "extension":"*.xpi",
+        "name":"Cross-Platform Installer Module",
+        "type":"application/x-xpinstall"
+    },
+    {
+        "extension":"*.xpl",
+        "name":"XProc",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.xpm",
+        "name":"X-Windows Pixmap Image X10",
+        "type":"image/x-xpixmap;version=\"x10\""
+    },
+    {
+        "extension":"*.xps",
+        "name":"Open XML Paper Specification",
+        "type":"application/oxps"
+    },
+    {
+        "extension":"*.xpt",
+        "name":"SAS Transport File Format (XPORT) Family ",
+        "type":"application/x-sas-xport"
+    },
+    {
+        "extension":"*.xq",
+        "name":"XQuery source code",
+        "type":"application/xquery"
+    },
+    {
+        "extension":"*.xquery",
+        "name":"XQuery",
+        "type":"application/xquery"
+    },
+    {
+        "extension":"*.xs",
+        "name":"XS",
+        "type":"text/x-csrc"
+    },
+    {
+        "extension":"*.xsd",
+        "name":"XML Schema Definition",
+        "type":"application/xml"
+    },
+    {
+        "extension":"*.xsl",
+        "name":"Extensible Stylesheet Language",
+        "type":"application/xml"
+    },
+    {
+        "extension":"*.xslfo",
+        "name":"XSL Format",
+        "type":"application/xslfo+xml"
+    },
+    {
+        "extension":"*.xslt",
+        "name":"XSL Transformations",
+        "type":"application/xslt+xml"
+    },
+    {
+        "extension":"*.xsp-config",
+        "name":"XPages",
+        "type":"text/xml"
+    },
+    {
+        "extension":"*.xspf",
+        "name":"XML Shareable Playlist Format",
+        "type":"application/xspf+xml"
+    },
+    {
+        "extension":"*.xwd",
+        "name":"X Windows Dump",
+        "type":"image/x-xwindowdump"
+    },
+    {
+        "extension":"*.xz",
+        "name":"XZ",
+        "type":"application/x-xz"
+    },
+    {
+        "extension":"*.y",
+        "name":"Yacc/Bison source code",
+        "type":"text/x-yacc"
+    },
+    {
+        "extension":"*.yaml",
+        "name":"YAML source code",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.yml",
+        "name":"YAML",
+        "type":"text/x-yaml"
+    },
+    {
+        "extension":"*.zip",
+        "name":"Compressed Archive File",
+        "type":"application/zip"
+    }
+]}

@@ -1,0 +1,206 @@
+\hypertarget{MegaMimes_8h}{}\section{Mega\+Mimes.\+h File Reference}
+\label{MegaMimes_8h}\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$ctype.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$wchar.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include $<$wctype.\+h$>$}\newline
+{\ttfamily \#include $<$limits.\+h$>$}\newline
+Include dependency graph for Mega\+Mimes.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{MegaMimes_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structMegaFileInfo}{Mega\+File\+Info}
+\end{DoxyCompactItemize}
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{MegaMimes_8h_abe6c12084ef7b59a509d9175d741f2dd}\label{MegaMimes_8h_abe6c12084ef7b59a509d9175d741f2dd}} 
+\#define {\bfseries F\+I\+L\+E\+\_\+\+P\+A\+T\+H\+\_\+\+S\+EP}~\textquotesingle{}\textbackslash{}\textbackslash{}\textquotesingle{}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char $\ast$ \hyperlink{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}{get\+Mega\+Mime\+Type} (const char $\ast$p\+File\+Name)
+\begin{DoxyCompactList}\small\item\em The function gets the mime type of the file specified by the path. The function does not check if the file exists or not. It just uses the file basename including the extension to lookup the mime type. The filename can also be an extension only, which is preceeded by a \char`\"{}.\char`\"{}. Example (.mp3, mega.\+mp3, /usr/lib/mega.mp3 ) will all return the same thing. \end{DoxyCompactList}\item 
+char $\ast$$\ast$ \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{get\+Mega\+Mime\+Extensions} (const char $\ast$p\+Mime\+Type)
+\begin{DoxyCompactList}\small\item\em The function guesses the file extension for the mimetype. The mimetype should be in the form first-\/part/second-\/part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. Pattern matching could also be used. \end{DoxyCompactList}\item 
+\hyperlink{structMegaFileInfo}{Mega\+File\+Info} $\ast$ \hyperlink{MegaMimes_8h_a9ac2a89da4c41ca04f094cabc5be14fa}{get\+Mega\+File\+Information} (const char $\ast$p\+File\+Path)
+\begin{DoxyCompactList}\small\item\em Gets information about the file. The file need not exist. If the file name has no extension, N\+U\+LL is returned. \end{DoxyCompactList}\item 
+bool \hyperlink{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}{is\+Text\+File} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Returns whether the fileis a text file or not. The function is a really slows function, as it scans through every byte, checking to see if it is a control character or not. \end{DoxyCompactList}\item 
+bool \hyperlink{MegaMimes_8h_a744bbf3ccc64ca2b2c3c42f67470738c}{is\+Binary\+File} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Returns whether the file is a binary file or not. \end{DoxyCompactList}\item 
+const char $\ast$ \hyperlink{MegaMimes_8h_ad8425df66477892815c00ad002c95be0}{get\+Mega\+Text\+File\+Encoding} (const char $\ast$path)
+\begin{DoxyCompactList}\small\item\em The function gets the encoding of the file. The string can be utf-\/8, utf-\/16\+BE, utf-\/16\+LE, utf-\/16 utf-\/32, urtf-\/32\+BE, utf-\/32\+LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use  is\+Text\+File to first check if it is a text file, before using the function. \end{DoxyCompactList}\item 
+void \hyperlink{MegaMimes_8h_aa0a861f0f62193f58b8e51cdc388b03e}{free\+Mega\+File\+Info} (\hyperlink{structMegaFileInfo}{Mega\+File\+Info} $\ast$p\+Data)
+\begin{DoxyCompactList}\small\item\em The function deallocates and destroys a \hyperlink{structMegaFileInfo}{Mega\+File\+Info} structure. If the structure is N\+U\+LL, the function simply returns nothing and does nothing. \end{DoxyCompactList}\item 
+void \hyperlink{MegaMimes_8h_a874430e1d8513e70586046e68907039c}{free\+Mega\+String} (char $\ast$p\+Data)
+\begin{DoxyCompactList}\small\item\em The function deallocates and frees a string returned by any of the functions. The difference between this function and the std library  free , is that this function does nothing if its argument is N\+U\+LL. \end{DoxyCompactList}\item 
+void \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{free\+Mega\+String\+Array} (char $\ast$$\ast$p\+Data)
+\begin{DoxyCompactList}\small\item\em The function frees the dynamically allocated array of dynamically allocated strings returned by  get\+Mega\+Mime\+Extensions. The function simply does nothing ig its argument is N\+U\+LL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{MegaMimes_8h_aa0a861f0f62193f58b8e51cdc388b03e}\label{MegaMimes_8h_aa0a861f0f62193f58b8e51cdc388b03e}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!free\+Mega\+File\+Info@{free\+Mega\+File\+Info}}
+\index{free\+Mega\+File\+Info@{free\+Mega\+File\+Info}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{free\+Mega\+File\+Info()}{freeMegaFileInfo()}}
+{\footnotesize\ttfamily void free\+Mega\+File\+Info (\begin{DoxyParamCaption}\item[{\hyperlink{structMegaFileInfo}{Mega\+File\+Info} $\ast$}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+The function deallocates and destroys a \hyperlink{structMegaFileInfo}{Mega\+File\+Info} structure. If the structure is N\+U\+LL, the function simply returns nothing and does nothing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Data} & The \hyperlink{structMegaFileInfo}{Mega\+File\+Info} structure to be freed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{MegaMimes_8h_a874430e1d8513e70586046e68907039c}\label{MegaMimes_8h_a874430e1d8513e70586046e68907039c}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!free\+Mega\+String@{free\+Mega\+String}}
+\index{free\+Mega\+String@{free\+Mega\+String}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{free\+Mega\+String()}{freeMegaString()}}
+{\footnotesize\ttfamily void free\+Mega\+String (\begin{DoxyParamCaption}\item[{char $\ast$}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+The function deallocates and frees a string returned by any of the functions. The difference between this function and the std library  free , is that this function does nothing if its argument is N\+U\+LL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Data} & The string to be freed \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}\label{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!free\+Mega\+String\+Array@{free\+Mega\+String\+Array}}
+\index{free\+Mega\+String\+Array@{free\+Mega\+String\+Array}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{free\+Mega\+String\+Array()}{freeMegaStringArray()}}
+{\footnotesize\ttfamily void free\+Mega\+String\+Array (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{p\+Data }\end{DoxyParamCaption})}
+
+
+
+The function frees the dynamically allocated array of dynamically allocated strings returned by  get\+Mega\+Mime\+Extensions. The function simply does nothing ig its argument is N\+U\+LL. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Data} & The string array to be freed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{MegaMimes_8h_a9ac2a89da4c41ca04f094cabc5be14fa}\label{MegaMimes_8h_a9ac2a89da4c41ca04f094cabc5be14fa}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!get\+Mega\+File\+Information@{get\+Mega\+File\+Information}}
+\index{get\+Mega\+File\+Information@{get\+Mega\+File\+Information}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{get\+Mega\+File\+Information()}{getMegaFileInformation()}}
+{\footnotesize\ttfamily \hyperlink{structMegaFileInfo}{Mega\+File\+Info}$\ast$ get\+Mega\+File\+Information (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p\+File\+Path }\end{DoxyParamCaption})}
+
+
+
+Gets information about the file. The file need not exist. If the file name has no extension, N\+U\+LL is returned. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+File\+Path} & The name of the file whose information is to be determined. Can be and extension, which in that case a dot must be the first character.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the information about the file. The structure returned should be freed with ot\+\_\+fileinfo\+\_\+free 
+\end{DoxyReturn}
+\mbox{\Hypertarget{MegaMimes_8h_a29775655c03675b861aa29571b394283}\label{MegaMimes_8h_a29775655c03675b861aa29571b394283}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!get\+Mega\+Mime\+Extensions@{get\+Mega\+Mime\+Extensions}}
+\index{get\+Mega\+Mime\+Extensions@{get\+Mega\+Mime\+Extensions}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{get\+Mega\+Mime\+Extensions()}{getMegaMimeExtensions()}}
+{\footnotesize\ttfamily char$\ast$$\ast$ get\+Mega\+Mime\+Extensions (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p\+Mime\+Type }\end{DoxyParamCaption})}
+
+
+
+The function guesses the file extension for the mimetype. The mimetype should be in the form first-\/part/second-\/part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. Pattern matching could also be used. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Mime\+Type} & The mimetype whose extension is to be determined\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An array of extension names. The array is terminated by a N\+U\+LL. The function returns N\+U\+LL if no extensions were found for the mime types given. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}\label{MegaMimes_8h_a9fdc19822a29a3903d5687855f4256f6}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!get\+Mega\+Mime\+Type@{get\+Mega\+Mime\+Type}}
+\index{get\+Mega\+Mime\+Type@{get\+Mega\+Mime\+Type}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{get\+Mega\+Mime\+Type()}{getMegaMimeType()}}
+{\footnotesize\ttfamily char$\ast$ get\+Mega\+Mime\+Type (\begin{DoxyParamCaption}\item[{const char $\ast$}]{p\+File\+Name }\end{DoxyParamCaption})}
+
+
+
+The function gets the mime type of the file specified by the path. The function does not check if the file exists or not. It just uses the file basename including the extension to lookup the mime type. The filename can also be an extension only, which is preceeded by a \char`\"{}.\char`\"{}. Example (.mp3, mega.\+mp3, /usr/lib/mega.mp3 ) will all return the same thing. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+File\+Name} & The name of the file whose mime type should be guessed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the mimetype of the file or N\+U\+LL if no mimetype is known for the file. The string returned should be freed 
+\end{DoxyReturn}
+\mbox{\Hypertarget{MegaMimes_8h_ad8425df66477892815c00ad002c95be0}\label{MegaMimes_8h_ad8425df66477892815c00ad002c95be0}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!get\+Mega\+Text\+File\+Encoding@{get\+Mega\+Text\+File\+Encoding}}
+\index{get\+Mega\+Text\+File\+Encoding@{get\+Mega\+Text\+File\+Encoding}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{get\+Mega\+Text\+File\+Encoding()}{getMegaTextFileEncoding()}}
+{\footnotesize\ttfamily const char$\ast$ get\+Mega\+Text\+File\+Encoding (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+The function gets the encoding of the file. The string can be utf-\/8, utf-\/16\+BE, utf-\/16\+LE, utf-\/16 utf-\/32, urtf-\/32\+BE, utf-\/32\+LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use  is\+Text\+File to first check if it is a text file, before using the function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path name for the file. If the file des not exist, N\+U\+LL is returned if the file does not exist, or you do not have permissions to read from the file or any of its parent directories. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+the file encoding or N\+U\+LL 
+\end{DoxyReturn}
+\mbox{\Hypertarget{MegaMimes_8h_a744bbf3ccc64ca2b2c3c42f67470738c}\label{MegaMimes_8h_a744bbf3ccc64ca2b2c3c42f67470738c}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!is\+Binary\+File@{is\+Binary\+File}}
+\index{is\+Binary\+File@{is\+Binary\+File}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{is\+Binary\+File()}{isBinaryFile()}}
+{\footnotesize\ttfamily bool is\+Binary\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Returns whether the file is a binary file or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Url} & The path name for the file. If the file des not exist, false is returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the file is a bnary file or not 
+\end{DoxyReturn}
+\mbox{\Hypertarget{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}\label{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}} 
+\index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!is\+Text\+File@{is\+Text\+File}}
+\index{is\+Text\+File@{is\+Text\+File}!Mega\+Mimes.\+h@{Mega\+Mimes.\+h}}
+\subsubsection{\texorpdfstring{is\+Text\+File()}{isTextFile()}}
+{\footnotesize\ttfamily bool is\+Text\+File (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Returns whether the fileis a text file or not. The function is a really slows function, as it scans through every byte, checking to see if it is a control character or not. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em p\+Url} & The path name for the file. If the file des not exist, false is returned. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+whether the file is a text file or not 
+\end{DoxyReturn}
