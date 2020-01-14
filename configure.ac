@@ -1,10 +1,14 @@
-AC_INIT([MegaMimes], [1.0.0], [okessuman@st.ug.edu.gh])
+AC_INIT([MegaMimes], [1.0], [okessuman@st.ug.edu.gh])
 AC_PREREQ([2.64])
 AC_CONFIG_SRCDIR([src/MegaMimes.c])
 AC_CONFIG_HEADERS([config.h])
+AC_CONFIG_FILES([libmegamimes.pc])
 AC_CONFIG_AUX_DIR([build-aux])
 AC_ENABLE_SHARED
 AC_ENABLE_STATIC
+
+PKG_PROG_PKG_CONFIG
+PKG_INSTALLDIR
 
 AM_PROG_AR
 AC_PROG_LIBTOOL
