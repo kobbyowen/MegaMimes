@@ -2,7 +2,7 @@
 
 void getMegaMimeFileInformationtest(void* data)
 {
-  MegaFileInfo* res = getMegaFileInformation("data") ;
+  MegaFileInfo* res = getMegaFileInformation("tests/data") ;
   assert_null(res) ;
 
   res = getMegaFileInformation("owentrump") ;
@@ -11,26 +11,28 @@ void getMegaMimeFileInformationtest(void* data)
   res = getMegaFileInformation("..") ;
   assert_null(res);
 
-  res = getMegaFileInformation("data/formatMimes.py") ;
+  res = getMegaFileInformation("tests/data/formatMimes.py") ;
   assert_nonnull(res) ;
-  assert_string_equal(res->mBaseDir, "data/") ;
+  assert_string_equal(res->mBaseDir, "tests/data/") ;
   assert_string_equal(res->mBaseName, "formatMimes") ;
   assert_string_equal(res->mExtension, ".py") ;
   assert_ullong_equal(res->mFileSize, 39111 ) ;
   assert_string_equal(res->mMimeType, "text/x-python") ;
   assert_ullong_equal(res->mTextFile, true) ;
+ 
   assert_string_equal(res->mTextEncoding, "UTF-8") ;
   freeMegaFileInfo(res) ;
 
-  res = getMegaFileInformation("data/bin.dat") ;
+  res = getMegaFileInformation("tests/data/bin.dat") ;
+  assert_nonnull(res);
   assert_string_equal(res->mTextEncoding, "") ;
   freeMegaFileInfo(res);
 
-  res = getMegaFileInformation("data") ;
+  res = getMegaFileInformation("tests/data") ;
   assert_null(res) ;
   freeMegaFileInfo(res);
 
-  res = getMegaFileInformation("data/sucus.txt") ;
+  res = getMegaFileInformation("tests/data/sucus.txt") ;
   assert_null(res);
   freeMegaFileInfo(res);
 
@@ -51,7 +53,7 @@ void getMegaMimeFileInformationtest(void* data)
   assert_llong_equal(isTextFile("data/utf32le_2.dat"), true) ;
   assert_llong_equal(isTextFile("data/utf8data.txt"), true) ;
 */
-  assert_llong_equal(isTextFile("data/MegaMimeTypes.json"), true) ;
-  assert_llong_equal(isTextFile("data/bin.dat"), false) ;
+  assert_llong_equal(isTextFile("tests/data/MegaMimeTypes.json"), true) ;
+  assert_llong_equal(isTextFile("tests/data/bin.dat"), false) ;
 
 }

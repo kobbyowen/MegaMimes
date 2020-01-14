@@ -1,8 +1,6 @@
 #ifndef _TESTER_H_
 #define _TESTER_H_
 
-#define NDEBUG 
-
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
