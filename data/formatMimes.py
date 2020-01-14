@@ -832,6 +832,6 @@ except FileNotFoundError:
 except FileExistsError:
     print("File Already Exists")
 except OSError:
-    print("An operating system error occured. You may loack permissions")
+    print("An operating system error occured. You may lack permissions")
 
 
