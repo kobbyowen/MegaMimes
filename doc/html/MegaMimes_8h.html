@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.13"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>MegaMimes: MegaMimes.h File Reference</title>
+<title>MegaMimes: src/MegaMimes.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -58,31 +58,20 @@ $(function() {
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">MegaMimes.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;ctype.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;wchar.h&gt;</code><br />
-<code>#include &lt;assert.h&gt;</code><br />
-<code>#include &lt;wctype.h&gt;</code><br />
-<code>#include &lt;limits.h&gt;</code><br />
-</div><div class="textblock"><div class="dynheader">
-Include dependency graph for MegaMimes.h:</div>
-<div class="dyncontent">
-<div class="center"><img src="MegaMimes_8h__incl.png" border="0" usemap="#MegaMimes_8h" alt=""/></div>
-</div>
-</div>
+
 <p><a href="MegaMimes_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
@@ -90,40 +79,34 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structMegaFileInfo.html">MegaFileInfo</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:abe6c12084ef7b59a509d9175d741f2dd"><td class="memItemLeft" align="right" valign="top"><a id="abe6c12084ef7b59a509d9175d741f2dd"></a>
-#define&#160;</td><td class="memItemRight" valign="bottom"><b>FILE_PATH_SEP</b>&#160;&#160;&#160;'\\'</td></tr>
-<tr class="separator:abe6c12084ef7b59a509d9175d741f2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a9fdc19822a29a3903d5687855f4256f6"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a9fdc19822a29a3903d5687855f4256f6">getMegaMimeType</a> (const char *pFileName)</td></tr>
-<tr class="memdesc:a9fdc19822a29a3903d5687855f4256f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function gets the mime type of the file specified by the path. The function does not check if the file exists or not. It just uses the file basename including the extension to lookup the mime type. The filename can also be an extension only, which is preceeded by a ".". Example (.mp3, mega.mp3, /usr/lib/mega.mp3 ) will all return the same thing.  <a href="#a9fdc19822a29a3903d5687855f4256f6">More...</a><br /></td></tr>
+<tr class="memdesc:a9fdc19822a29a3903d5687855f4256f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get The Mime Type Of A File Or A File Extension.  <a href="#a9fdc19822a29a3903d5687855f4256f6">More...</a><br /></td></tr>
 <tr class="separator:a9fdc19822a29a3903d5687855f4256f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a29775655c03675b861aa29571b394283"><td class="memItemLeft" align="right" valign="top">char **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a29775655c03675b861aa29571b394283">getMegaMimeExtensions</a> (const char *pMimeType)</td></tr>
-<tr class="memdesc:a29775655c03675b861aa29571b394283"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function guesses the file extension for the mimetype. The mimetype should be in the form first-part/second-part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. Pattern matching could also be used.  <a href="#a29775655c03675b861aa29571b394283">More...</a><br /></td></tr>
+<tr class="memdesc:a29775655c03675b861aa29571b394283"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get The Extensions associated with Mime Types.  <a href="#a29775655c03675b861aa29571b394283">More...</a><br /></td></tr>
 <tr class="separator:a29775655c03675b861aa29571b394283"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ac2a89da4c41ca04f094cabc5be14fa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a9ac2a89da4c41ca04f094cabc5be14fa">getMegaFileInformation</a> (const char *pFilePath)</td></tr>
-<tr class="memdesc:a9ac2a89da4c41ca04f094cabc5be14fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets information about the file. The file need not exist. If the file name has no extension, NULL is returned.  <a href="#a9ac2a89da4c41ca04f094cabc5be14fa">More...</a><br /></td></tr>
+<tr class="memdesc:a9ac2a89da4c41ca04f094cabc5be14fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get information about a file.  <a href="#a9ac2a89da4c41ca04f094cabc5be14fa">More...</a><br /></td></tr>
 <tr class="separator:a9ac2a89da4c41ca04f094cabc5be14fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f254e9556aef5fd8697299271f612f4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a7f254e9556aef5fd8697299271f612f4">isTextFile</a> (const char *path)</td></tr>
-<tr class="memdesc:a7f254e9556aef5fd8697299271f612f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the fileis a text file or not. The function is a really slows function, as it scans through every byte, checking to see if it is a control character or not.  <a href="#a7f254e9556aef5fd8697299271f612f4">More...</a><br /></td></tr>
+<tr class="memdesc:a7f254e9556aef5fd8697299271f612f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if a file is a text file.  <a href="#a7f254e9556aef5fd8697299271f612f4">More...</a><br /></td></tr>
 <tr class="separator:a7f254e9556aef5fd8697299271f612f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a744bbf3ccc64ca2b2c3c42f67470738c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a744bbf3ccc64ca2b2c3c42f67470738c">isBinaryFile</a> (const char *path)</td></tr>
-<tr class="memdesc:a744bbf3ccc64ca2b2c3c42f67470738c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the file is a binary file or not.  <a href="#a744bbf3ccc64ca2b2c3c42f67470738c">More...</a><br /></td></tr>
+<tr class="memdesc:a744bbf3ccc64ca2b2c3c42f67470738c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Determines if ia file is a binary file.  <a href="#a744bbf3ccc64ca2b2c3c42f67470738c">More...</a><br /></td></tr>
 <tr class="separator:a744bbf3ccc64ca2b2c3c42f67470738c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8425df66477892815c00ad002c95be0"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#ad8425df66477892815c00ad002c95be0">getMegaTextFileEncoding</a> (const char *path)</td></tr>
-<tr class="memdesc:ad8425df66477892815c00ad002c95be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function gets the encoding of the file. The string can be utf-8, utf-16BE, utf-16LE, utf-16 utf-32, urtf-32BE, utf-32LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use  isTextFile to first check if it is a text file, before using the function.  <a href="#ad8425df66477892815c00ad002c95be0">More...</a><br /></td></tr>
+<tr class="memdesc:ad8425df66477892815c00ad002c95be0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the encoding for a text file.  <a href="#ad8425df66477892815c00ad002c95be0">More...</a><br /></td></tr>
 <tr class="separator:ad8425df66477892815c00ad002c95be0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0a861f0f62193f58b8e51cdc388b03e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#aa0a861f0f62193f58b8e51cdc388b03e">freeMegaFileInfo</a> (<a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> *pData)</td></tr>
-<tr class="memdesc:aa0a861f0f62193f58b8e51cdc388b03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function deallocates and destroys a <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure. If the structure is NULL, the function simply returns nothing and does nothing.  <a href="#aa0a861f0f62193f58b8e51cdc388b03e">More...</a><br /></td></tr>
+<tr class="memdesc:aa0a861f0f62193f58b8e51cdc388b03e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure.  <a href="#aa0a861f0f62193f58b8e51cdc388b03e">More...</a><br /></td></tr>
 <tr class="separator:aa0a861f0f62193f58b8e51cdc388b03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a874430e1d8513e70586046e68907039c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#a874430e1d8513e70586046e68907039c">freeMegaString</a> (char *pData)</td></tr>
-<tr class="memdesc:a874430e1d8513e70586046e68907039c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function deallocates and frees a string returned by any of the functions. The difference between this function and the std library  free , is that this function does nothing if its argument is NULL.  <a href="#a874430e1d8513e70586046e68907039c">More...</a><br /></td></tr>
+<tr class="memdesc:a874430e1d8513e70586046e68907039c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees a string.  <a href="#a874430e1d8513e70586046e68907039c">More...</a><br /></td></tr>
 <tr class="separator:a874430e1d8513e70586046e68907039c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac51929b1a876c679b38af9f0854ecd41"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MegaMimes_8h.html#ac51929b1a876c679b38af9f0854ecd41">freeMegaStringArray</a> (char **pData)</td></tr>
-<tr class="memdesc:ac51929b1a876c679b38af9f0854ecd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">The function frees the dynamically allocated array of dynamically allocated strings returned by  getMegaMimeExtensions. The function simply does nothing ig its argument is NULL.  <a href="#ac51929b1a876c679b38af9f0854ecd41">More...</a><br /></td></tr>
+<tr class="memdesc:ac51929b1a876c679b38af9f0854ecd41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees an array of strings.  <a href="#ac51929b1a876c679b38af9f0854ecd41">More...</a><br /></td></tr>
 <tr class="separator:ac51929b1a876c679b38af9f0854ecd41"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
@@ -143,7 +126,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function deallocates and destroys a <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure. If the structure is NULL, the function simply returns nothing and does nothing. </p>
+<p>Frees a <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure. </p>
+<p>The function deallocates and destroys a <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure. If the structure is NULL, the function simply and does nothing.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pData</td><td>The <a class="el" href="structMegaFileInfo.html">MegaFileInfo</a> structure to be freed </td></tr>
@@ -169,7 +153,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function deallocates and frees a string returned by any of the functions. The difference between this function and the std library  free , is that this function does nothing if its argument is NULL. </p>
+<p>Frees a string. </p>
+<p>The function deallocates and frees a string returned by any of the functions. The difference between this function and the std library free , is that this function does nothing if its argument is NULL</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pData</td><td>The string to be freed </td></tr>
@@ -195,7 +180,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function frees the dynamically allocated array of dynamically allocated strings returned by  getMegaMimeExtensions. The function simply does nothing ig its argument is NULL. </p>
+<p>Frees an array of strings. </p>
+<p>The function frees the dynamically allocated array of dynamically allocated strings returned by getMegaMimeExtensions. The function simply does nothing if its argument is NULL</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pData</td><td>The string array to be freed. </td></tr>
@@ -221,14 +207,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets information about the file. The file need not exist. If the file name has no extension, NULL is returned. </p>
+<p>Get information about a file. </p>
+<p>Gets information about the file, such as the encoding, the mime name the mime type and the the file size.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pFilePath</td><td>The name of the file whose information is to be determined. Can be and extension, which in that case a dot must be the first character.</td></tr>
+    <tr><td class="paramname">pFilePath</td><td>The name of the file whose information is to be determined.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the information about the file. The structure returned should be freed with ot_fileinfo_free </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the information about the file. The structure returned should be freed with freeMegaFileInfo. The function returns NULL if the file does not exists, or the user does not have permissions to read from the file </dd></dl>
 
 </div>
 </div>
@@ -248,7 +235,8 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function guesses the file extension for the mimetype. The mimetype should be in the form first-part/second-part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. Pattern matching could also be used. </p>
+<p>Get The Extensions associated with Mime Types. </p>
+<p>The function gets the file extensions for the mimetype. The mimetype should be in the form first-part/second-part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. * character can be used to match everything. Eg video/ returns all video file extensions and * returns all file extensions</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pMimeType</td><td>The mimetype whose extension is to be determined</td></tr>
@@ -275,10 +263,11 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function gets the mime type of the file specified by the path. The function does not check if the file exists or not. It just uses the file basename including the extension to lookup the mime type. The filename can also be an extension only, which is preceeded by a ".". Example (.mp3, mega.mp3, /usr/lib/mega.mp3 ) will all return the same thing. </p>
+<p>Get The Mime Type Of A File Or A File Extension. </p>
+<p>The function gets the mime type of the file specified by the path. The function does not check if the file exists or not. It just uses the file's basename including the extension to lookup the mime type. The filename can also be an extension only, which is preceeded by a ".". Example (.mp3, mega.mp3, /usr/lib/mega.mp3 ) will all return the same thing.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pFileName</td><td>The name of the file whose mime type should be guessed </td></tr>
+    <tr><td class="paramname">pFileName</td><td>The name of the file whose mime type should be determined </td></tr>
   </table>
   </dd>
 </dl>
@@ -302,14 +291,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>The function gets the encoding of the file. The string can be utf-8, utf-16BE, utf-16LE, utf-16 utf-32, urtf-32BE, utf-32LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use  isTextFile to first check if it is a text file, before using the function. </p>
+<p>Gets the encoding for a text file. </p>
+<dl class="section pre"><dt>Precondition</dt><dd>The file is assumed to be a text file. Use <a class="el" href="MegaMimes_8h.html#a7f254e9556aef5fd8697299271f612f4" title="Determines if a file is a text file. ">isTextFile()</a> to check the file before calling this function.</dd></dl>
+<p>The function gets the encoding of the file. The string can be UTF-8, UTF-8, UTF-16LE, UTF-16 UTF-32, UTF-32BE, UTF-32LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use isTextFile to first check if it is a text file, before using the function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">path</td><td>The path name for the file. If the file des not exist, NULL is returned if the file does not exist, or you do not have permissions to read from the file or any of its parent directories. </td></tr>
+    <tr><td class="paramname">path</td><td>The path name for the file </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the file encoding or NULL </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the file encoding or UTF-8 </dd></dl>
 
 </div>
 </div>
@@ -329,14 +320,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns whether the file is a binary file or not. </p>
+<p>Determines if ia file is a binary file. </p>
+<p>Returns whether the file is a binary file or not</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pUrl</td><td>The path name for the file. If the file des not exist, false is returned. </td></tr>
+    <tr><td class="paramname">path</td><td>The path name for the file. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>whether the file is a bnary file or not </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the file is a binary file or not. Reutrns false if the file does not exist. </dd></dl>
 
 </div>
 </div>
@@ -356,14 +348,15 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns whether the fileis a text file or not. The function is a really slows function, as it scans through every byte, checking to see if it is a control character or not. </p>
+<p>Determines if a file is a text file. </p>
+<p>Returns whether the file is a text file or not. The function is a really slow function, as it scans through every byte, checking to see if it is a control character or not. The encoding is taken into consideration.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">pUrl</td><td>The path name for the file. If the file des not exist, false is returned. </td></tr>
+    <tr><td class="paramname">path</td><td>The path name for the file. If the file des not exist, false is returned. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>whether the file is a text file or not </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>whether the file is a text file or not. Returns false if the file does not eixist. </dd></dl>
 
 </div>
 </div>
