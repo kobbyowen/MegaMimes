@@ -82,11 +82,11 @@ SOFTWARE.
  *		freeMegaStringArray(extensions);
  *
  *		// get all video file extensions
- *    extensions = getMegaMimeExtensions("video") ; 
+ *    extensions = getMegaMimeExtensions("`video/`") ; 
  *    // returns {'*.3g2', '*.3gp', '*.avi', .... ,NULL}
  *    freeMegaStringArray(extensions) ;
  * 
- *    extensions = getMegaMimeExtensions("*") ;
+ *    extensions = getMegaMimeExtensions("`*`") ;
  *    // returns all file extensions
  *    freeMegaStringArray(extensions);
  *
@@ -240,9 +240,9 @@ char* getMegaMimeType ( const char* pFileName );
   @brief Get The Extensions associated with Mime Types
   
   The function gets the file extensions for the mimetype. The mimetype should be 
-  in the form first-part/second-part, otherwise it is invalid. An optional version can be 
+  in the form type/sub-type, otherwise it is invalid. An optional version can be 
   added to the string. Any other trailing details are ignored. * character can be used to match
-  everything. Eg video/ returns all video file extensions and * returns all file extensions
+  everything. Eg `video/` returns all video file extensions and `*` returns all file extensions
   
   @param pMimeType
     The mimetype whose extension is to be determined 
@@ -302,13 +302,13 @@ bool isBinaryFile (const char* path );
   
   The function gets the encoding of the file. The string can be UTF-8, UTF-8, UTF-16LE, UTF-16
   UTF-32, UTF-32BE, UTF-32LE. The function does not check if the file is binary file or a text file.
-  It is assumend that you are really sure that it is a binary file. You can use  isTextFile to 
+  It is assumend that you are really sure that it is a binary file. You can use  isTextFile() to 
   first check if it is a text file, before using the function. 
   
   @param path
     The path name for the file  
   @return 
-    the file encoding or UTF-8
+    the file encoding or empty string if the file does not exist or cannot be read.
 */
 const char* getMegaTextFileEncoding( const char* path );
 

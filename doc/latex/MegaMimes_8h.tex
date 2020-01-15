@@ -110,7 +110,7 @@ the information about the file. The structure returned should be freed with free
 
 Get The Extensions associated with Mime Types. 
 
-The function gets the file extensions for the mimetype. The mimetype should be in the form first-\/part/second-\/part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. $\ast$ character can be used to match everything. Eg video/ returns all video file extensions and $\ast$ returns all file extensions
+The function gets the file extensions for the mimetype. The mimetype should be in the form type/sub-\/type, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. $\ast$ character can be used to match everything. Eg {\ttfamily video/} returns all video file extensions and {\ttfamily $\ast$} returns all file extensions
 
 
 \begin{DoxyParams}{Parameters}
@@ -153,7 +153,7 @@ Gets the encoding for a text file.
 \begin{DoxyPrecond}{Precondition}
 The file is assumed to be a text file. Use \hyperlink{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}{is\+Text\+File()} to check the file before calling this function.
 \end{DoxyPrecond}
-The function gets the encoding of the file. The string can be U\+T\+F-\/8, U\+T\+F-\/8, U\+T\+F-\/16\+LE, U\+T\+F-\/16 U\+T\+F-\/32, U\+T\+F-\/32\+BE, U\+T\+F-\/32\+LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use is\+Text\+File to first check if it is a text file, before using the function.
+The function gets the encoding of the file. The string can be U\+T\+F-\/8, U\+T\+F-\/8, U\+T\+F-\/16\+LE, U\+T\+F-\/16 U\+T\+F-\/32, U\+T\+F-\/32\+BE, U\+T\+F-\/32\+LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use \hyperlink{MegaMimes_8h_a7f254e9556aef5fd8697299271f612f4}{is\+Text\+File()} to first check if it is a text file, before using the function.
 
 
 \begin{DoxyParams}{Parameters}
@@ -161,7 +161,7 @@ The function gets the encoding of the file. The string can be U\+T\+F-\/8, U\+T\
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-the file encoding or U\+T\+F-\/8 
+the file encoding or empty string if the file does not exist or cannot be read. 
 \end{DoxyReturn}
 \mbox{\Hypertarget{MegaMimes_8h_a744bbf3ccc64ca2b2c3c42f67470738c}\label{MegaMimes_8h_a744bbf3ccc64ca2b2c3c42f67470738c}} 
 \index{Mega\+Mimes.\+h@{Mega\+Mimes.\+h}!is\+Binary\+File@{is\+Binary\+File}}

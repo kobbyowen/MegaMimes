@@ -46,11 +46,11 @@ sudo make install
     \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions);
 
     \textcolor{comment}{// get all video file extensions}
-   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"video"}) ; 
+   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"`video/`"}) ; 
    \textcolor{comment}{// returns \{'*.3g2', '*.3gp', '*.avi', .... ,NULL\}}
    \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions) ;
 
-   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"*"}) ;
+   extensions = \hyperlink{MegaMimes_8h_a29775655c03675b861aa29571b394283}{getMegaMimeExtensions}(\textcolor{stringliteral}{"`*`"}) ;
    \textcolor{comment}{// returns all file extensions}
    \hyperlink{MegaMimes_8h_ac51929b1a876c679b38af9f0854ecd41}{freeMegaStringArray}(extensions);
 

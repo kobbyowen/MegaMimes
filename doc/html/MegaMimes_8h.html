@@ -236,7 +236,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get The Extensions associated with Mime Types. </p>
-<p>The function gets the file extensions for the mimetype. The mimetype should be in the form first-part/second-part, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. * character can be used to match everything. Eg video/ returns all video file extensions and * returns all file extensions</p>
+<p>The function gets the file extensions for the mimetype. The mimetype should be in the form type/sub-type, otherwise it is invalid. An optional version can be added to the string. Any other trailing details are ignored. * character can be used to match everything. Eg <code>video/</code> returns all video file extensions and <code>*</code> returns all file extensions</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">pMimeType</td><td>The mimetype whose extension is to be determined</td></tr>
@@ -293,14 +293,14 @@ Functions</h2></td></tr>
 
 <p>Gets the encoding for a text file. </p>
 <dl class="section pre"><dt>Precondition</dt><dd>The file is assumed to be a text file. Use <a class="el" href="MegaMimes_8h.html#a7f254e9556aef5fd8697299271f612f4" title="Determines if a file is a text file. ">isTextFile()</a> to check the file before calling this function.</dd></dl>
-<p>The function gets the encoding of the file. The string can be UTF-8, UTF-8, UTF-16LE, UTF-16 UTF-32, UTF-32BE, UTF-32LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use isTextFile to first check if it is a text file, before using the function.</p>
+<p>The function gets the encoding of the file. The string can be UTF-8, UTF-8, UTF-16LE, UTF-16 UTF-32, UTF-32BE, UTF-32LE. The function does not check if the file is binary file or a text file. It is assumend that you are really sure that it is a binary file. You can use <a class="el" href="MegaMimes_8h.html#a7f254e9556aef5fd8697299271f612f4" title="Determines if a file is a text file. ">isTextFile()</a> to first check if it is a text file, before using the function.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td>The path name for the file </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>the file encoding or UTF-8 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>the file encoding or empty string if the file does not exist or cannot be read. </dd></dl>
 
 </div>
 </div>
