@@ -1,0 +1,2 @@
+THis file is in utf-16BE .
+Good Good 	Good
