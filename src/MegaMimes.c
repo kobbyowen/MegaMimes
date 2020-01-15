@@ -961,7 +961,7 @@ static bool searchThroughMimes(const char* target,
 static const char* guessFileEncoding( const char* url )
 {
 	FILE* pFile = fopen(url, "rb");
-	if(!pFile) return NULL ;
+	if(!pFile) return "" ;
 	
 	unsigned char firstByte =  fgetc(pFile) ;
 	unsigned char secondByte = !feof(pFile)? fgetc(pFile) : 'A' ;
