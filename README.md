@@ -160,7 +160,7 @@ int main( int argc, char** argv)
   ```
   
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are welcome. For major changes or to add new mime types, please open an issue first to discuss what you would like to change or the mime type you would like to add.
 
 Please make sure to update tests as appropriate.
 
