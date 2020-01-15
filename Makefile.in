@@ -137,7 +137,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" "$(DESTDIR)$(pkgconfigdir)" \
 LTLIBRARIES = $(lib_LTLIBRARIES)
 libmegamimes_1_0_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am_libmegamimes_1_0_la_OBJECTS = src/MegaMimes.lo
+am_libmegamimes_1_0_la_OBJECTS = src/libmegamimes_1_0_la-MegaMimes.lo
 libmegamimes_1_0_la_OBJECTS = $(am_libmegamimes_1_0_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -145,13 +145,14 @@ am__v_lt_0 = --silent
 am__v_lt_1 = 
 libmegamimes_1_0_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
-	$(AM_CFLAGS) $(CFLAGS) $(libmegamimes_1_0_la_LDFLAGS) \
-	$(LDFLAGS) -o $@
+	$(libmegamimes_1_0_la_CFLAGS) $(CFLAGS) \
+	$(libmegamimes_1_0_la_LDFLAGS) $(LDFLAGS) -o $@
 am_tests_run_tests_OBJECTS =  \
 	tests/run_tests-test-getMegaMimeExtensions.$(OBJEXT) \
 	tests/run_tests-test-getMegaMimeFileInfo.$(OBJEXT) \
 	tests/run_tests-test-getMegaMimeType.$(OBJEXT) \
-	tests/run_tests-main.$(OBJEXT)
+	tests/run_tests-main.$(OBJEXT) \
+	tests/run_tests-test-getFileEncoding.$(OBJEXT)
 tests_run_tests_OBJECTS = $(am_tests_run_tests_OBJECTS)
 tests_run_tests_DEPENDENCIES = $(lib_LTLIBRARIES) tests/tester.o
 tests_run_tests_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
@@ -173,8 +174,9 @@ am__v_at_1 =
 DEFAULT_INCLUDES = -I.@am__isrc@
 depcomp = $(SHELL) $(top_srcdir)/build-aux/depcomp
 am__maybe_remake_depfiles = depfiles
-am__depfiles_remade = src/$(DEPDIR)/MegaMimes.Plo \
+am__depfiles_remade = src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Plo \
 	tests/$(DEPDIR)/run_tests-main.Po \
+	tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po \
 	tests/$(DEPDIR)/run_tests-test-getMegaMimeExtensions.Po \
 	tests/$(DEPDIR)/run_tests-test-getMegaMimeFileInfo.Po \
 	tests/$(DEPDIR)/run_tests-test-getMegaMimeType.Po
@@ -558,11 +560,13 @@ top_srcdir = @top_srcdir@
 lib_LTLIBRARIES = libmegamimes-1.0.la
 libmegamimes_1_0_la_SOURCES = src/MegaMimes.c
 libmegamimes_1_0_la_LDFLAGS = -version-info 1:0
+libmegamimes_1_0_la_CFLAGS = -std=c11 
 include_HEADERS = src/MegaMimes.h 
 tests_run_tests_SOURCES = tests/test-getMegaMimeExtensions.c \
 				tests/test-getMegaMimeFileInfo.c \
 				tests/test-getMegaMimeType.c \
 				tests/main.c \
+				tests/test-getFileEncoding.c \
 				tests/tester.h \
 				tests/megamimes.h 
 
@@ -674,7 +678,8 @@ src/$(am__dirstamp):
 src/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/$(DEPDIR)
 	@: > src/$(DEPDIR)/$(am__dirstamp)
-src/MegaMimes.lo: src/$(am__dirstamp) src/$(DEPDIR)/$(am__dirstamp)
+src/libmegamimes_1_0_la-MegaMimes.lo: src/$(am__dirstamp) \
+	src/$(DEPDIR)/$(am__dirstamp)
 
 libmegamimes-1.0.la: $(libmegamimes_1_0_la_OBJECTS) $(libmegamimes_1_0_la_DEPENDENCIES) $(EXTRA_libmegamimes_1_0_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(libmegamimes_1_0_la_LINK) -rpath $(libdir) $(libmegamimes_1_0_la_OBJECTS) $(libmegamimes_1_0_la_LIBADD) $(LIBS)
@@ -692,6 +697,8 @@ tests/run_tests-test-getMegaMimeType.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
 tests/run_tests-main.$(OBJEXT): tests/$(am__dirstamp) \
 	tests/$(DEPDIR)/$(am__dirstamp)
+tests/run_tests-test-getFileEncoding.$(OBJEXT): tests/$(am__dirstamp) \
+	tests/$(DEPDIR)/$(am__dirstamp)
 
 tests/run-tests$(EXEEXT): $(tests_run_tests_OBJECTS) $(tests_run_tests_DEPENDENCIES) $(EXTRA_tests_run_tests_DEPENDENCIES) tests/$(am__dirstamp)
 	@rm -f tests/run-tests$(EXEEXT)
@@ -706,8 +713,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/MegaMimes.Plo@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Plo@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/run_tests-main.Po@am__quote@ # am--include-marker
+@AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/run_tests-test-getMegaMimeExtensions.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/run_tests-test-getMegaMimeFileInfo.Po@am__quote@ # am--include-marker
 @AMDEP_TRUE@@am__include@ @am__quote@tests/$(DEPDIR)/run_tests-test-getMegaMimeType.Po@am__quote@ # am--include-marker
@@ -741,6 +749,13 @@ am--depfiles: $(am__depfiles_remade)
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+src/libmegamimes_1_0_la-MegaMimes.lo: src/MegaMimes.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmegamimes_1_0_la_CFLAGS) $(CFLAGS) -MT src/libmegamimes_1_0_la-MegaMimes.lo -MD -MP -MF src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Tpo -c -o src/libmegamimes_1_0_la-MegaMimes.lo `test -f 'src/MegaMimes.c' || echo '$(srcdir)/'`src/MegaMimes.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Tpo src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/MegaMimes.c' object='src/libmegamimes_1_0_la-MegaMimes.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libmegamimes_1_0_la_CFLAGS) $(CFLAGS) -c -o src/libmegamimes_1_0_la-MegaMimes.lo `test -f 'src/MegaMimes.c' || echo '$(srcdir)/'`src/MegaMimes.c
 
 tests/run_tests-test-getMegaMimeExtensions.o: tests/test-getMegaMimeExtensions.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -MT tests/run_tests-test-getMegaMimeExtensions.o -MD -MP -MF tests/$(DEPDIR)/run_tests-test-getMegaMimeExtensions.Tpo -c -o tests/run_tests-test-getMegaMimeExtensions.o `test -f 'tests/test-getMegaMimeExtensions.c' || echo '$(srcdir)/'`tests/test-getMegaMimeExtensions.c
@@ -797,6 +812,20 @@ tests/run_tests-main.obj: tests/main.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='tests/main.c' object='tests/run_tests-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -c -o tests/run_tests-main.obj `if test -f 'tests/main.c'; then $(CYGPATH_W) 'tests/main.c'; else $(CYGPATH_W) '$(srcdir)/tests/main.c'; fi`
+
+tests/run_tests-test-getFileEncoding.o: tests/test-getFileEncoding.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -MT tests/run_tests-test-getFileEncoding.o -MD -MP -MF tests/$(DEPDIR)/run_tests-test-getFileEncoding.Tpo -c -o tests/run_tests-test-getFileEncoding.o `test -f 'tests/test-getFileEncoding.c' || echo '$(srcdir)/'`tests/test-getFileEncoding.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) tests/$(DEPDIR)/run_tests-test-getFileEncoding.Tpo tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='tests/test-getFileEncoding.c' object='tests/run_tests-test-getFileEncoding.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -c -o tests/run_tests-test-getFileEncoding.o `test -f 'tests/test-getFileEncoding.c' || echo '$(srcdir)/'`tests/test-getFileEncoding.c
+
+tests/run_tests-test-getFileEncoding.obj: tests/test-getFileEncoding.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -MT tests/run_tests-test-getFileEncoding.obj -MD -MP -MF tests/$(DEPDIR)/run_tests-test-getFileEncoding.Tpo -c -o tests/run_tests-test-getFileEncoding.obj `if test -f 'tests/test-getFileEncoding.c'; then $(CYGPATH_W) 'tests/test-getFileEncoding.c'; else $(CYGPATH_W) '$(srcdir)/tests/test-getFileEncoding.c'; fi`
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) tests/$(DEPDIR)/run_tests-test-getFileEncoding.Tpo tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='tests/test-getFileEncoding.c' object='tests/run_tests-test-getFileEncoding.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(tests_run_tests_CFLAGS) $(CFLAGS) -c -o tests/run_tests-test-getFileEncoding.obj `if test -f 'tests/test-getFileEncoding.c'; then $(CYGPATH_W) 'tests/test-getFileEncoding.c'; else $(CYGPATH_W) '$(srcdir)/tests/test-getFileEncoding.c'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1292,8 +1321,9 @@ clean-am: clean-checkPROGRAMS clean-generic clean-libLTLIBRARIES \
 
 distclean: distclean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
-		-rm -f src/$(DEPDIR)/MegaMimes.Plo
+		-rm -f src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Plo
 	-rm -f tests/$(DEPDIR)/run_tests-main.Po
+	-rm -f tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeExtensions.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeFileInfo.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeType.Po
@@ -1344,8 +1374,9 @@ installcheck-am:
 maintainer-clean: maintainer-clean-am
 	-rm -f $(am__CONFIG_DISTCLEAN_FILES)
 	-rm -rf $(top_srcdir)/autom4te.cache
-		-rm -f src/$(DEPDIR)/MegaMimes.Plo
+		-rm -f src/$(DEPDIR)/libmegamimes_1_0_la-MegaMimes.Plo
 	-rm -f tests/$(DEPDIR)/run_tests-main.Po
+	-rm -f tests/$(DEPDIR)/run_tests-test-getFileEncoding.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeExtensions.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeFileInfo.Po
 	-rm -f tests/$(DEPDIR)/run_tests-test-getMegaMimeType.Po
