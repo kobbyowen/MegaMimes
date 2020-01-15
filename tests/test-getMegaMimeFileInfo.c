@@ -23,12 +23,15 @@ void getMegaMimeFileInformationtest(void* data)
   assert_string_equal(res->mTextEncoding, "UTF-8") ;
   freeMegaFileInfo(res) ;
 
+  res = getMegaFileInformation("");
+  assert_null(res);
+  
   res = getMegaFileInformation("tests/data/bin.dat") ;
   assert_nonnull(res);
   assert_string_equal(res->mTextEncoding, "") ;
   freeMegaFileInfo(res);
 
-  res = getMegaFileInformation("tests/data") ;
+  res = getMegaFileInformation("tests/data/23342342343243242423423/423432432432423423423423432423423423/43242342343242343243242343243243/32423432432432432423432432432432432/432243243434324343434324/32432434324324324234234324324/234234324324324324324324/32432432") ;
   assert_null(res) ;
   freeMegaFileInfo(res);
 
@@ -39,21 +42,4 @@ void getMegaMimeFileInformationtest(void* data)
   res = getMegaFileInformation(NULL) ;
   assert_null(res);
   
-/*
-  assert_string_equal(getMegaTextFileEncoding("data/utf16_2.dat"), "UTF-16LE") ;
-  assert_string_equal(getMegaTextFileEncoding("data/utf16be_2.dat"), "UTF-16BE") ;
-  assert_string_equal(getMegaTextFileEncoding("data/utf32be_2.dat"), "UTF-32BE") ;
-  assert_string_equal(getMegaTextFileEncoding("data/utf32le.dat"), "UTF-32LE") ;
-  assert_string_equal(getMegaTextFileEncoding("data/MegaMimeTypes.json"), "UTF-8") ;
-
-  assert_llong_equal(isTextFile("data/utf16_2.dat"), true) ;
-  assert_llong_equal(isTextFile("data/utf16be_2.dat"), true) ;
-  assert_llong_equal(isTextFile("data/utf16data.txt"), true) ;
-  assert_llong_equal(isTextFile("data/utf32be_2.dat"), true) ;
-  assert_llong_equal(isTextFile("data/utf32le_2.dat"), true) ;
-  assert_llong_equal(isTextFile("data/utf8data.txt"), true) ;
-*/
-  assert_llong_equal(isTextFile("tests/data/MegaMimeTypes.json"), true) ;
-  assert_llong_equal(isTextFile("tests/data/bin.dat"), false) ;
-
 }

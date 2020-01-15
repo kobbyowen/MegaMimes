@@ -7,3 +7,4 @@ void testGetMegaMimeExtensions ( void* data );
 
 void getMegaMimeFileInformationtest(void* data) ;
 
+void getMegaMimeFileEnc(void* ignored) ;
