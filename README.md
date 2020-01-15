@@ -19,7 +19,7 @@ sudo make install
 
 It is recommended that you copy the two files in the src sub directory 
 and directly include them in your project directory. This is easy because 
-the who library is a single file. Other than that you can also use the
+the whole library is a single file. You can also use the
 precompiled binaries that are located in win32 sub folder.
 
 ## Usage
