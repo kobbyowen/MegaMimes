@@ -196,13 +196,6 @@ SOFTWARE.
 #else 
   #define FILE_PATH_SEP '\\'
 #endif 
-#ifdef _WIN32 
-	#define THREAD_LOCAL __declspec(thread)
-#else
-	#define THREAD_LOCAL _Thread_local 
-#endif 
-
-#define MAX_LINE_SIZE 256 
 
 /**
  * 	MegaFileInfo is the structure that conains information about a file.  The 

@@ -917,20 +917,19 @@ static bool searchThroughMimes(const char* target,
 								    bool reset ) 
 {
 
-	static _Thread_local size_t position = 0 ;
+	static THREAD_LOCAL size_t position = 0 ;
 	if ( reset) position = 0 ;
 	
 	if(!target) return false ;
 
-	const int BUFFER_SIZE = 256 ;
-	char buffer[BUFFER_SIZE];
+	char buffer[MAX_LINE_SIZE];
 	
 	size_t pos = position ;
 	size_t len = strlen(MegaMimeTypes);
 	
 	for ( size_t i = position ; i < len ; i += pos )
 	{
-		pos = readNextMimeLine( MegaMimeTypes, buffer, BUFFER_SIZE, i) ;
+		pos = readNextMimeLine( MegaMimeTypes, buffer, MAX_LINE_SIZE, i) ;
 		
 		position += pos ;
 		if (pos){
