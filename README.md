@@ -9,10 +9,10 @@ has no dependencies. It is tested on all major operating systems( windows, Linux
 ### On Unix
 
 ```
-cd MegaMimes 
-./configure
-make 
-sudo make install 
+$ cd MegaMimes 
+$ ./configure
+$ make 
+$ sudo make install 
 ```
 
 ### On Windows 
