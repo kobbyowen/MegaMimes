@@ -209,6 +209,9 @@ SOFTWARE.
  *  structure is returned by  getMegaFileInfo. It contains all the details 
  *  that is needed about a file. 
  */
+ 
+extern const char* MegaMimeTypes ;
+ 
 typedef struct
 {
   char*	mBaseDir ;

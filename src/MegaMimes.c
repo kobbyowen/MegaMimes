@@ -1,6 +1,409 @@
 #include "MegaMimes.h"
 
-static const char* MegaMimeTypes = "*.1\tRoff Manpage\ttext/troff\t0\n"
+	
+static void splitFileParts( const char* path, char** filename, char** fileextension, char** fileparents)
+{
+	const char* slashPos = strrchr(path, FILE_PATH_SEP) ;
+	if(!slashPos){
+		*fileparents = malloc(1) ;
+		strcpy(*fileparents, "") ;
+
+		const char* dotPos = strrchr(path, '.') ;
+		if ( !dotPos ){ // no  extension 
+			*fileextension = malloc(1) ;
+			strcpy(*fileextension, "") ;
+			*filename = malloc(strlen(path)) ;
+			strcpy(*filename, path) ;
+		} 
+		else{
+			*fileextension = malloc(strlen(dotPos)) ;
+			strcpy(*fileextension, dotPos) ;
+			size_t bytes = dotPos - path ; // do not add the dot 
+			*filename = malloc(bytes+1) ;
+			strncpy(*filename, path , bytes ) ;
+			(*filename)[bytes] = '\0';
+		}
+	}
+	else {
+		size_t bytes = slashPos - path + 1;
+		*fileparents = malloc(bytes+1) ;
+		strncpy(*fileparents, path, bytes) ;
+		(*fileparents)[bytes] = '\0' ;
+		
+		const char* dotPos = strrchr(path, '.') ;
+		if ( dotPos < slashPos || dotPos == NULL ){ // not an extension 
+			*fileextension = malloc(1) ;
+			strcpy(*fileextension, "") ;
+			*filename = malloc(strlen(slashPos)) ;
+			strcpy(*filename, slashPos + 1) ;
+		} 
+		else{
+			*fileextension = malloc(strlen(dotPos)) ;
+			strcpy(*fileextension, dotPos) ;
+			size_t bytes = dotPos - slashPos - 1;
+			*filename = malloc(bytes+1) ;
+			strncpy(*filename, slashPos +1 , bytes ) ;
+			(*filename)[bytes] = '\0';
+		}
+		
+	}
+}
+
+static size_t readNextMimeLine( const char* mimetypes, char* buffer, size_t size, size_t pos) 
+{
+	const char* startingPosition = mimetypes + pos ;
+	const char* newLinePos = strchr(startingPosition, '\n') ;
+	
+	if 	(newLinePos) {
+		size_t distance = newLinePos - startingPosition ;
+		size_t nBytes =  distance < size - 1 ? distance : size - 1 ;
+	
+		strncpy( buffer, startingPosition, nBytes + 1 ) ;
+		buffer[nBytes] = '\0' ;
+		return distance + 1 ;
+	}
+	else return 0 ;
+}
+
+static void parseMegaMimeLine ( const char* buffer, char** ext, char** name, char** mimetype) 
+{
+	//printf("%s\n", buffer) ;
+	const char* firstTab = strchr(buffer, '\t') ;
+	const char* secondTab = strchr(firstTab+1, '\t') ;
+	const char* lastTab = strchr(secondTab+1, '\t') ;
+	
+	assert ( firstTab != NULL && secondTab != NULL && lastTab != NULL) ;
+	
+	size_t extLen = firstTab - buffer;
+	size_t nameLen = secondTab - firstTab ;
+	size_t mimeLen = lastTab - 	secondTab ;
+	
+	if(name){
+		*name = malloc( nameLen + 1 ) ;
+		assert(*name != NULL );
+		strncpy(*name, firstTab + 1, nameLen - 1) ;
+		(*name)[nameLen] = '\0' ;
+	}
+	if(mimetype){
+		*mimetype = malloc( mimeLen + 1 ) ;
+		assert(*mimetype != NULL );
+		strncpy(*mimetype, secondTab + 1, mimeLen -1 ) ;
+		(*mimetype)[mimeLen] = '\0' ;
+	}
+	if (ext){
+		*ext = malloc( extLen+1) ;
+		assert(*ext != NULL);
+		strncpy(*ext, buffer, extLen) ;
+		(*ext)[extLen] = '\0' ; 
+	}
+}
+
+static bool splitMimeTypeParts( const char* target, char** firstPart, char** lastPart, char** trailingPart )
+{
+	const size_t MAX_PART_SIZE= 64 ;
+	char* mimeFirstPart = malloc(MAX_PART_SIZE),  *mimeLastPart = malloc(MAX_PART_SIZE) , 
+						*trailingDetails =      malloc(MAX_PART_SIZE * 2) ;
+	const char* slashPosition = strchr(target, '/') ;
+	if(!slashPosition) return false ;
+	const char* colonPosition = strchr(target, ';') ;
+	if(!colonPosition) colonPosition = target + strlen(target);
+	
+	size_t firstPartLen = slashPosition - target ;
+	assert(firstPartLen < MAX_PART_SIZE );
+	strncpy( mimeFirstPart, target, firstPartLen) ;
+	mimeFirstPart[firstPartLen] = '\0';
+	
+	size_t lastPartLen = colonPosition - slashPosition ;
+	assert(lastPartLen < MAX_PART_SIZE) ;
+	strncpy( mimeLastPart, slashPosition+1, lastPartLen -1 );
+	mimeLastPart[lastPartLen-1] = '\0';
+	
+	if(*colonPosition){
+		size_t trailingLen = target + strlen(target) - colonPosition ;
+		assert(trailingLen < MAX_PART_SIZE * 2 ) ;
+		strncpy( trailingDetails , colonPosition + 1 , trailingLen -1 );
+		trailingDetails[trailingLen-1] = '\0';	
+	}
+	else{
+		trailingDetails[0] ='\0';
+	}
+	*firstPart = mimeFirstPart ;
+	*lastPart = mimeLastPart ;
+	*trailingPart = trailingDetails ;
+	
+	return true ;
+}
+
+static bool matchesMimeType ( const char* target, const char* mimetype )
+{
+	char* targetFirstPart , *targetLastPart, *targetDetailsPart ;
+	char* mimeFirstPart, *mimeLastPart, *mimeDetailsPart ;
+	
+	if(!splitMimeTypeParts( target, &targetFirstPart, &targetLastPart, &targetDetailsPart))  return false ;
+	if(!splitMimeTypeParts( mimetype, &mimeFirstPart, &mimeLastPart, &mimeDetailsPart)) {
+		free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
+		return false ;	
+	}
+	bool ret =  ( (strcmp(targetFirstPart, mimeFirstPart) == 0 || strcmp(targetFirstPart , "*") == 0 ) &&
+			 (strcmp(targetLastPart, mimeLastPart) == 0 || strcmp(targetLastPart , "*") == 0 ) ) ;
+	
+	free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
+	free(mimeFirstPart) ; free(mimeLastPart) ; free(mimeDetailsPart) ;
+
+	return ret ;
+}
+
+static bool isDirectory(const char* url)
+{
+	FILE* file = fopen(url, "rb") ;
+	if(!file) return false ;
+
+	char c = fgetc(file) ;
+	fseek(file, 0, SEEK_END) ;
+	long long pos = ftell(file);
+	
+	fclose(file);
+
+	return pos == LLONG_MAX && c == WEOF ;
+} 
+
+static bool searchThroughMimes(const char* target,  
+								char** extension,
+								 char** name, 
+								  char** type,
+								   bool mimename,
+								    bool reset ) 
+{
+
+	static THREAD_LOCAL size_t position = 0 ;
+	if ( reset) position = 0 ;
+	
+	if(!target) return false ;
+
+	char buffer[MAX_LINE_SIZE];
+	
+	size_t pos = position ;
+	size_t len = strlen(MegaMimeTypes);
+	
+	for ( size_t i = position ; i < len ; i += pos )
+	{
+		pos = readNextMimeLine( MegaMimeTypes, buffer, MAX_LINE_SIZE, i) ;
+		
+		position += pos ;
+		if (pos){
+			char* nameBuff, *mimetypeBuff , *extBuff;
+			parseMegaMimeLine ( buffer, &extBuff, &nameBuff, &mimetypeBuff) ;
+			if ( mimename ){
+				if (matchesMimeType( target, mimetypeBuff)){
+					if (extension) *extension = extBuff; else free(extBuff);
+					if (name) *name = nameBuff ; else free(nameBuff); 
+					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
+					return true ;
+				}
+			}
+			else{ // search extension 
+				if (strcmp(extBuff+1, target) == 0 ){
+					if (extension) *extension = extBuff; else free(extBuff);
+					if (name) *name = nameBuff ; else free(nameBuff); 
+					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
+					return true ; 
+				} 
+			}
+		} 
+	}
+	return false ;
+}
+
+
+static const char* guessFileEncoding( const char* url )
+{
+	FILE* pFile = fopen(url, "rb");
+	if(!pFile) return "" ;
+	
+	unsigned char firstByte =  fgetc(pFile) ;
+	unsigned char secondByte = !feof(pFile)? fgetc(pFile) : 'A' ;
+	unsigned char thirdByte =  !feof(pFile)? fgetc(pFile) : 'A' ;
+	unsigned char fourthByte = !feof(pFile)? fgetc(pFile) : 'A' ;
+	
+	if ( firstByte == 0xEF && secondByte == 0xBB && thirdByte == 0xBF ){
+		return "UTF-8" ;
+	}	
+	else if ( firstByte == 0xFF && secondByte == 0xFE ){
+		return "UTF-16LE";
+	}
+	else if ( firstByte == 0xFE && secondByte == 0xFF ){
+		return "UTF-16BE";
+	}
+	else if ( firstByte == 0xFF && secondByte == 0xFE && thirdByte == 0x0 && fourthByte == 0x0){
+		return "UTF-32LE";
+	}
+	else if ( firstByte == 0x00 && secondByte == 0x00 && thirdByte == 0xFE && fourthByte == 0xFF){
+		return "UTF-32BE";
+	}
+	else return "UTF-8";
+}
+
+char* getMegaMimeType ( const char* pFilePath )
+{
+	if ( pFilePath == NULL ) return NULL ;
+	
+	char* pDotPos = strrchr(pFilePath, '.');
+	char* pSeparator = strrchr(pFilePath, FILE_PATH_SEP );
+	
+	// no extension. Cannot determine mime type 
+	if (!pDotPos ) return NULL ;
+	
+	if(pSeparator)
+		if ( pDotPos < pSeparator ) 
+			return NULL ;
+	
+	char* name, *type , *ext;		
+	if(searchThroughMimes(pDotPos, &ext, &name, &type, false, true)){
+		free(name) ;
+		free(ext);
+		return type ;
+	}
+	return NULL ;
+}
+
+
+char** getMegaMimeExtensions ( const char* pMimeType )
+{
+	char* ext ;
+	size_t number = 5 , pos = 0 ;
+	char** extensions = calloc(sizeof(char*), number) ;
+	
+	searchThroughMimes(NULL, NULL, NULL, NULL, true, true) ;
+	while( searchThroughMimes( pMimeType, &ext, NULL, NULL, true, false )) {
+		if ( pos == number - 1 ){
+			number += 5 ;
+			extensions = (char**)realloc(extensions, (sizeof(char*)) * (number)); 
+		}
+		extensions[pos++] = ext ;
+	}
+	extensions[pos] = NULL ;
+	if(!pos){
+		free(extensions);
+		return NULL ;
+	}
+	else return extensions ;
+}
+
+
+bool isTextFile ( const char* url )
+{
+	if(isDirectory(url))
+	{
+		return false ;
+	}
+	const char* zEnc = guessFileEncoding (url);
+	if (strcmp(zEnc , "UTF-8") == 0 ){
+		FILE* pFile = fopen(url, "r");
+		if (!pFile) return false;
+
+		char ch = fgetc(pFile);
+		while(!feof(pFile) && ch != EOF ){
+			if ( iscntrl(ch) && !isspace(ch)) {  fclose(pFile); return 0;}
+			ch = fgetc(pFile);
+		}
+		fclose(pFile);
+		return true ;
+	} 		
+	else{
+		FILE* pFile = fopen(url, "r,ccs=UNICODE");
+		if (!pFile) return false;
+		
+		for ( wint_t ch = fgetwc(pFile) ; ch != WEOF && !feof(pFile); ch = fgetwc(pFile)){
+			if (iswcntrl(ch) && !iswspace(ch)) { fclose(pFile) ; return 0; }
+		}
+		fclose(pFile);
+		return true ;
+	}
+	return false;
+}
+
+
+bool isBinaryFile (const char* url )
+{
+	return !isTextFile(url);
+}
+
+
+
+MegaFileInfo* getMegaFileInformation( const char* pFilePath )
+{
+	FILE* fp = fopen(pFilePath, "rb");
+	if(!fp) return NULL ;
+	if(isDirectory(pFilePath)){  return NULL; }
+
+	MegaFileInfo* info = malloc(sizeof(MegaFileInfo));
+	char* filename, *fileextension, *fileparents ;
+	splitFileParts( pFilePath, &filename, &fileextension, &fileparents) ;
+
+	info->mBaseDir = fileparents ;
+	info->mBaseName = filename ;
+	info->mExtension = fileextension ;
+
+	fseek(fp, 0, SEEK_END) ;
+	info->mFileSize = ftell(fp) ;
+
+	char* mimetype, *mimename ;
+	searchThroughMimes(fileextension, NULL, &mimename, &mimetype, false, true) ;
+	info->mMimeName = mimename ;
+	info->mMimeType = mimetype ;
+	
+	info->mTextFile = isTextFile(pFilePath) ;
+	if(info->mTextFile){
+		const char* enc = getMegaTextFileEncoding(pFilePath);
+		info->mTextEncoding = malloc(strlen(enc)+1);
+		assert(info->mTextEncoding != NULL);
+		strcpy(info->mTextEncoding, enc);
+	}
+	else{
+		char* sp = malloc(1) ;
+		assert(sp != NULL);
+		strcpy(sp, "") ;
+		info->mTextEncoding = sp ;
+	}
+	
+	return info ;
+}
+
+const char* getMegaTextFileEncoding( const char* path )
+{
+	return guessFileEncoding(path);
+}
+
+void freeMegaFileInfo(MegaFileInfo* pData )
+{
+	if(!pData) return ;
+	
+	free(pData->mBaseDir) ;
+	free(pData->mBaseName) ;
+	free(pData->mExtension );
+
+	if(pData->mMimeType) free(pData->mMimeType) ;
+	if(pData->mMimeName) free(pData->mMimeName) ;
+	free(pData->mTextEncoding);
+		
+	free(pData)	;
+}
+
+void freeMegaString( char* pData )
+{
+	if(pData) free(pData) ; 
+}
+
+void freeMegaStringArray( char** pData) 
+{
+	if(!pData) return ;
+	for ( size_t i = 0 ; pData[i] ; ++i){
+		freeMegaString(pData[i]) ;		
+	} 
+	free(pData) ;
+}
+
+const char* MegaMimeTypes = "*.1\tRoff Manpage\ttext/troff\t0\n"
 "*.3ds\t3DS\timage/x-3ds\t0\n"
 "*.3fr\tHasselblad raw image\timage/x-raw-hasselblad\t0\n"
 "*.3g2\t3G2\tvideo/3gpp2\t0\n"
@@ -740,407 +1143,3 @@ static const char* MegaMimeTypes = "*.1\tRoff Manpage\ttext/troff\t0\n"
 "*.yml\tYAML\ttext/x-yaml\t0\n"
 "*.zip\tCompressed Archive File\tapplication/zip\t0\n";
 
-static void splitFileParts( const char* path, 
-														 char** filename, 
-														  char** fileextension, 
-														   char** fileparents)
-{
-	const char* slashPos = strrchr(path, FILE_PATH_SEP) ;
-	if(!slashPos){
-		*fileparents = malloc(1) ;
-		strcpy(*fileparents, "") ;
-
-		const char* dotPos = strrchr(path, '.') ;
-		if ( !dotPos ){ // no  extension 
-			*fileextension = malloc(1) ;
-			strcpy(*fileextension, "") ;
-			*filename = malloc(strlen(path)) ;
-			strcpy(*filename, path) ;
-		} 
-		else{
-			*fileextension = malloc(strlen(dotPos)) ;
-			strcpy(*fileextension, dotPos) ;
-			size_t bytes = dotPos - path ; // do not add the dot 
-			*filename = malloc(bytes+1) ;
-			strncpy(*filename, path , bytes ) ;
-			(*filename)[bytes] = '\0';
-		}
-	}
-	else {
-		size_t bytes = slashPos - path + 1;
-		*fileparents = malloc(bytes+1) ;
-		strncpy(*fileparents, path, bytes) ;
-		(*fileparents)[bytes] = '\0' ;
-		
-		const char* dotPos = strrchr(path, '.') ;
-		if ( dotPos < slashPos || dotPos == NULL ){ // not an extension 
-			*fileextension = malloc(1) ;
-			strcpy(*fileextension, "") ;
-			*filename = malloc(strlen(slashPos)) ;
-			strcpy(*filename, slashPos + 1) ;
-		} 
-		else{
-			*fileextension = malloc(strlen(dotPos)) ;
-			strcpy(*fileextension, dotPos) ;
-			size_t bytes = dotPos - slashPos - 1;
-			*filename = malloc(bytes+1) ;
-			strncpy(*filename, slashPos +1 , bytes ) ;
-			(*filename)[bytes] = '\0';
-		}
-		
-	}
-}
-
-static size_t readNextMimeLine( const char* mimetypes, char* buffer, size_t size, size_t pos) 
-{
-	const char* startingPosition = mimetypes + pos ;
-	const char* newLinePos = strchr(startingPosition, '\n') ;
-	
-	if 	(newLinePos) {
-		size_t distance = newLinePos - startingPosition ;
-		size_t nBytes =  distance < size - 1 ? distance : size - 1 ;
-	
-		strncpy( buffer, startingPosition, nBytes + 1 ) ;
-		buffer[nBytes] = '\0' ;
-		return distance + 1 ;
-	}
-	else return 0 ;
-}
-
-static void parseMegaMimeLine ( const char* buffer, char** ext, char** name, char** mimetype) 
-{
-	//printf("%s\n", buffer) ;
-	const char* firstTab = strchr(buffer, '\t') ;
-	const char* secondTab = strchr(firstTab+1, '\t') ;
-	const char* lastTab = strchr(secondTab+1, '\t') ;
-	
-	assert ( firstTab != NULL && secondTab != NULL && lastTab != NULL) ;
-	
-	size_t extLen = firstTab - buffer;
-	size_t nameLen = secondTab - firstTab ;
-	size_t mimeLen = lastTab - 	secondTab ;
-	
-	if(name){
-		*name = malloc( nameLen + 1 ) ;
-		assert(*name != NULL );
-		strncpy(*name, firstTab + 1, nameLen - 1) ;
-		(*name)[nameLen] = '\0' ;
-	}
-	if(mimetype){
-		*mimetype = malloc( mimeLen + 1 ) ;
-		assert(*mimetype != NULL );
-		strncpy(*mimetype, secondTab + 1, mimeLen -1 ) ;
-		(*mimetype)[mimeLen] = '\0' ;
-	}
-	if (ext){
-		*ext = malloc( extLen+1) ;
-		assert(*ext != NULL);
-		strncpy(*ext, buffer, extLen) ;
-		(*ext)[extLen] = '\0' ; 
-	}
-}
-
-static bool splitMimeTypeParts( const char* target, char** firstPart, char** lastPart, char** trailingPart )
-{
-	const size_t MAX_PART_SIZE= 64 ;
-	char* mimeFirstPart = malloc(MAX_PART_SIZE),  *mimeLastPart = malloc(MAX_PART_SIZE) , 
-						*trailingDetails =      malloc(MAX_PART_SIZE * 2) ;
-	const char* slashPosition = strchr(target, '/') ;
-	if(!slashPosition) return false ;
-	const char* colonPosition = strchr(target, ';') ;
-	if(!colonPosition) colonPosition = target + strlen(target);
-	
-	size_t firstPartLen = slashPosition - target ;
-	assert(firstPartLen < MAX_PART_SIZE );
-	strncpy( mimeFirstPart, target, firstPartLen) ;
-	mimeFirstPart[firstPartLen] = '\0';
-	
-	size_t lastPartLen = colonPosition - slashPosition ;
-	assert(lastPartLen < MAX_PART_SIZE) ;
-	strncpy( mimeLastPart, slashPosition+1, lastPartLen -1 );
-	mimeLastPart[lastPartLen-1] = '\0';
-	
-	if(*colonPosition){
-		size_t trailingLen = target + strlen(target) - colonPosition ;
-		assert(trailingLen < MAX_PART_SIZE * 2 ) ;
-		strncpy( trailingDetails , colonPosition + 1 , trailingLen -1 );
-		trailingDetails[trailingLen-1] = '\0';	
-	}
-	else{
-		trailingDetails[0] ='\0';
-	}
-	*firstPart = mimeFirstPart ;
-	*lastPart = mimeLastPart ;
-	*trailingPart = trailingDetails ;
-	
-	return true ;
-}
-
-static bool matchesMimeType ( const char* target, const char* mimetype )
-{
-	char* targetFirstPart , *targetLastPart, *targetDetailsPart ;
-	char* mimeFirstPart, *mimeLastPart, *mimeDetailsPart ;
-	
-	if(!splitMimeTypeParts( target, &targetFirstPart, &targetLastPart, &targetDetailsPart))  return false ;
-	if(!splitMimeTypeParts( mimetype, &mimeFirstPart, &mimeLastPart, &mimeDetailsPart)) {
-		free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
-		return false ;	
-	}
-	bool ret =  ( (strcmp(targetFirstPart, mimeFirstPart) == 0 || strcmp(targetFirstPart , "*") == 0 ) &&
-			 (strcmp(targetLastPart, mimeLastPart) == 0 || strcmp(targetLastPart , "*") == 0 ) ) ;
-	
-	free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
-	free(mimeFirstPart) ; free(mimeLastPart) ; free(mimeDetailsPart) ;
-
-	return ret ;
-}
-
-static bool isDirectory(const char* url)
-{
-	FILE* file = fopen(url, "rb") ;
-	if(!file) return false ;
-
-	char c = fgetc(file) ;
-	fseek(file, 0, SEEK_END) ;
-	long long pos = ftell(file);
-	
-	fclose(file);
-
-	return pos == LLONG_MAX && c == WEOF ;
-} 
-
-static bool searchThroughMimes(const char* target,  
-								char** extension,
-								 char** name, 
-								  char** type,
-								   bool mimename,
-								    bool reset ) 
-{
-
-	static THREAD_LOCAL size_t position = 0 ;
-	if ( reset) position = 0 ;
-	
-	if(!target) return false ;
-
-	char buffer[MAX_LINE_SIZE];
-	
-	size_t pos = position ;
-	size_t len = strlen(MegaMimeTypes);
-	
-	for ( size_t i = position ; i < len ; i += pos )
-	{
-		pos = readNextMimeLine( MegaMimeTypes, buffer, MAX_LINE_SIZE, i) ;
-		
-		position += pos ;
-		if (pos){
-			char* nameBuff, *mimetypeBuff , *extBuff;
-			parseMegaMimeLine ( buffer, &extBuff, &nameBuff, &mimetypeBuff) ;
-			if ( mimename ){
-				if (matchesMimeType( target, mimetypeBuff)){
-					if (extension) *extension = extBuff; else free(extBuff);
-					if (name) *name = nameBuff ; else free(nameBuff); 
-					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
-					return true ;
-				}
-			}
-			else{ // search extension 
-				if (strcmp(extBuff+1, target) == 0 ){
-					if (extension) *extension = extBuff; else free(extBuff);
-					if (name) *name = nameBuff ; else free(nameBuff); 
-					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
-					return true ; 
-				} 
-			}
-		} 
-	}
-	return false ;
-}
-
-
-static const char* guessFileEncoding( const char* url )
-{
-	FILE* pFile = fopen(url, "rb");
-	if(!pFile) return "" ;
-	
-	unsigned char firstByte =  fgetc(pFile) ;
-	unsigned char secondByte = !feof(pFile)? fgetc(pFile) : 'A' ;
-	unsigned char thirdByte =  !feof(pFile)? fgetc(pFile) : 'A' ;
-	unsigned char fourthByte = !feof(pFile)? fgetc(pFile) : 'A' ;
-	
-	if ( firstByte == 0xEF && secondByte == 0xBB && thirdByte == 0xBF ){
-		return "UTF-8" ;
-	}	
-	else if ( firstByte == 0xFF && secondByte == 0xFE ){
-		return "UTF-16LE";
-	}
-	else if ( firstByte == 0xFE && secondByte == 0xFF ){
-		return "UTF-16BE";
-	}
-	else if ( firstByte == 0xFF && secondByte == 0xFE && thirdByte == 0x0 && fourthByte == 0x0){
-		return "UTF-32LE";
-	}
-	else if ( firstByte == 0x00 && secondByte == 0x00 && thirdByte == 0xFE && fourthByte == 0xFF){
-		return "UTF-32BE";
-	}
-	else return "UTF-8";
-}
-
-char* getMegaMimeType ( const char* pFilePath )
-{
-	if ( pFilePath == NULL ) return NULL ;
-	
-	char* pDotPos = strrchr(pFilePath, '.');
-	char* pSeparator = strrchr(pFilePath, FILE_PATH_SEP );
-	
-	// no extension. Cannot determine mime type 
-	if (!pDotPos ) return NULL ;
-	
-	if(pSeparator)
-		if ( pDotPos < pSeparator ) 
-			return NULL ;
-	
-	char* name, *type , *ext;		
-	if(searchThroughMimes(pDotPos, &ext, &name, &type, false, true)){
-		free(name) ;
-		free(ext);
-		return type ;
-	}
-	return NULL ;
-}
-
-
-char** getMegaMimeExtensions ( const char* pMimeType )
-{
-	char* ext ;
-	size_t number = 5 , pos = 0 ;
-	char** extensions = calloc(sizeof(char*), number) ;
-	
-	searchThroughMimes(NULL, NULL, NULL, NULL, true, true) ;
-	while( searchThroughMimes( pMimeType, &ext, NULL, NULL, true, false )) {
-		if ( pos == number - 1 ){
-			number += 5 ;
-			extensions = (char**)realloc(extensions, (sizeof(char*)) * (number)); 
-		}
-		extensions[pos++] = ext ;
-	}
-	extensions[pos] = NULL ;
-	if(!pos){
-		free(extensions);
-		return NULL ;
-	}
-	else return extensions ;
-}
-
-
-bool isTextFile ( const char* url )
-{
-	if(isDirectory(url))
-	{
-		return false ;
-	}
-	const char* zEnc = guessFileEncoding (url);
-	if (strcmp(zEnc , "UTF-8") == 0 ){
-		FILE* pFile = fopen(url, "r");
-		if (!pFile) return false;
-
-		char ch = fgetc(pFile);
-		while(!feof(pFile) && ch != EOF ){
-			if ( iscntrl(ch) && !isspace(ch)) {  fclose(pFile); return 0;}
-			ch = fgetc(pFile);
-		}
-		fclose(pFile);
-		return true ;
-	} 		
-	else{
-		FILE* pFile = fopen(url, "r,ccs=UNICODE");
-		if (!pFile) return false;
-		
-		for ( wint_t ch = fgetwc(pFile) ; ch != WEOF && !feof(pFile); ch = fgetwc(pFile)){
-			if (iswcntrl(ch) && !iswspace(ch)) { fclose(pFile) ; return 0; }
-		}
-		fclose(pFile);
-		return true ;
-	}
-	return false;
-}
-
-
-bool isBinaryFile (const char* url )
-{
-	return !isTextFile(url);
-}
-
-
-
-MegaFileInfo* getMegaFileInformation( const char* pFilePath )
-{
-	FILE* fp = fopen(pFilePath, "rb");
-	if(!fp) return NULL ;
-	if(isDirectory(pFilePath)){  return NULL; }
-
-	MegaFileInfo* info = malloc(sizeof(MegaFileInfo));
-	char* filename, *fileextension, *fileparents ;
-	splitFileParts( pFilePath, &filename, &fileextension, &fileparents) ;
-
-	info->mBaseDir = fileparents ;
-	info->mBaseName = filename ;
-	info->mExtension = fileextension ;
-
-	fseek(fp, 0, SEEK_END) ;
-	info->mFileSize = ftell(fp) ;
-
-	char* mimetype, *mimename ;
-	searchThroughMimes(fileextension, NULL, &mimename, &mimetype, false, true) ;
-	info->mMimeName = mimename ;
-	info->mMimeType = mimetype ;
-	
-	info->mTextFile = isTextFile(pFilePath) ;
-	if(info->mTextFile){
-		const char* enc = getMegaTextFileEncoding(pFilePath);
-		info->mTextEncoding = malloc(strlen(enc)+1);
-		assert(info->mTextEncoding != NULL);
-		strcpy(info->mTextEncoding, enc);
-	}
-	else{
-		char* sp = malloc(1) ;
-		assert(sp != NULL);
-		strcpy(sp, "") ;
-		info->mTextEncoding = sp ;
-	}
-	
-	return info ;
-}
-
-const char* getMegaTextFileEncoding( const char* path )
-{
-	return guessFileEncoding(path);
-}
-
-void freeMegaFileInfo(MegaFileInfo* pData )
-{
-	if(!pData) return ;
-	
-	free(pData->mBaseDir) ;
-	free(pData->mBaseName) ;
-	free(pData->mExtension );
-
-	if(pData->mMimeType) free(pData->mMimeType) ;
-	if(pData->mMimeName) free(pData->mMimeName) ;
-	free(pData->mTextEncoding);
-		
-	free(pData)	;
-}
-
-void freeMegaString( char* pData )
-{
-	if(pData) free(pData) ; 
-}
-
-void freeMegaStringArray( char** pData) 
-{
-	if(!pData) return ;
-	for ( size_t i = 0 ; pData[i] ; ++i){
-		freeMegaString(pData[i]) ;		
-	} 
-	free(pData) ;
-}
