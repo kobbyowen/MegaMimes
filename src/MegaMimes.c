@@ -16,7 +16,7 @@ static void splitFileParts( const char* path, char** filename, char** fileextens
 			strcpy(*filename, path) ;
 		} 
 		else{
-			*fileextension = malloc(strlen(dotPos)) ;
+			*fileextension = malloc(strlen(dotPos)+1) ;
 			strcpy(*fileextension, dotPos) ;
 			size_t bytes = dotPos - path ; // do not add the dot 
 			*filename = malloc(bytes+1) ;
@@ -153,7 +153,7 @@ static bool matchesMimeType ( const char* target, const char* mimetype )
 	return ret ;
 }
 
-static bool isDirectory(const char* url)
+static bool isNotReadableFile(const char* url)
 {
 	FILE* file = fopen(url, "rb") ;
 	if(!file) return false ;
@@ -167,12 +167,7 @@ static bool isDirectory(const char* url)
 	return pos == LLONG_MAX && c == WEOF ;
 } 
 
-static bool searchThroughMimes(const char* target,  
-								char** extension,
-								 char** name, 
-								  char** type,
-								   bool mimename,
-								    bool reset ) 
+static bool searchThroughMimes(const char* target,  char** extension, char** name, char** type, bool mimename, bool reset ) 
 {
 
 	static THREAD_LOCAL size_t position = 0 ;
@@ -220,6 +215,7 @@ static const char* guessFileEncoding( const char* url )
 	FILE* pFile = fopen(url, "rb");
 	if(!pFile) return "" ;
 	
+	// A is just a place holder 
 	unsigned char firstByte =  fgetc(pFile) ;
 	unsigned char secondByte = !feof(pFile)? fgetc(pFile) : 'A' ;
 	unsigned char thirdByte =  !feof(pFile)? fgetc(pFile) : 'A' ;
@@ -292,7 +288,7 @@ char** getMegaMimeExtensions ( const char* pMimeType )
 
 bool isTextFile ( const char* url )
 {
-	if(isDirectory(url))
+	if(isNotReadableFile(url))
 	{
 		return false ;
 	}
@@ -334,7 +330,7 @@ MegaFileInfo* getMegaFileInformation( const char* pFilePath )
 {
 	FILE* fp = fopen(pFilePath, "rb");
 	if(!fp) return NULL ;
-	if(isDirectory(pFilePath)){  return NULL; }
+	if(isNotReadableFile(pFilePath)){  return NULL; }
 
 	MegaFileInfo* info = malloc(sizeof(MegaFileInfo));
 	char* filename, *fileextension, *fileparents ;
