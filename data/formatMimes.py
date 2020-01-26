@@ -26,6 +26,14 @@ def checkArguments(args:[]):
         print("Arguments exceeds") 
         exit(3) 
 
+def writeTables (path ):
+	mimeArray = mimes.split("\n")[:-1]
+	file = open(path, "w")
+	mimeArrayJson = []
+	for mime in mimeArray:
+		parts = mime.split('|') 
+		print('{"%s", "%s", "%s", "%s"},' % (parts[0], parts[1], parts[2].replace('"', '\\"'), parts[3]), end="\n", file=file) 
+		
 def writeTextFile( path):
 	print("Writing text to ", path, ".....\n")
 	file=open(path, "w")
@@ -91,7 +99,7 @@ def main():
 if __name__ == '__main__':
 
     try:
-        main()
+        writeTables("./tables.txt");
     except FileNotFoundError:
         print("The file was not found")
     except FileExistsError:

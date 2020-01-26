@@ -20,7 +20,6 @@ void getMegaMimeFileInformationtest(void* data)
   assert_string_equal(res->mMimeType, "text/x-python") ;
   assert_ullong_equal(res->mTextFile, true) ;
  
-  assert_string_equal(res->mTextEncoding, "UTF-8") ;
   freeMegaFileInfo(res) ;
 
   res = getMegaFileInformation("");
@@ -28,7 +27,7 @@ void getMegaMimeFileInformationtest(void* data)
   
   res = getMegaFileInformation("tests/data/bin.dat") ;
   assert_nonnull(res);
-  assert_string_equal(res->mTextEncoding, "") ;
+  assert_null(res->mTextEncoding) ;
   freeMegaFileInfo(res);
 
   res = getMegaFileInformation("tests/data/23342342343243242423423/423432432432423423423423432423423423/43242342343242343243242343243243/32423432432432432423432432432432432/432243243434324343434324/32432434324324324234234324324/234234324324324324324324/32432432") ;

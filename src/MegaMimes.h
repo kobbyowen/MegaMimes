@@ -180,16 +180,18 @@ SOFTWARE.
 #ifndef _MEGAMIMES_H_
 #define _MEGAMIMES_H_
 
-#include <string.h>
-#include <stdio.h>
-#include <ctype.h>
 #include <stdbool.h>
-#include <stdlib.h>
-#include <wchar.h>
-#include <assert.h>
-#include <wctype.h>
-#include <limits.h>
  
+enum{
+
+ EXTENSION_POS  ,
+ MIMENAME_POS ,
+ MIMETYPE_POS ,
+ MAGICNUMBER_POS , 
+ COMPONENTS_NUMBER ,
+ 
+}  ;
+
 
 #ifdef __unix__
   #define FILE_PATH_SEP '/'
@@ -210,7 +212,7 @@ SOFTWARE.
  *  that is needed about a file. 
  */
  
-extern const char* MegaMimeTypes ;
+extern const char* MegaMimeTypes[][COMPONENTS_NUMBER] ;
  
 typedef struct
 {
@@ -219,11 +221,11 @@ typedef struct
   char*	mExtension ;
   long long mFileSize ;
   
-  char* 	mMimeType ;
-  char* 	mMimeName ;
+  const char* 	mMimeType ;
+  const char* 	mMimeName ;
   
   bool 	mTextFile ;
-  char*	mTextEncoding ;
+  const char*	mTextEncoding ;
   
 } MegaFileInfo ;
 
@@ -243,7 +245,7 @@ typedef struct
     the mimetype of the file or NULL if no mimetype is known 
     for the file. The string returned should be freed
 */
-char* getMegaMimeType ( const char* pFileName );
+const char* getMegaMimeType ( const char* pFileName );
 
 
 /**
@@ -261,7 +263,7 @@ char* getMegaMimeType ( const char* pFileName );
     An array of extension names. The array is terminated by a NULL. The function 
     returns NULL if no extensions were found for the mime types given.		 
 */
-char** getMegaMimeExtensions ( const char* pMimeType );
+const char** getMegaMimeExtensions ( const char* pMimeType );
 
 /**
   @brief Get information about a file.

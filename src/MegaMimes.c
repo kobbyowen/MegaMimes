@@ -1,5 +1,12 @@
 #include "MegaMimes.h"
-
+#include <string.h>
+#include <stdio.h>
+#include <ctype.h>
+#include <stdlib.h>
+#include <wchar.h>
+#include <assert.h>
+#include <wctype.h>
+#include <limits.h>
 	
 static void splitFileParts( const char* path, char** filename, char** fileextension, char** fileparents)
 {
@@ -49,55 +56,6 @@ static void splitFileParts( const char* path, char** filename, char** fileextens
 	}
 }
 
-static size_t readNextMimeLine( const char* mimetypes, char* buffer, size_t size, size_t pos) 
-{
-	const char* startingPosition = mimetypes + pos ;
-	const char* newLinePos = strchr(startingPosition, '\n') ;
-	
-	if 	(newLinePos) {
-		size_t distance = newLinePos - startingPosition ;
-		size_t nBytes =  distance < size - 1 ? distance : size - 1 ;
-	
-		strncpy( buffer, startingPosition, nBytes + 1 ) ;
-		buffer[nBytes] = '\0' ;
-		return distance + 1 ;
-	}
-	else return 0 ;
-}
-
-static void parseMegaMimeLine ( const char* buffer, char** ext, char** name, char** mimetype) 
-{
-	//printf("%s\n", buffer) ;
-	const char* firstTab = strchr(buffer, '\t') ;
-	const char* secondTab = strchr(firstTab+1, '\t') ;
-	const char* lastTab = strchr(secondTab+1, '\t') ;
-	
-	assert ( firstTab != NULL && secondTab != NULL && lastTab != NULL) ;
-	
-	size_t extLen = firstTab - buffer;
-	size_t nameLen = secondTab - firstTab ;
-	size_t mimeLen = lastTab - 	secondTab ;
-	
-	if(name){
-		*name = malloc( nameLen + 1 ) ;
-		assert(*name != NULL );
-		strncpy(*name, firstTab + 1, nameLen - 1) ;
-		(*name)[nameLen] = '\0' ;
-	}
-	if(mimetype){
-		*mimetype = malloc( mimeLen + 1 ) ;
-		assert(*mimetype != NULL );
-		strncpy(*mimetype, secondTab + 1, mimeLen -1 ) ;
-		(*mimetype)[mimeLen] = '\0' ;
-	}
-	if (ext){
-		*ext = malloc( extLen+1) ;
-		assert(*ext != NULL);
-		strncpy(*ext, buffer, extLen) ;
-		(*ext)[extLen] = '\0' ; 
-	}
-}
-
 static bool splitMimeTypeParts( const char* target, char** firstPart, char** lastPart, char** trailingPart )
 {
 	const size_t MAX_PART_SIZE= 64 ;
@@ -144,8 +102,8 @@ static bool matchesMimeType ( const char* target, const char* mimetype )
 		free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
 		return false ;	
 	}
-	bool ret =  ( (strcmp(targetFirstPart, mimeFirstPart) == 0 || strcmp(targetFirstPart , "*") == 0 ) &&
-			 (strcmp(targetLastPart, mimeLastPart) == 0 || strcmp(targetLastPart , "*") == 0 ) ) ;
+	bool ret =  ( (strcmp(targetFirstPart, mimeFirstPart) == 0 || strcmp(mimeFirstPart , "*") == 0 ) &&
+			 (strcmp(targetLastPart, mimeLastPart) == 0 || strcmp(mimeLastPart , "*") == 0 ) ) ;
 	
 	free(targetFirstPart) ; free(targetLastPart) ; free(targetDetailsPart) ;
 	free(mimeFirstPart) ; free(mimeLastPart) ; free(mimeDetailsPart) ;
@@ -167,7 +125,8 @@ static bool isNotReadableFile(const char* url)
 	return pos == LLONG_MAX && c == WEOF ;
 } 
 
-static bool searchThroughMimes(const char* target,  char** extension, char** name, char** type, bool mimename, bool reset ) 
+static bool searchThroughMimes(const char* target,  const char** extension, const char** name, const char** type, 
+									bool mimetype, bool reset ) 
 {
 
 	static THREAD_LOCAL size_t position = 0 ;
@@ -175,45 +134,39 @@ static bool searchThroughMimes(const char* target,  char** extension, char** nam
 	
 	if(!target) return false ;
 
-	char buffer[MAX_LINE_SIZE];
-	
-	size_t pos = position ;
-	size_t len = strlen(MegaMimeTypes);
-	
-	for ( size_t i = position ; i < len ; i += pos )
+	for (  ; MegaMimeTypes[position][0] ; ++position )
 	{
-		pos = readNextMimeLine( MegaMimeTypes, buffer, MAX_LINE_SIZE, i) ;
+		//printf("%s\t",  MegaMimeTypes[position][0]);
 		
-		position += pos ;
-		if (pos){
-			char* nameBuff, *mimetypeBuff , *extBuff;
-			parseMegaMimeLine ( buffer, &extBuff, &nameBuff, &mimetypeBuff) ;
-			if ( mimename ){
-				if (matchesMimeType( target, mimetypeBuff)){
-					if (extension) *extension = extBuff; else free(extBuff);
-					if (name) *name = nameBuff ; else free(nameBuff); 
-					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
-					return true ;
-				}
+		if ( mimetype){
+			if ( matchesMimeType(MegaMimeTypes[position][MIMETYPE_POS], target) ){
+				if (extension) *extension = MegaMimeTypes[position][EXTENSION_POS] ;
+				if(name) *name = MegaMimeTypes[position][MIMENAME_POS] ;
+				if(type) *type = MegaMimeTypes[position][MIMETYPE_POS];
+				++position ;
+				return true ;
+			} 
+		}
+		else {
+			if ( target[0] == '*' ) target++;
+			
+			if ( strcmp(target, (MegaMimeTypes[position][EXTENSION_POS])+1) == 0 ){ // start comparing from . not *
+				if(extension) *extension = MegaMimeTypes[position][EXTENSION_POS] ;
+				if(name) *name = MegaMimeTypes[position][MIMENAME_POS] ;
+				if(type) *type = MegaMimeTypes[position][MIMETYPE_POS] ;
+				++position;
+				return true ;
 			}
-			else{ // search extension 
-				if (strcmp(extBuff+1, target) == 0 ){
-					if (extension) *extension = extBuff; else free(extBuff);
-					if (name) *name = nameBuff ; else free(nameBuff); 
-					if (type) *type = mimetypeBuff ; else free(mimetypeBuff);
-					return true ; 
-				} 
-			}
-		} 
+		}
 	}
-	return false ;
+	return false ; 
 }
 
 
 static const char* guessFileEncoding( const char* url )
 {
 	FILE* pFile = fopen(url, "rb");
-	if(!pFile) return "" ;
+	if(!pFile) return NULL ;
 	
 	// A is just a place holder 
 	unsigned char firstByte =  fgetc(pFile) ;
@@ -236,10 +189,10 @@ static const char* guessFileEncoding( const char* url )
 	else if ( firstByte == 0x00 && secondByte == 0x00 && thirdByte == 0xFE && fourthByte == 0xFF){
 		return "UTF-32BE";
 	}
-	else return "UTF-8";
+	else return NULL;
 }
 
-char* getMegaMimeType ( const char* pFilePath )
+const char* getMegaMimeType ( const char* pFilePath ) //TODO change in header
 {
 	if ( pFilePath == NULL ) return NULL ;
 	
@@ -253,27 +206,25 @@ char* getMegaMimeType ( const char* pFilePath )
 		if ( pDotPos < pSeparator ) 
 			return NULL ;
 	
-	char* name, *type , *ext;		
+	const char* name, *type , *ext;		
 	if(searchThroughMimes(pDotPos, &ext, &name, &type, false, true)){
-		free(name) ;
-		free(ext);
 		return type ;
 	}
 	return NULL ;
 }
 
 
-char** getMegaMimeExtensions ( const char* pMimeType )
+const char** getMegaMimeExtensions ( const char* pMimeType )
 {
-	char* ext ;
+	const char* ext ;
 	size_t number = 5 , pos = 0 ;
-	char** extensions = calloc(sizeof(char*), number) ;
+	const char** extensions = calloc(sizeof(char*), number) ;
 	
-	searchThroughMimes(NULL, NULL, NULL, NULL, true, true) ;
+	searchThroughMimes(NULL, NULL, NULL, NULL, true, true) ; // reset 
 	while( searchThroughMimes( pMimeType, &ext, NULL, NULL, true, false )) {
 		if ( pos == number - 1 ){
 			number += 5 ;
-			extensions = (char**)realloc(extensions, (sizeof(char*)) * (number)); 
+			extensions = (const char**)realloc(extensions, (sizeof(char*)) * (number)); 
 		}
 		extensions[pos++] = ext ;
 	}
@@ -292,7 +243,11 @@ bool isTextFile ( const char* url )
 	{
 		return false ;
 	}
+	
 	const char* zEnc = guessFileEncoding (url);
+	if(!zEnc) zEnc = "UTF-8" ;
+	
+	
 	if (strcmp(zEnc , "UTF-8") == 0 ){
 		FILE* pFile = fopen(url, "r");
 		if (!pFile) return false;
@@ -343,7 +298,7 @@ MegaFileInfo* getMegaFileInformation( const char* pFilePath )
 	fseek(fp, 0, SEEK_END) ;
 	info->mFileSize = ftell(fp) ;
 
-	char* mimetype, *mimename ;
+	const char* mimetype, *mimename ;
 	searchThroughMimes(fileextension, NULL, &mimename, &mimetype, false, true) ;
 	info->mMimeName = mimename ;
 	info->mMimeType = mimetype ;
@@ -351,15 +306,10 @@ MegaFileInfo* getMegaFileInformation( const char* pFilePath )
 	info->mTextFile = isTextFile(pFilePath) ;
 	if(info->mTextFile){
 		const char* enc = getMegaTextFileEncoding(pFilePath);
-		info->mTextEncoding = malloc(strlen(enc)+1);
-		assert(info->mTextEncoding != NULL);
-		strcpy(info->mTextEncoding, enc);
+		info->mTextEncoding = enc ;
 	}
 	else{
-		char* sp = malloc(1) ;
-		assert(sp != NULL);
-		strcpy(sp, "") ;
-		info->mTextEncoding = sp ;
+		info->mTextEncoding = NULL ;
 	}
 	
 	return info ;
@@ -377,10 +327,6 @@ void freeMegaFileInfo(MegaFileInfo* pData )
 	free(pData->mBaseDir) ;
 	free(pData->mBaseName) ;
 	free(pData->mExtension );
-
-	if(pData->mMimeType) free(pData->mMimeType) ;
-	if(pData->mMimeName) free(pData->mMimeName) ;
-	free(pData->mTextEncoding);
 		
 	free(pData)	;
 }
@@ -393,749 +339,749 @@ void freeMegaString( char* pData )
 void freeMegaStringArray( char** pData) 
 {
 	if(!pData) return ;
-	for ( size_t i = 0 ; pData[i] ; ++i){
-		freeMegaString(pData[i]) ;		
-	} 
 	free(pData) ;
 }
 
-const char* MegaMimeTypes = "*.1\tRoff Manpage\ttext/troff\t0\n"
-"*.3ds\t3DS\timage/x-3ds\t0\n"
-"*.3fr\tHasselblad raw image\timage/x-raw-hasselblad\t0\n"
-"*.3g2\t3G2\tvideo/3gpp2\t0\n"
-"*.3gp\t3GP\tvideo/3gpp\t0\n"
-"*.3mf\t3MF 3D Manufacturing Format\tapplication/vnd.ms-package.3dmanufacturing-3dmodel+xml\t0\n"
-"*.4th\tForth source code\ttext/x-forth\t0\n"
-"*.669\tModule Music Formats (Mods)\taudio/x-mod\t0\n"
-"*.6pl\tPerl 6\ttext/x-perl\t0\n"
-"*.7z\t7-zip archive\tapplication/x-7z-compressed\t0\n"
-"*.8svx\t8-Bit Sampled Voice\taudio/8svx\t0\n"
-"*.ML\tStandard ML\ttext/x-ocaml\t0\n"
-"*.MYD\tMySQL MISAM Data\tapplication/x-mysql-misam-data\t0\n"
-"*.MYI\tMySQL MISAM Compressed Index\tapplication/x-mysql-misam-compressed-index\t0\n"
-"*.R\tR\ttext/x-rsrc\t0\n"
-"*.TIF\tTIFF Uncompressed File with Exif Metadata\timage/tiff\t0\n"
-"*.XXX\tTemplate:File Format/Preload\tapplication/octet-stream\t0\n"
-"*.Z\tCompress\tapplication/x-compress\t0\n"
-"*.aa\tAudible.Com File Format\taudio/x-pn-audibleaudio\t0\n"
-"*.ac3\tDolby Digital AC-3\taudio/ac3\t0\n"
-"*.acsm\tAdobe Content Server Message File\tapplication/vnd.adobe.adept+xml\t0\n"
-"*.ada\tAda source code\ttext/x-ada\t0\n"
-"*.adf\tAppleDouble\tmultipart/appledouble\t0\n"
-"*.afa\tAstrotite\tapplication/x-astrotite-afa\t0\n"
-"*.afm\tAdobe Font Metric\tapplication/x-font-adobe-metric\t0\n"
-"*.ai\tAdobe Illustrator Artwork\tapplication/illustrator\t0\n"
-"*.aif\tAudio Interchange File Format\taudio/x-aiff\t0\n"
-"*.aifc\tAudio Interchange File Format (compressed)\taudio/x-aiff\t0\n"
-"*.aiff\tAIFF\taudio/x-aiff\t0\n"
-"*.air\tAdobe Air 1.0\tapplication/vnd.adobe.air-application-installer-package+zip;version=\"1.0\"\t0\n"
-"*.aj\tAspectJ source code\ttext/x-aspectj\t0\n"
-"*.amr\tAMR, Adaptive Multi-Rate Speech Codec\taudio/amr\t0\n"
-"*.anim\tUnity3D Asset\ttext/x-yaml\t0\n"
-"*.anpa\tAmerican Newspaper Publishers Association Wire Feeds\ttext/vnd.iptc.anpa\t0\n"
-"*.ans\t7-bit ANSI Text\ttext/plain\t0\n"
-"*.apl\tAPL\ttext/apl\t0\n"
-"*.apng\tAnimated Portable Network Graphics\timage/vnd.mozilla.apng\t0\n"
-"*.applescript\tAppleScript source code\ttext/x-applescript\t0\n"
-"*.apr\tLotus Approach View File 97\tapplication/vnd.lotus-approach;version=\"97\"\t0\n"
-"*.apt\tLotus Approach View File\tapplication/vnd.lotus-approach\t0\n"
-"*.arc\tInternet Archive 1.0\tapplication/x-internet-archive;version=\"1.0\"\t0\n"
-"*.arw\tSony raw image\timage/x-raw-sony\t0\n"
-"*.as\tActionScript source code\ttext/x-actionscript\t0\n"
-"*.asc\t7-bit ASCII Text\ttext/plain\t0\n"
-"*.asciidoc\tAsciidoc source code\ttext/x-asciidoc\t0\n"
-"*.asf\tAdvanced Systems Format\tapplication/vnd.ms-asf\t0\n"
-"*.asice\tExtended Associated Signature Container\tapplication/vnd.etsi.asic-e+zip\t0\n"
-"*.asics\tSimple Associated Signature Container\tapplication/vnd.etsi.asic-s+zip\t0\n"
-"*.asn\tASN.1\ttext/x-ttcn-asn\t0\n"
-"*.asp\tASP\tapplication/x-aspx\t0\n"
-"*.aspx\tASP .NET\ttext/aspdotnet\t0\n"
-"*.asy\tLTspice Symbol\ttext/x-spreadsheet\t0\n"
-"*.atom\tAtom\tapplication/atom+xml\t0\n"
-"*.au\tuLaw/AU Audio File\taudio/basic\t0\n"
-"*.avi\tAVI (Audio Video Interleaved) File Format\tvideo/msvideo\t0\n"
-"*.awb\tAdaptive Multi-Rate Wideband Audio\taudio/amr-wb\t0\n"
-"*.awk\tAWK script\ttext/x-awk\t0\n"
-"*.axc\tAxc\ttext/plain\t0\n"
-"*.axx\tAxCrypt\tapplication/x-axcrypt\t0\n"
-"*.b\tBrainfuck\ttext/x-brainfuck\t0\n"
-"*.b6z\tB6Z\tapplication/x-b6z-compressed\t0\n"
-"*.bas\tBasic source code\ttext/x-basic\t0\n"
-"*.bay\tCasio raw image\timage/x-raw-casio\t0\n"
-"*.bik\tBink Video\tvideo/vnd.radgamettools.bink\t0\n"
-"*.bik2\tBink Video Format 2\tvideo/vnd.radgamettools.bink;version=\"2\"\t0\n"
-"*.bin\tMacBinary\tapplication/x-macbinary\t0\n"
-"*.bmp\tWindows bitmap\timage/bmp\t0\n"
-"*.bpg\tBetter Portable Graphics\timage/x-bpg\t0\n"
-"*.bpm\tBizAgi Process Modeler\tapplication/bizagi-modeler\t0\n"
-"*.bsp\tBSP\tmodel/vnd.valve.source.compiled-map\t0\n"
-"*.btf\tBigTIFF\timage/tiff\t0\n"
-"*.bw\tSilicon Graphics Image\timage/x-sgi-bw\t0\n"
-"*.bz2\tBzip2\tapplication/x-bzip2\t0\n"
-"*.c\tC source code\ttext/x-csrc\t0\n"
-"*.cab\tCabinet\tapplication/vnd.ms-cab-compressed\t0\n"
-"*.cabal\tCabal Config\ttext/x-haskell\t0\n"
-"*.cap\tpcap Packet Capture\tapplication/vnd.tcpdump.pcap\t0\n"
-"*.catmaterial\tCATIA 5\tapplication/octet-stream;version=\"5\"\t0\n"
-"*.catpart\tCATIA Model (Part Description) 5\tapplication/octet-stream;version=\"5\"\t0\n"
-"*.catproduct\tCATIA Product Description 5\tapplication/octet-stream;version=\"5\"\t0\n"
-"*.cbl\tCOBOL source code\ttext/x-cobol\t0\n"
-"*.cbor\tConcise Binary Object Representation container\tapplication/cbor\t0\n"
-"*.cbz\tComic Book Archive\tapplication/x-cbr\t0\n"
-"*.cca\tcc:Mail Archive Email Format\tapplication/octet-stream\t0\n"
-"*.cda\tCD Audio\tapplication/x-cdf\t0\n"
-"*.cdf\tnetCDF-3 Classic\tapplication/x-netcdf\t0\n"
-"*.cdx\tChemical Draw Exchange Format\tchemical/x-cdx\t0\n"
-"*.cfm\tColdFusion source code\ttext/x-coldfusion\t0\n"
-"*.cfs\tCompact File Set\tapplication/x-cfs-compressed\t0\n"
-"*.cgi\tCGI script\ttext/x-cgi\t0\n"
-"*.cgm\tComputer Graphics Metafile\timage/cgm\t0\n"
-"*.chm\tMicrosoft Compiled HTML Help\tapplication/vnd.ms-htmlhelp\t0\n"
-"*.chrt\tKChart File\tapplication/x-kchart\t0\n"
-"*.chs\tC2hs Haskell\ttext/x-haskell\t0\n"
-"*.cif\tCIF\tchemical/x-cif\t0\n"
-"*.ck\tChucK\ttext/x-java\t0\n"
-"*.cl\tCommon Lisp source code\ttext/x-common-lisp\t0\n"
-"*.class\tJava Class File\tapplication/x-java\t0\n"
-"*.clj\tClojure source code\ttext/x-clojure\t0\n"
-"*.cls\tVisual basic source code\ttext/x-vbasic\t0\n"
-"*.cmake\tCMake\ttext/x-cmake\t0\n"
-"*.cml\tCML\tchemical/x-cml\t0\n"
-"*.cob\tCOBOL\ttext/x-cobol\t0\n"
-"*.cod\tLightning Strike\timage/cis-cod\t0\n"
-"*.coffee\tCoffeeScript\tapplication/vnd.coffeescript\t0\n"
-"*.cp\tComponent Pascal\ttext/x-pascal\t0\n"
-"*.cpio\tUNIX CPIO Archive\tapplication/x-cpio\t0\n"
-"*.cpp\tC++ source code\ttext/x-c++src\t0\n"
-"*.cr\tCrystal\ttext/x-crystal\t0\n"
-"*.crw\tCamera Image File Format\timage/x-canon-crw\t0\n"
-"*.crx\tChrome Extension Package\tapplication/x-chrome-package\t0\n"
-"*.cs\tC# source code\ttext/x-csharp\t0\n"
-"*.cshtml\tHTML+Razor\ttext/html\t0\n"
-"*.cson\tCSON\ttext/x-coffeescript\t0\n"
-"*.csr\tPKCS10\tapplication/pkcs10\t0\n"
-"*.css\tCascading Style Sheet\ttext/css\t0\n"
-"*.csv\tComma Separated Values\ttext/csv\t0\n"
-"*.csvs\tCSV Schema\ttext/csv-schema\t0\n"
-"*.cu\tCuda\ttext/x-c++src\t0\n"
-"*.cur\tMicrosoft Windows Cursor\timage/x-win-bitmap\t0\n"
-"*.cwl\tCommon Workflow Language\ttext/x-yaml\t0\n"
-"*.cy\tCycript\ttext/javascript\t0\n"
-"*.d\tD source code\ttext/x-d\t0\n"
-"*.dae\tCOLLADA\ttext/xml\t0\n"
-"*.dart\tDart\tapplication/dart\t0\n"
-"*.dat\tMapInfo Data File (DAT)\tapplication/dbase\t0\n"
-"*.db\tSQLite Database File Format\tapplication/x-sqlite3\t0\n"
-"*.dbf\tdBASE Table File Format (DBF)\tapplication/x-dbf\t0\n"
-"*.dcm\tDigital Imaging and Communications in Medicine File Format\tapplication/dicom\t0\n"
-"*.dcr\tShockwave (Director)\tapplication/x-director\t0\n"
-"*.dcx\tMultipage Zsoft Paintbrush Bitmap Graphics\timage/x-dcx\t0\n"
-"*.deb\tDeb\tapplication/vnd.debian.binary-package\t0\n"
-"*.der\tDER encoded certificate\tapplication/x-x509-ca-cert\t0\n"
-"*.dex\tDalvik Executable Format\tapplication/x-dex\t0\n"
-"*.dgc\tDGCA\tapplication/x-dgc-compressed\t0\n"
-"*.diff\tDiff\ttext/x-diff\t0\n"
-"*.dir\tShockwave Movie\tapplication/x-director\t0\n"
-"*.dita\tDITA Topic\tapplication/dita+xml;format=topic\t0\n"
-"*.ditamap\tDITA Map\tapplication/dita+xml;format=map\t0\n"
-"*.ditaval\tDITA Conditional Processing Profile\tapplication/dita+xml;format=val\t0\n"
-"*.diz\tFILE ID.DIZ\ttext/plain\t0\n"
-"*.djv\tSecure DjVU\timage/vnd.djvu\t0\n"
-"*.djvu\tDjVu\timage/vnd.djvu\t0\n"
-"*.dll\tWindows Portable Executable\tapplication/octet-stream\t0\n"
-"*.dls\tDownloadable Sounds Audio\taudio/dls\t0\n"
-"*.dmg\tApple Disk Image\tapplication/x-apple-diskimage\t0\n"
-"*.dng\tAdobe Digital Negative\timage/x-raw-adobe\t0\n"
-"*.doc\tMicrosoft Word\tapplication/msword\t0\n"
-"*.dockerfile\tDockerfile\ttext/x-dockerfile\t0\n"
-"*.docm\tOffice Open XML Document (macro-enabled)\tapplication/vnd.ms-word.document.macroenabled.12\t0\n"
-"*.docx\tOOXML Format Family -- ISO/IEC 29500 and ECMA 376\tapplication/vnd.openxmlformats-officedocument.wordprocessingml.document\t0\n"
-"*.dot\tMicrosoft Word Document Template (Password Protected) 97-2003\tapplication/msword;version=\"97-2003\"\t0\n"
-"*.dotm\tOffice Open XML Document Template (macro-enabled)\tapplication/vnd.ms-word.template.macroenabled.12\t0\n"
-"*.dotx\tOffice Open XML Document Template\tapplication/vnd.openxmlformats-officedocument.wordprocessingml.template\t0\n"
-"*.dpx\tDigital Moving-Picture Exchange (DPX), Version 2.0\timage/x-dpx\t0\n"
-"*.drc\tOgg Packaged Dirac Video\tvideo/x-dirac\t0\n"
-"*.druby\tMirah\ttext/x-ruby\t0\n"
-"*.dtd\tXML Document Type Definition (DTD)\tapplication/xml-dtd\t0\n"
-"*.dts\tDTS Coherent Acoustics (DCA) Audio\taudio/vnd.dts\t0\n"
-"*.dv\tDigital Video\tvideo/dv\t0\n"
-"*.dvi\tDVI (Device Independent File Format)\tapplication/x-dvi\t0\n"
-"*.dwf\tAutoCAD Design Web Format 6.0\tapplication/dwf;version=\"6.0\"\t0\n"
-"*.dwfx\tAutoCAD Design Web Format\tmodel/vnd.dwfx+xps\t0\n"
-"*.dwg\tAutoCad Drawing\timage/vnd.dwg\t0\n"
-"*.dwl\tAutoCAD Database File Locking Information\tapplication/octet-stream\t0\n"
-"*.dx\tDEC Data Exchange File\tapplication/dec-dx.\t0\n"
-"*.dxb\tAutoCAD DXF simplified Binary\timage/vnd.dxb\t0\n"
-"*.dxf\tAutoCAD DXF\timage/vnd.dxf\t0\n"
-"*.dxr\tPlay SID Audio 1\taudio/prs.sid;version=\"1\"\t0\n"
-"*.dylan\tDylan\ttext/x-dylan\t0\n"
-"*.e\tEiffel source code\ttext/x-eiffel\t0\n"
-"*.eb\tEasybuild\ttext/x-python\t0\n"
-"*.ebnf\tEBNF\ttext/x-ebnf\t0\n"
-"*.ebuild\tGentoo Ebuild\ttext/x-sh\t0\n"
-"*.ecl\tECL\ttext/x-ecl\t0\n"
-"*.eclass\tGentoo Eclass\ttext/x-sh\t0\n"
-"*.ecr\tHTML+ECR\ttext/html\t0\n"
-"*.edc\tEdje Data Collection\tapplication/json\t0\n"
-"*.edn\tedn\ttext/x-clojure\t0\n"
-"*.eex\tHTML+EEX\ttext/html\t0\n"
-"*.el\tEmacs Lisp source code\ttext/x-emacs-lisp\t0\n"
-"*.elc\tEmacs Lisp bytecode\tapplication/x-elc\t0\n"
-"*.elm\tElm\ttext/x-elm\t0\n"
-"*.em\tEmberScript\ttext/x-coffeescript\t0\n"
-"*.emf\tEnhanced Metafile\timage/emf\t0\n"
-"*.eml\tInternet e-mail message format\tmessage/rfc822\t0\n"
-"*.enr\tEndNote Import File\tapplication/x-endnote-refer\t0\n"
-"*.ens\tEndNote Style File\tapplication/x-endnote-style\t0\n"
-"*.enz\tEndNote Connection File\tapplication/x-endnote-connect\t0\n"
-"*.eot\tEmbedded OpenType\tapplication/vnd.ms-fontobject\t0\n"
-"*.epj\tEcere Projects\tapplication/json\t0\n"
-"*.eps\tEncapsulated PostScript (EPS) File Format, Version 3.x\tapplication/postscript\t0\n"
-"*.epub\tElectronic Publication\tapplication/epub+zip\t0\n"
-"*.eq\tEQ\ttext/x-csharp\t0\n"
-"*.erb\tHTML+ERB\tapplication/x-erb\t0\n"
-"*.erf\tEpson raw image\timage/x-raw-epson\t0\n"
-"*.erl\tErlang source code\ttext/x-erlang\t0\n"
-"*.es\tECMAScript\tapplication/ecmascript\t0\n"
-"*.exe\tDOS/Windows executable (EXE)\tapplication/x-dosexec\t0\n"
-"*.exp\tExpect Script\ttext/x-expect\t0\n"
-"*.exr\tOpenEXR 2\timage/x-exr;version=\"2\"\t0\n"
-"*.f\tFortran source code\ttext/x-fortran\t0\n"
-"*.f4a\tMPEG-4 Media File\taudio/mp4\t0\n"
-"*.f4m\tF4M\tapplication/f4m\t0\n"
-"*.f90\tFortran\ttext/x-fortran\t0\n"
-"*.factor\tFactor\ttext/x-factor\t0\n"
-"*.fb2\tFictionBook document\tapplication/x-fictionbook+xml\t0\n"
-"*.fdf\tForms Data Format\tapplication/vnd.fdf\t0\n"
-"*.fff\tImacon raw image\timage/x-raw-imacon\t0\n"
-"*.fh\tFreeHand image\timage/x-freehand\t0\n"
-"*.fig\tMatlab figure\tapplication/x-matlab-data\t0\n"
-"*.fits\tFlexible Image Transport System\timage/fits\t0\n"
-"*.flac\tFLAC (Free Lossless Audio Codec), Version 1.1.2\taudio/flac\t0\n"
-"*.flif\tFree Lossless Image Format (FLIF)\timage/flif\t0\n"
-"*.flv\tFLV\tvideo/x-flv\t0\n"
-"*.fm\tFrameMaker\tapplication/vnd.framemaker\t0\n"
-"*.fmz\tform*Z Project File\tapplication/octet-stream\t0\n"
-"*.folio\tFolio\tapplication/vnd.adobe.folio+zip\t0\n"
-"*.fp7\tFileMaker Pro 7\tapplication/x-filemaker\t0\n"
-"*.fpx\tFlashPix\timage/vnd.fpx\t0\n"
-"*.fref\tFreenet node reference\ttext/plain\t0\n"
-"*.fs\tF#\ttext/x-fsharp\t0\n"
-"*.fth\tForth\ttext/x-forth\t0\n"
-"*.g3\tCCITT Group 3\timage/g3fax\t0\n"
-"*.gbr\tGerber Format\tapplication/vnd.gerber\t0\n"
-"*.gca\tGCA\tapplication/x-gca-compressed\t0\n"
-"*.geo\tGeoGebra 1.0\tapplication/vnd.geogebra.file;version=\"1.0\"\t0\n"
-"*.gf\tGrammatical Framework\ttext/x-haskell\t0\n"
-"*.ggb\tGgb\tapplication/vnd.geogebra.file\t0\n"
-"*.gif\tGraphics Interchange Format\timage/gif\t0\n"
-"*.gitconfig\tGit Config\ttext/x-properties\t0\n"
-"*.gitignore\tIgnore List\ttext/x-sh\t0\n"
-"*.glf\tGlyph\ttext/x-tcl\t0\n"
-"*.gml\tGeography Markup Language\tapplication/gml+xml\t0\n"
-"*.gn\tGN\ttext/x-python\t0\n"
-"*.gnumeric\tGnumeric\tapplication/x-gnumeric\t0\n"
-"*.go\tGo source code\ttext/x-go\t0\n"
-"*.grb\tGeneral Regularly-distributed Information in Binary form\tapplication/x-grib\t0\n"
-"*.groovy\tGroovy source code\ttext/x-groovy\t0\n"
-"*.gsp\tGroovy Server Pages\tapplication/x-jsp\t0\n"
-"*.gtar\tGNU tar Compressed File Archive (GNU Tape Archive)\tapplication/x-gtar\t0\n"
-"*.gz\tGzip Compressed Archive\tapplication/gzip\t0\n"
-"*.h\tC source code header\ttext/x-chdr\t0\n"
-"*.haml\tHAML source code\ttext/x-haml\t0\n"
-"*.hcl\tHCL\ttext/x-ruby\t0\n"
-"*.hdf\tHierarchical Data Format File\tapplication/x-hdf\t0\n"
-"*.hdp\tHD Photo, Version 1.0 (Windows Media Photo)\timage/vnd.ms-photo\t0\n"
-"*.hdr\tRadiance HDR\timage/vnd.radiance\t0\n"
-"*.hh\tHack\tapplication/x-httpd-php\t0\n"
-"*.hpgl\tHewlett Packard Graphics Language\tapplication/vnd.hp-hpgl\t0\n"
-"*.hpp\tC++ source code header\ttext/x-c++hdr\t0\n"
-"*.hqx\tBinHex\tapplication/mac-binhex\t0\n"
-"*.hs\tHaskell source code\ttext/x-haskell\t0\n"
-"*.htm\tHypertext Markup Language\ttext/html\t0\n"
-"*.html\tHyperText Markup Language\ttext/html\t0\n"
-"*.http\tHTTP\tmessage/http\t0\n"
-"*.hx\tHaxe source code\ttext/x-haxe\t0\n"
-"*.ibooks\tApple iBook format\tapplication/x-ibooks+zip\t0\n"
-"*.ico\tICO\timage/vnd.microsoft.icon\t0\n"
-"*.ics\tInternet Calendar and Scheduling format\ttext/calendar\t0\n"
-"*.idl\tInteface Definition Language\ttext/x-idl\t0\n"
-"*.idml\tIDML\tapplication/vnd.adobe.indesign-idml-package\t0\n"
-"*.iges\tInitial Graphics Exchange Specification (IGES) 5.x\tmodel/iges;version=\"5.x\"\t0\n"
-"*.igs\tInitial Graphics Exchange Specification Format\tmodel/iges\t0\n"
-"*.iiq\tPhase One raw image\timage/x-raw-phaseone\t0\n"
-"*.ind\tAdobe InDesign Document Generic\tapplication/octet-stream;version=\"generic\"\t0\n"
-"*.indd\tAdobe InDesign document\tapplication/x-adobe-indesign\t0\n"
-"*.inf\tWindows Setup File\tapplication/inf\t0\n"
-"*.ini\tConfiguration file\ttext/x-ini\t0\n"
-"*.inx\tAdobe InDesign Interchange format\tapplication/x-adobe-indesign-interchange\t0\n"
-"*.ipa\tApple iOS IPA AppStore file\tapplication/x-itunes-ipa\t0\n"
-"*.ipynb\tJupyter Notebook\tapplication/json\t0\n"
-"*.irclog\tIRC log\ttext/mirc\t0\n"
-"*.iso\tISO Disk Image File Format\tapplication/x-iso9660-image\t0\n"
-"*.itk\tTcl script\tapplication/x-tcl\t0\n"
-"*.j2c\tJPEG 2000 Codestream\timage/x-jp2-codestream\t0\n"
-"*.jade\tPug\ttext/x-pug\t0\n"
-"*.jar\tJava Archive\tapplication/java-archive\t0\n"
-"*.java\tJava source code\ttext/x-java\t0\n"
-"*.jinja\tHTML+Django\ttext/x-django\t0\n"
-"*.jl\tJulia\ttext/x-julia\t0\n"
-"*.jls\tJPEG-LS\timage/jls\t0\n"
-"*.jng\tJPEG Network Graphics\timage/x-jng\t0\n"
-"*.jnilib\tJava Native Library for OSX\tapplication/x-java-jnilib\t0\n"
-"*.jp2\tJPEG 2000\timage/jpx\t0\n"
-"*.jpe\tRaw JPEG Stream\timage/jpeg\t0\n"
-"*.jpf\tJPX (JPEG 2000 part 2)\timage/jpx\t0\n"
-"*.jpg\tJoint Photographic Experts Group\timage/jpeg\t0\n"
-"*.jpm\tJPEG 2000 Part 6 (JPM)\timage/jpm\t0\n"
-"*.jq\tJSONiq\tapplication/json\t0\n"
-"*.js\tJavaScript Source Code\tapplication/javascript\t0\n"
-"*.json\tJSON (JavaScript Object Notation)\tapplication/json\t0\n"
-"*.json-patch\tJSON Patch\tapplication/json-patch+json\t0\n"
-"*.json5\tJSON5\tapplication/json\t0\n"
-"*.jsonld\tJSON-LD\tapplication/ld+json\t0\n"
-"*.jsp\tJava Server Pages\tapplication/x-jsp\t0\n"
-"*.jsx\tJSX\ttext/jsx\t0\n"
-"*.jxr\tJPEG Extended Range\timage/jxr\t0\n"
-"*.k25\tKodak raw image\timage/x-raw-kodak\t0\n"
-"*.kicad_pcb\tKiCad Layout\ttext/x-common-lisp\t0\n"
-"*.kid\tGenshi\ttext/xml\t0\n"
-"*.kil\tKIllustrator File\tapplication/x-killustrator\t0\n"
-"*.kit\tKit\ttext/html\t0\n"
-"*.kml\tKeyhole Markup Language\tapplication/vnd.google-earth.kml+xml\t0\n"
-"*.kmz\tKeyhole Markup Language (Container)\tapplication/vnd.google-earth.kmz\t0\n"
-"*.kpr\tKPresenter File\tapplication/x-kpresenter\t0\n"
-"*.kra\tKrita Document Format\tapplication/x-krita\t0\n"
-"*.ksp\tKSpread File\tapplication/x-kspread\t0\n"
-"*.kt\tKotlin\ttext/x-kotlin\t0\n"
-"*.ktx\tKhronos Texture File\timage/ktx\t0\n"
-"*.kwd\tKWord File\tapplication/x-kword\t0\n"
-"*.l\tLex/Flex source code\ttext/x-lex\t0\n"
-"*.latex\tLaTeX Source Document\tapplication/x-latex\t0\n"
-"*.latte\tLatte\ttext/x-smarty\t0\n"
-"*.less\tLESS source code\ttext/x-less\t0\n"
-"*.lfe\tLFE\ttext/x-common-lisp\t0\n"
-"*.lha\tLHA\tapplication/x-lzh-compressed\t0\n"
-"*.lhs\tLiterate Haskell\ttext/x-literate-haskell\t0\n"
-"*.lisp\tCommon Lisp\ttext/x-common-lisp\t0\n"
-"*.log\tapplication log\ttext/x-log\t0\n"
-"*.lookml\tLookML\ttext/x-yaml\t0\n"
-"*.ls\tLiveScript\ttext/x-livescript\t0\n"
-"*.lua\tLua source code\ttext/x-lua\t0\n"
-"*.lvproj\tLabVIEW\ttext/xml\t0\n"
-"*.lwp\tLotus Word Pro\tapplication/vnd.lotus-wordpro\t0\n"
-"*.lz\tLzip\tapplication/x-lzip\t0\n"
-"*.lzma\tLZMA Alone\tapplication/x-lzma\t0\n"
-"*.m\tObjective-C source code\ttext/x-objcsrc\t0\n"
-"*.m3\tModula source code\ttext/x-modula\t0\n"
-"*.m3u\tMP3 Playlist File\taudio/x-mpegurl\t0\n"
-"*.maff\tMAFF\tapplication/x-maff\t0\n"
-"*.mak\tMakefile\ttext/x-cmake\t0\n"
-"*.marko\tMarko\ttext/html\t0\n"
-"*.mas\tLotus Freelance Smartmaster Graphics\tapplication/vnd.lotus-freelance\t0\n"
-"*.mat\tMAT-File Level 5 File Format\tapplication/matlab-mat\t0\n"
-"*.mathematica\tMathematica\ttext/x-mathematica\t0\n"
-"*.matlab\tMATLAB\ttext/x-octave\t0\n"
-"*.maxpat\tMax\tapplication/json\t0\n"
-"*.mbox\tMBOX Email Format\tapplication/mbox\t0\n"
-"*.mbx\tMbox\tapplication/mbox\t0\n"
-"*.mcw\tMicrosoft Word for Macintosh Document 5.0\tapplication/msword;version=\"5.0\"\t0\n"
-"*.md\tMarkdown\ttext/markdown\t0\n"
-"*.mdi\tMicrosoft Document Imaging\timage/vnd.ms-modi\t0\n"
-"*.mef\tMamiya raw image\timage/x-raw-mamiya\t0\n"
-"*.metal\tMetal\ttext/x-c++src\t0\n"
-"*.mht\tMicrosoft Web Archive\tmultipart/related\t0\n"
-"*.mid\tMusical Instrument Digital Interface\taudio/midi\t0\n"
-"*.mif\tFrameMaker Interchange Format\tapplication/x-mif\t0\n"
-"*.mix\tMIX (PhotoDraw)\timage/vnd.mix\t0\n"
-"*.mj2\tMJ2 (Motion JPEG 2000)\tvideo/mj2\t0\n"
-"*.mkv\tMatroska Multimedia Container\tvideo/x-matroska\t0\n"
-"*.ml\tOCaml\ttext/x-ocaml\t0\n"
-"*.mlp\tDolby MLP Lossless Audio\taudio/vnd.dolby.mlp\t0\n"
-"*.mm\tMm\tapplication/x-freemind\t0\n"
-"*.mmp\tMindManager\tapplication/vnd.mindjet.mindmanager\t0\n"
-"*.mmr\tXerox EDMICS-MMR\timage/vnd.fujixerox.edmics-mmr\t0\n"
-"*.mng\tMultiple-image Network Graphics\tvideo/x-mng\t0\n"
-"*.mo\tModelica\ttext/x-modelica\t0\n"
-"*.mobi\tMobipocket File Format\tapplication/x-mobipocket-ebook\t0\n"
-"*.mod\tCATIA Model 4\tapplication/octet-stream;version=\"4\"\t0\n"
-"*.mol\tMOL\tchemical/x-mdl-molfile\t0\n"
-"*.mos\tLeaf raw image\timage/x-raw-leaf\t0\n"
-"*.mov\tQuickTime File Format\tvideo/quicktime\t0\n"
-"*.mp1\tMPEG Audio Layer I\taudio/mpeg\t0\n"
-"*.mp2\tMPEG Audio Stream, Layer II\taudio/mpeg\t0\n"
-"*.mp3\tMP3 File Format\taudio/mpeg\t0\n"
-"*.mp4\tMPEG-4 File Format, Version 2\tvideo/mp4\t0\n"
-"*.mpeg\tMPEG Movie Clip\tvideo/mpeg\t0\n"
-"*.mpg\tMPEG-1\tvideo/mpeg\t0\n"
-"*.mpga\tMPEG-1 Audio Layer 3\taudio/mpeg\t0\n"
-"*.mpp\tMicrosoft Project 2010\tapplication/vnd.ms-project;version=\"2010\"\t0\n"
-"*.mpx\tMicrosoft Project Export File 4.0\tapplication/x-project;version=\"4.0\"\t0\n"
-"*.mrc\tMARC\tapplication/marc\t0\n"
-"*.mrw\tMinolta raw image\timage/x-raw-minolta\t0\n"
-"*.msg\tMicrosoft Outlook Message\tapplication/vnd.ms-outlook\t0\n"
-"*.msi\tMicrosoft Windows Installer\tapplication/x-msi\t0\n"
-"*.mso\tActiveMime\tapplication/x-mso\t0\n"
-"*.mtml\tMTML\ttext/html\t0\n"
-"*.muf\tMUF\ttext/x-forth\t0\n"
-"*.mumps\tM\ttext/x-mumps\t0\n"
-"*.mxf\tMaterial Exchange Format (MXF)\tapplication/mxf\t0\n"
-"*.mxl\tCompressed Music XML\tapplication/vnd.recordare.musicxml\t0\n"
-"*.mxmf\tMobile eXtensible Music Format\taudio/mobile-xmf\t0\n"
-"*.n3\tNotation3\ttext/n3\t0\n"
-"*.nap\tNAPLPS\timage/naplps\t0\n"
-"*.nb\tMathematica Notebook\tapplication/mathematica\t0\n"
-"*.nc\tNetCDF-3 (Network Common Data Form, version 3)\tapplication/x-netcdf\t0\n"
-"*.nef\tNikon raw image\timage/x-raw-nikon\t0\n"
-"*.nfo\tNFO\ttext/x-nfo\t0\n"
-"*.nginxconf\tNginx\ttext/x-nginx-conf\t0\n"
-"*.nif\tNotation Interchange File Format\tapplication/vnd.music-niff\t0\n"
-"*.nl\tNewLisp\ttext/x-common-lisp\t0\n"
-"*.nlogo\tNetLogo\ttext/x-common-lisp\t0\n"
-"*.ns2\tLotus Notes Database 2\tapplication/vnd.lotus-notes;version=\"2\"\t0\n"
-"*.ns3\tLotus Notes Database 3\tapplication/vnd.lotus-notes;version=\"3\"\t0\n"
-"*.ns4\tLotus Notes Database 4\tapplication/vnd.lotus-notes;version=\"4\"\t0\n"
-"*.nsf\tNotes Storage Facility\tapplication/vnd.lotus-notes\t0\n"
-"*.nsi\tNSIS\ttext/x-nsis\t0\n"
-"*.ntf\tNational Imagery Transmission Format\tapplication/vnd.nitf\t0\n"
-"*.nu\tNu\ttext/x-scheme\t0\n"
-"*.numpy\tNumPy\ttext/x-python\t0\n"
-"*.nut\tSquirrel\ttext/x-c++src\t0\n"
-"*.ocaml\tOcaml source code\ttext/x-ocaml\t0\n"
-"*.odb\tOpenDocument Database Front End Document Format (ODB), Version 1.2,  ISO 26300-1:2015\tapplication/vnd.oasis.opendocument.database\t0\n"
-"*.odc\tOpenDocument v1.0: Chart document\tapplication/vnd.oasis.opendocument.chart\t0\n"
-"*.odf\tOpenDocument v1.0: Formula document\tapplication/vnd.oasis.opendocument.formula\t0\n"
-"*.odft\tOpenDocument v1.0: Formula document used as template\tapplication/vnd.oasis.opendocument.formula-template\t0\n"
-"*.odg\tOpenDocument Drawing\tapplication/vnd.oasis.opendocument.graphics\t0\n"
-"*.odi\tOpenDocument v1.0: Image document\tapplication/vnd.oasis.opendocument.image\t0\n"
-"*.odm\tOpenDocument\tapplication/vnd.oasis.opendocument.text-master\t0\n"
-"*.odp\tOpenDocument Presentation\tapplication/vnd.oasis.opendocument.presentation\t0\n"
-"*.ods\tOpenDocument Spreadsheet\tapplication/vnd.oasis.opendocument.spreadsheet\t0\n"
-"*.odt\tOpenDocument Text\tapplication/vnd.oasis.opendocument.text\t0\n"
-"*.ofx\tOpen Financial Exchange 2.1.1\tapplication/x-ofx;version=\"2.1.1\"\t0\n"
-"*.oga\tOgg Vorbis Audio\taudio/ogg\t0\n"
-"*.ogg\tOgg Vorbis Codec Compressed Multimedia File\taudio/ogg\t0\n"
-"*.ogm\tOgg Packaged OGM Video\tvideo/x-ogm\t0\n"
-"*.ogv\tOgg Vorbis Video\tvideo/ogg\t0\n"
-"*.ogx\tOgg Skeleton\tapplication/ogg\t0\n"
-"*.one\tMicrosoft OneNote\tapplication/msonenote\t0\n"
-"*.opf\tDTB (Digital Talking Book), 2005\tapplication/x-dtbook+xml\t0\n"
-"*.opus\tOgg Opus Codec Compressed WAV File\taudio/opus\t0\n"
-"*.ora\tOpenRaster\timage/openraster\t0\n"
-"*.orf\tOlympus raw image\timage/x-raw-olympus\t0\n"
-"*.otc\tOpenDocument v1.0: Chart document used as template\tapplication/vnd.oasis.opendocument.chart-template\t0\n"
-"*.otf\tOpenType Font\tapplication/x-font-otf\t0\n"
-"*.otg\tOpenDocument v1.0: Graphics document used as template\tapplication/vnd.oasis.opendocument.graphics-template\t0\n"
-"*.oth\tOpenDocument v1.0: Text document used as template for HTML documents\tapplication/vnd.oasis.opendocument.text-web\t0\n"
-"*.oti\tOpenDocument v1.0: Image document used as template\tapplication/vnd.oasis.opendocument.image-template\t0\n"
-"*.otm\tOpenDocument v1.0: Global Text document\tapplication/vnd.oasis.opendocument.text-master\t0\n"
-"*.otp\tOpenDocument v1.0: Presentation document used as template\tapplication/vnd.oasis.opendocument.presentation-template\t0\n"
-"*.ots\tOpenDocument v1.0: Spreadsheet document used as template\tapplication/vnd.oasis.opendocument.spreadsheet-template\t0\n"
-"*.ott\tOpenDocument v1.0: Text document used as template\tapplication/vnd.oasis.opendocument.text-template\t0\n"
-"*.oxps\tOpenXPS\tapplication/oxps\t0\n"
-"*.oz\tOz\ttext/x-oz\t0\n"
-"*.p\tPascal source code\ttext/x-pascal\t0\n"
-"*.p65\tPagemaker Document (Generic)\tapplication/vnd.pagemaker\t0\n"
-"*.pab\tPersonal Folder File\tapplication/vnd.ms-outlook\t0\n"
-"*.pack\tPackage (Web)\tapplication/package\t0\n"
-"*.pam\tPortable Arbitrary Map\timage/x-portable-arbitrarymap\t0\n"
-"*.pas\tPascal\ttext/x-pascal\t0\n"
-"*.pbm\tNetpbm formats\timage/x-portable-bitmap\t0\n"
-"*.pcap\tTCPDump pcap packet capture\tapplication/vnd.tcpdump.pcap\t0\n"
-"*.pcapng\tpcap Next Generation Packet Capture\tapplication/vnd.tcpdump.pcap\t0\n"
-"*.pcl\tPCL\tapplication/vnd.hp-pcl\t0\n"
-"*.pct\tMacintosh PICT Image 2.0\timage/x-pict;version=\"2.0\"\t0\n"
-"*.pcx\tPCX\timage/vnd.zbrush.pcx\t0\n"
-"*.pdb\tPalm OS Database\tapplication/vnd.palm\t0\n"
-"*.pdf\tPortable Document Format\tapplication/pdf\t0\n"
-"*.pfm\tPrinter Font Metric\tapplication/x-font-printer-metric\t0\n"
-"*.pfr\tPFR\tapplication/font-tdpfr\t0\n"
-"*.pgm\tPortable Graymap Graphic\timage/x-portable-graymap\t0\n"
-"*.pgn\tPGN\tapplication/x-chess-pgn\t0\n"
-"*.pgsql\tPLpgSQL\ttext/x-sql\t0\n"
-"*.php\tPHP script\ttext/x-php\t0\n"
-"*.phtml\tHTML+PHP\tapplication/x-httpd-php\t0\n"
-"*.pic\tApple Macintosh QuickDraw/PICT Format\timage/x-pict\t0\n"
-"*.pict\tPICT\timage/x-pict\t0\n"
-"*.pkpass\tPKPass\tapplication/vnd.apple.pkpass\t0\n"
-"*.pl\tPerl script\ttext/x-perl\t0\n"
-"*.pls\tPLSQL\ttext/x-plsql\t0\n"
-"*.png\tPortable Network Graphics\timage/png\t0\n"
-"*.pnm\tPortable Any Map\timage/x-portable-anymap\t0\n"
-"*.pod\tPod\ttext/x-perl\t1\n"
-"*.por\tSPSS Portable File, ASCII encoding\tapplication/x-spss-por\t0\n"
-"*.potm\tMicrosoft PowerPoint Macro-Enabled Template 2007\tapplication/vnd.ms-powerpoint.template.macroenabled.12;version=\"2007\"\t0\n"
-"*.potx\tOffice Open XML Presentation Template\tapplication/vnd.openxmlformats-officedocument.presentationml.template\t0\n"
-"*.pp\tPuppet\ttext/x-puppet\t0\n"
-"*.ppam\tOffice Open XML Presentation Add-in (macro-enabled)\tapplication/vnd.ms-powerpoint.addin.macroenabled.12\t0\n"
-"*.ppm\tPortable Pixel Map - ASCII\timage/x-portable-pixmap\t0\n"
-"*.pps\tMicrosoft Powerpoint Presentation Show 97-2003\tapplication/vnd.ms-powerpoint;version=\"97-2003\"\t0\n"
-"*.ppsm\tOffice Open XML Presentation Slideshow (macro-enabled)\tapplication/vnd.ms-powerpoint.slideshow.macroenabled.12\t0\n"
-"*.ppsx\tOffice Open XML Presentation Slideshow\tapplication/vnd.openxmlformats-officedocument.presentationml.slideshow\t0\n"
-"*.ppt\tMicrosoft Powerpoint Presentation\tapplication/vnd.ms-powerpoint\t0\n"
-"*.pptm\tOffice Open XML Presentation (macro-enabled)\tapplication/vnd.ms-powerpoint.presentation.macroenabled.12\t0\n"
-"*.pptx\tOffice Open XML Presentation\tapplication/vnd.openxmlformats-officedocument.presentationml.presentation\t0\n"
-"*.prc\tPRC (Palm OS)\tapplication/vnd.palm\t0\n"
-"*.pro\tProlog source code\ttext/x-prolog\t0\n"
-"*.project\tCATIA Project 4\tapplication/octet-stream;version=\"4\"\t0\n"
-"*.properties\tJava Properties\ttext/properties\t0\n"
-"*.proto\tProtocol Buffer\ttext/x-protobuf\t0\n"
-"*.ps\tPostScript\tapplication/postscript\t0\n"
-"*.ps1\tPowerShell\tapplication/x-powershell\t0\n"
-"*.psb\tAdobe Photoshop Large Document Format\timage/vnd.adobe.photoshop\t0\n"
-"*.psd\tAdobe Photoshop\timage/vnd.adobe.photoshop\t0\n"
-"*.psid\tPlay SID Audio 2\taudio/prs.sid;version=\"2\"\t0\n"
-"*.pst\tOutlook Personal Folders File Format\tapplication/vnd.ms-outlook-pst\t0\n"
-"*.ptx\tPentax raw image\timage/x-raw-pentax\t0\n"
-"*.purs\tPureScript\ttext/x-haskell\t0\n"
-"*.pxn\tLogitech raw image\timage/x-raw-logitech\t0\n"
-"*.py\tPython script\ttext/x-python\t0\n"
-"*.pyx\tCython\ttext/x-cython\t0\n"
-"*.qcd\tQuark Xpress Data File\tapplication/vnd.quark.quarkxpress\t0\n"
-"*.qcp\tQCP Audio File Format\taudio/qcelp\t0\n"
-"*.qif\tQuicken Interchange Format\tapplication/qif\t0\n"
-"*.qxp\tQuarkXPress\tapplication/vnd.quark.quarkxpress\t0\n"
-"*.qxp report\tQuark Xpress Report File\tapplication/vnd.quark.quarkxpress\t0\n"
-"*.r\tR source code\ttext/x-rsrc\t0\n"
-"*.r3d\tRed raw image\timage/x-raw-red\t0\n"
-"*.ra\tRealAudio\taudio/vnd.rn-realaudio\t0\n"
-"*.raf\tFuji raw image\timage/x-raw-fuji\t0\n"
-"*.ram\tRealAudio Metafile\taudio/vnd.rn-realaudio\t0\n"
-"*.raml\tRAML\ttext/x-yaml\t0\n"
-"*.rar\tRAR\tapplication/vnd.rar\t0\n"
-"*.rar \tRAR Archive File Format Family\tapplication/vnd.rar\t0\n"
-"*.ras\tSun Raster Image\timage/x-sun-raster\t0\n"
-"*.raw\tPanasonic raw image\timage/x-raw-panasonic\t0\n"
-"*.rb\tRuby source code\ttext/x-ruby\t0\n"
-"*.rdf\tRDF\tapplication/rdf+xml\t0\n"
-"*.re\tReason\ttext/x-rustsrc\t0\n"
-"*.reg\tWindows Registry Entries\ttext/x-properties\t0\n"
-"*.rest\treStructuredText source code\ttext/x-rst\t0\n"
-"*.rexx\tRexx source code\ttext/x-rexx\t0\n"
-"*.rf64\tBroadcast WAVE 0 WAVEFORMATEXTENSIBLE Encoding\taudio/x-wav;version=\"0waveformatextensibleencoding\"\t0\n"
-"*.rfa\tRevit Family File\tapplication/octet-stream\t0\n"
-"*.rft\tRevit Family Template\tapplication/octet-stream\t0\n"
-"*.rg\tRouge\ttext/x-clojure\t0\n"
-"*.rgb\tSilicon Graphics RGB Bitmap\timage/x-rgb\t0\n"
-"*.rhtml\tRHTML\tapplication/x-erb\t0\n"
-"*.rlc\tXerox EDMICS-RLC\timage/vnd.fujixerox.edmics-rlc\t0\n"
-"*.rm\tRealAudio, Version 10\tapplication/vnd.rn-realmedia\t0\n"
-"*.rmd\tRMarkdown\ttext/x-gfm\t1\n"
-"*.rmi\tRIFF-based MIDI File Format\taudio/mid\t0\n"
-"*.rmp\tRealMedia Player Plug-in\taudio/x-pn-realaudio-plugin\t0\n"
-"*.roff\tRoff\ttext/troff\t0\n"
-"*.rpm\tRedHat Package Manager\tapplication/x-rpm\t0\n"
-"*.rs\tRust\ttext/x-rustsrc\t0\n"
-"*.rss\tRSS\tapplication/rss+xml\t0\n"
-"*.rst\treStructuredText\ttext/x-rst\t1\n"
-"*.rte\tRevit Template\tapplication/octet-stream\t0\n"
-"*.rtf\tRich Text Format File\tapplication/rtf\t0\n"
-"*.rv\tReal Video\tvideo/vnd.rn-realvideo\t0\n"
-"*.rvg\tRevit External Group\tapplication/octet-stream\t0\n"
-"*.rvt\tRevit Project\tapplication/octet-stream\t0\n"
-"*.rws\tRevit Workspace\tapplication/octet-stream\t0\n"
-"*.rwz\tRawzor raw image\timage/x-raw-rawzor\t0\n"
-"*.s\tAssembler source code\ttext/x-asm\t0\n"
-"*.s7m\tSAS DMDB Data Mining Database File\tapplication/x-sas-dmdb\t0\n"
-"*.sa7\tSAS Access Descriptor\tapplication/x-sas-access\t0\n"
-"*.sage\tSage\ttext/x-python\t0\n"
-"*.sam\tAMI Professional Document\tapplication/vnd.lotus-wordpro\t0\n"
-"*.sas\tSAS Program\tapplication/x-sas\t0\n"
-"*.sas7bbak\tSAS Backup\tapplication/x-sas-backup\t0\n"
-"*.sass\tSass\ttext/x-sass\t0\n"
-"*.sav\tSPSS System Data File Format Family (.sav)\tapplication/x-spss-sav\t0\n"
-"*.sc7\tSAS Catalog\tapplication/x-sas-catalog\t0\n"
-"*.scala\tScala source code\ttext/x-scala\t0\n"
-"*.sch\tEagle\ttext/xml\t0\n"
-"*.scm\tScheme source code\ttext/x-scheme\t0\n"
-"*.scores\tXbill.scores\ttext/plain\t0\n"
-"*.scss\tSCSS\ttext/x-scss\t0\n"
-"*.sd7\tSAS Data Set\tapplication/x-sas-data\t0\n"
-"*.sda\tSDA (StarOffice)\tapplication/vnd.stardivision.draw\t0\n"
-"*.sdc\tSDC\tapplication/vnd.stardivision.calc\t0\n"
-"*.sdn\tSteel Detailing Neutral Format\ttext/plain\t0\n"
-"*.sdw\tStarOffice binary formats\tapplication/vnd.stardivision.writer\t0\n"
-"*.sed\tSed code\ttext/x-sed\t0\n"
-"*.sf7\tSAS FDB Consolidation Database File\tapplication/x-sas-fdb\t0\n"
-"*.sfd\tSpline Font Database\tapplication/vnd.font-fontforge-sfd\t0\n"
-"*.sgm\tStandard Generalized Markup Language\ttext/sgml\t0\n"
-"*.sgml\tSGML\ttext/sgml\t0\n"
-"*.sh\tUNIX/LINUX Shell Script\tapplication/x-sh\t0\n"
-"*.sh-session\tShellSession\ttext/x-sh\t0\n"
-"*.shar\tShell Archive Format\tapplication/x-shar\t0\n"
-"*.shtml\tServer Side Includes\ttext/x-server-parsed-html\t0\n"
-"*.si7\tSAS Data Set Index\tapplication/x-sas-data-index\t0\n"
-"*.sid\tSID\taudio/prs.sid\t0\n"
-"*.sit\tStuffIt\tapplication/x-stuffit\t0\n"
-"*.sitx\tStuffIt X\tapplication/x-stuffitx\t0\n"
-"*.skb\tSketchUp Document\tapplication/octet-stream\t0\n"
-"*.skp\tSSEYO Koan File\tapplication/vnd.koan\t0\n"
-"*.sla\tScribus\tapplication/vnd.scribus\t0\n"
-"*.sld\tAutoCAD Slide\tapplication/sld\t0\n"
-"*.sldm\tMicrosoft PowerPoint Macro-Enabled Slide 2007\tapplication/vnd.ms-powerpoint.slide.macroenabled.12;version=\"2007\"\t0\n"
-"*.sldprt\tSolidWorks CAD program\tapplication/sldworks\t0\n"
-"*.slim\tSlim\ttext/x-slim\t0\n"
-"*.sls\tSaltStack\ttext/x-yaml\t0\n"
-"*.sm7\tSAS MDDB Multi-Dimensional Database File\tapplication/x-sas-mddb\t0\n"
-"*.smi\tSMIL Multimedia\tapplication/smil+xml\t0\n"
-"*.smk\tSmacker\tvideo/vnd.radgamettools.smacker\t0\n"
-"*.soy\tClosure Templates\ttext/x-soy\t0\n"
-"*.sp7\tSAS Permanent Utility\tapplication/x-sas-putility\t0\n"
-"*.sparql\tSPARQL\tapplication/sparql-query\t0\n"
-"*.spec\tRPM Spec\ttext/x-rpm-spec\t0\n"
-"*.spl\tMacromedia FutureSplash File\tapplication/x-futuresplash\t0\n"
-"*.spx\tOgg Speex Audio Format\taudio/speex\t0\n"
-"*.sql\tSQL code\ttext/x-sql\t0\n"
-"*.sr7\tSAS Item Store (ItemStor) File\tapplication/x-sas-itemstor\t0\n"
-"*.srl\tSereal binary serialization format\tapplication/sereal\t0\n"
-"*.srt\tSRecode Template\ttext/x-common-lisp\t0\n"
-"*.ss7\tSAS Stored Program (DATA Step)\tapplication/x-sas-program-data\t0\n"
-"*.ssml\tSpeech Synthesis Markup Language\tapplication/ssml+xml\t0\n"
-"*.st\tSmalltalk source code\ttext/x-stsrc\t0\n"
-"*.st7\tSAS Audit\tapplication/x-sas-audit\t0\n"
-"*.stw\tSTW\tapplication/vnd.sun.xml.writer.template\t0\n"
-"*.stx\tSAS Transport File\tapplication/x-sas-transport\t0\n"
-"*.su7\tSAS Utility\tapplication/x-sas-utility\t0\n"
-"*.sublime-build\tJSON with Comments\ttext/javascript\t0\n"
-"*.sv\tSystemVerilog\ttext/x-systemverilog\t0\n"
-"*.sv7\tSAS Data Set View\tapplication/x-sas-view\t0\n"
-"*.svf\tSimple Vector Format\timage/vnd.svf\t0\n"
-"*.svg\tScalable Vector Graphics\timage/svg+xml\t0\n"
-"*.svgz\tScalable Vector Graphics Compressed\timage/svg+xml\t0\n"
-"*.swf\tSWF\tapplication/vnd.adobe.flash-movie\t0\n"
-"*.swift\tSwift\ttext/x-swift\t0\n"
-"*.sxc\tOpenOffice Calc 1.0\tapplication/vnd.sun.xml.calc;version=\"1.0\"\t0\n"
-"*.sxd\tSXD\tapplication/vnd.sun.xml.draw\t0\n"
-"*.sxi\tSXI\tapplication/vnd.sun.xml.impress\t0\n"
-"*.sxw\tOpenOffice.org XML\tapplication/vnd.sun.xml.writer\t0\n"
-"*.sz\tSnappy Framed\tapplication/x-snappy-framed\t0\n"
-"*.t\tTADS\tapplication/x-tads\t0\n"
-"*.tap\tTAP (Tencent)\timage/vnd.tencent.tap\t0\n"
-"*.tar\tTape Archive\tapplication/x-tar\t0\n"
-"*.tcl\tTcl\ttext/x-tcl\t0\n"
-"*.tcsh\tTcsh\ttext/x-sh\t0\n"
-"*.tex\tTeX Source\ttext/x-tex\t0\n"
-"*.textile\tTextile\ttext/x-textile\t1\n"
-"*.tfw\tESRI World File\ttext/plain\t0\n"
-"*.tfx\tTagged Image File Format for Internet Fax (TIFF-FX)\timage/tiff\t0\n"
-"*.thmx\tMicrosoft Office Theme\tapplication/vnd.ms-officetheme\t0\n"
-"*.tif\tTagged Image File Format for Image Technology (TIFF/IT)\timage/tiff\t0\n"
-"*.tif \tDigital Raster Graphic as TIFF\timage/tiff\t0\n"
-"*.tiff\tTagged Image File Format\timage/tiff\t0\n"
-"*.toml\tTOML\ttext/x-toml\t0\n"
-"*.torrent\tTorrent file\tapplication/x-bittorrent\t0\n"
-"*.tpl\tSmarty\ttext/x-smarty\t0\n"
-"*.ts\tTypeScript\tapplication/typescript\t0\n"
-"*.tsv\tTab-separated values\ttext/tab-separated-values\t0\n"
-"*.tta\tTrue Audio 1\taudio/tta;version=\"1\"\t0\n"
-"*.ttf\tTrueType Font\tapplication/x-font-ttf\t0\n"
-"*.ttl\tTurtle\ttext/turtle\t0\n"
-"*.twig\tTwig\ttext/x-twig\t0\n"
-"*.txt\tPlain text\ttext/plain\t0\n"
-"*.u3d\tUniversal 3D (U3D) format family. ECMA-363, Editions 1-4\tmodel/u3d\t0\n"
-"*.uc\tUnrealScript\ttext/x-java\t0\n"
-"*.ulx\tGlulx\tapplication/x-glulx\t0\n"
-"*.uno\tUno\ttext/x-csharp\t0\n"
-"*.upc\tUnified Parallel C\ttext/x-csrc\t0\n"
-"*.url\tInternet Shortcut\tapplication/x-url\t0\n"
-"*.v\tVerilog source code\ttext/x-verilog\t0\n"
-"*.vb\tVisual Basic\ttext/x-vb\t0\n"
-"*.vbs\tVBScript source code\ttext/x-vbscript\t0\n"
-"*.vcd\tVirtual CD-ROM CD Image File\tapplication/x-cdlink\t0\n"
-"*.vcf\tVCard\ttext/vcard\t0\n"
-"*.vcs\tVCalendar format\ttext/x-vcalendar\t0\n"
-"*.vdx\tMicrosoft Visio XML Drawing 2003-2010\tapplication/vnd.visio;version=\"2003-2010\"\t0\n"
-"*.vhd\tVHDL source code\ttext/x-vhdl\t0\n"
-"*.vhdl\tVHDL\ttext/x-vhdl\t0\n"
-"*.viv\tVivoActive\tvideo/vnd-vivo\t0\n"
-"*.vmdk\tVirtual Disk Format\tapplication/x-vmdk\t0\n"
-"*.vmt\tValve Material Type\tapplication/vnd.valve.source.material\t0\n"
-"*.volt\tVolt\ttext/x-d\t0\n"
-"*.vot\tVOTable\tapplication/x-votable+xml\t0\n"
-"*.vpb\tQuantel VPB image\timage/vpb\t0\n"
-"*.vsd\tMicrosoft Visio Diagram\tapplication/vnd.visio\t0\n"
-"*.vsdm\tOffice Open XML Visio Drawing (macro-enabled)\tapplication/vnd.ms-visio.drawing.macroenabled.12\t0\n"
-"*.vsdx\tVisio VSDX Drawing File Format\tapplication/vnd.visio\t0\n"
-"*.vssm\tOffice Open XML Visio Stencil (macro-enabled)\tapplication/vnd.ms-visio.stencil.macroenabled.12\t0\n"
-"*.vssx\tOffice Open XML Visio Stencil (macro-free)\tapplication/vnd.ms-visio.stencil\t0\n"
-"*.vstm\tOffice Open XML Visio Template (macro-enabled)\tapplication/vnd.ms-visio.template.macroenabled.12\t0\n"
-"*.vstx\tOffice Open XML Visio Template (macro-free)\tapplication/vnd.ms-visio.template\t0\n"
-"*.vtf\tValve Texture Format\timage/vnd.valve.source.texture\t0\n"
-"*.vtt\tWeb Video Text Tracks Format\ttext/vtt\t0\n"
-"*.vwx\tVectorworks 2015\tapplication/vnd.vectorworks;version=\"2015\"\t0\n"
-"*.w50\tWordPerfect for MS-DOS Document 5.0\tapplication/vnd.wordperfect;version=\"5.0\"\t0\n"
-"*.w51\tWordPerfect for MS-DOS/Windows Document 5.1\tapplication/vnd.wordperfect;version=\"5.1\"\t0\n"
-"*.w52\tWordPerfect for Windows Document 5.2\tapplication/vnd.wordperfect;version=\"5.2\"\t0\n"
-"*.warc\tWARC, Web ARChive file format\tapplication/warc\t0\n"
-"*.wast\tWebAssembly\ttext/x-common-lisp\t0\n"
-"*.wav\tWaveform Audio\taudio/x-wav\t0\n"
-"*.wbmp\tWireless Bitmap File Format\timage/vnd.wap.wbmp\t0\n"
-"*.webapp\tOpen Web App Manifest\tapplication/x-web-app-manifest+json\t0\n"
-"*.webidl\tWebIDL\ttext/x-webidl\t0\n"
-"*.webm\tWebM\tvideo/webm\t0\n"
-"*.webp\tWebP\timage/webp\t0\n"
-"*.wisp\twisp\ttext/x-clojure\t0\n"
-"*.wk1\tLotus 1-2-3 Worksheet 2.0\tapplication/vnd.lotus-1-2-3;version=\"2.0\"\t0\n"
-"*.wk3\tLotus 1-2-3 Worksheet 3.0\tapplication/vnd.lotus-1-2-3;version=\"3.0\"\t0\n"
-"*.wk4\tLotus 1-2-3 Worksheet 4-5\tapplication/vnd.lotus-1-2-3;version=\"4-5\"\t0\n"
-"*.wks\tLotus 1-2-3\tapplication/vnd.lotus-1-2-3\t0\n"
-"*.wma\tWMA (Windows Media Audio) File Format\taudio/x-ms-wma\t0\n"
-"*.wmf\tWindows Metafile\timage/wmf\t0\n"
-"*.wmlc\tCompiled WML Document\tapplication/vnd.wap.wmlc\t0\n"
-"*.wmls\tWML Script\ttext/vnd.wap.wmlscript\t0\n"
-"*.wmlsc\tCompiled WML Script\tapplication/vnd.wap.wmlscriptc\t0\n"
-"*.wmv\tWMV (Windows Media Video) File Format\tvideo/x-ms-wmv\t0\n"
-"*.woff\tWeb Open Font Format\tapplication/font-woff\t0\n"
-"*.wp4\tWordPerfect 4.0/4.1/4.2\tapplication/vnd.wordperfect;version=\"4.0/4.1/4.2\"\t0\n"
-"*.wpd\tWordPerfect\tapplication/vnd.wordperfect\t0\n"
-"*.wpl\tWindows Media Playlist\tapplication/vnd.ms-wpl\t0\n"
-"*.wrl\tVRML\tmodel/vrml\t0\n"
-"*.wsz\tWinamp Skin\tinterface/x-winamp-skin\t0\n"
-"*.x3d\tX3D\tmodel/x3d+xml\t0\n"
-"*.x3f\tSigma raw image\timage/x-raw-sigma\t0\n"
-"*.xap\tSilverlight\tapplication/x-silverlight-app\t0\n"
-"*.xar\tXar (vector graphics)\tapplication/vnd.xara\t0\n"
-"*.xbm\tXBM\timage/x-xbitmap\t0\n"
-"*.xc\tXC\ttext/x-csrc\t0\n"
-"*.xcf\tGIMP Image File\timage/xcf\t0\n"
-"*.xdm\tX-Windows Screen Dump File X10\timage/x-xwindowdump;version=\"x10\"\t0\n"
-"*.xfdf\tXFDF\tapplication/vnd.adobe.xfdf\t0\n"
-"*.xhtml\tExtensible HyperText Markup Language (XHTML), 1.0\tapplication/xhtml+xml\t0\n"
-"*.xif\tXIFF\timage/vnd.xiff\t0\n"
-"*.xla\tMicrosoft Excel Macro 4.0\tapplication/vnd.ms-excel;version=\"4.0\"\t0\n"
-"*.xlam\tOffice Open XML Workbook Add-in (macro-enabled)\tapplication/vnd.ms-excel.addin.macroenabled.12\t0\n"
-"*.xlc\tMicrosoft Excel Chart 3.0\tapplication/vnd.ms-excel;version=\"3.0\"\t0\n"
-"*.xlm\tMicrosoft Excel Macro 3.0\tapplication/vnd.ms-excel;version=\"3.0\"\t0\n"
-"*.xls\tMicrosoft Excel Spreadsheet\tapplication/vnd.ms-excel\t0\n"
-"*.xlsb\tMicrosoft Excel 2007 Binary Spreadsheet\tapplication/vnd.ms-excel.sheet.binary.macroenabled.12\t0\n"
-"*.xlsm\tOffice Open XML Workbook (macro-enabled)\tapplication/vnd.ms-excel.sheet.macroenabled.12\t0\n"
-"*.xlsx\tOffice Open XML Workbook\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.sheet\t0\n"
-"*.xltm\tOffice Open XML Workbook Template (macro-enabled)\tapplication/vnd.ms-excel.template.macroenabled.12\t0\n"
-"*.xltx\tOffice Open XML Workbook Template\tapplication/vnd.openxmlformats-officedocument.spreadsheetml.template\t0\n"
-"*.xlw\tMicrosoft Excel 4.0 Workbook (xls) 4W\tapplication/vnd.ms-excel;version=\"4w\"\t0\n"
-"*.xm\tExtended Module Audio File\taudio/xm\t0\n"
-"*.xmf\tXMF, eXtensible Music File Format, Version 1.0\taudio/mobile-xmf\t0\n"
-"*.xmind\tXMind Pro\tapplication/x-xmind\t0\n"
-"*.xml\tExtensible Markup Language\tapplication/xml\t0\n"
-"*.xmt\tMPEG-4, eXtensible MPEG-4 Textual Format (XMT)\tapplication/mpeg4-iod-xmt\t0\n"
-"*.xpi\tCross-Platform Installer Module\tapplication/x-xpinstall\t0\n"
-"*.xpl\tXProc\ttext/xml\t0\n"
-"*.xpm\tX-Windows Pixmap Image X10\timage/x-xpixmap;version=\"x10\"\t0\n"
-"*.xps\tOpen XML Paper Specification\tapplication/oxps\t0\n"
-"*.xpt\tSAS Transport File Format (XPORT) Family \tapplication/x-sas-xport\t0\n"
-"*.xq\tXQuery source code\tapplication/xquery\t0\n"
-"*.xquery\tXQuery\tapplication/xquery\t0\n"
-"*.xs\tXS\ttext/x-csrc\t0\n"
-"*.xsd\tXML Schema Definition\tapplication/xml\t0\n"
-"*.xsl\tExtensible Stylesheet Language\tapplication/xml\t0\n"
-"*.xslfo\tXSL Format\tapplication/xslfo+xml\t0\n"
-"*.xslt\tXSL Transformations\tapplication/xslt+xml\t0\n"
-"*.xsp-config\tXPages\ttext/xml\t0\n"
-"*.xspf\tXML Shareable Playlist Format\tapplication/xspf+xml\t0\n"
-"*.xwd\tX Windows Dump\timage/x-xwindowdump\t0\n"
-"*.xz\tXZ\tapplication/x-xz\t0\n"
-"*.y\tYacc/Bison source code\ttext/x-yacc\t0\n"
-"*.yaml\tYAML source code\ttext/x-yaml\t0\n"
-"*.yml\tYAML\ttext/x-yaml\t0\n"
-"*.zip\tCompressed Archive File\tapplication/zip\t0\n";
-
+const char* MegaMimeTypes[][COMPONENTS_NUMBER] =
+{	
+	{"*.1", "Roff Manpage", "text/troff", "0"},
+	{"*.3ds", "3DS", "image/x-3ds", "0"},
+	{"*.3fr", "Hasselblad raw image", "image/x-raw-hasselblad", "0"},
+	{"*.3g2", "3G2", "video/3gpp2", "0"},
+	{"*.3gp", "3GP", "video/3gpp", "0"},
+	{"*.3mf", "3MF 3D Manufacturing Format", "application/vnd.ms-package.3dmanufacturing-3dmodel+xml", "0"},
+	{"*.4th", "Forth source code", "text/x-forth", "0"},
+	{"*.669", "Module Music Formats (Mods)", "audio/x-mod", "0"},
+	{"*.6pl", "Perl 6", "text/x-perl", "0"},
+	{"*.7z", "7-zip archive", "application/x-7z-compressed", "0"},
+	{"*.8svx", "8-Bit Sampled Voice", "audio/8svx", "0"},
+	{"*.ML", "Standard ML", "text/x-ocaml", "0"},
+	{"*.MYD", "MySQL MISAM Data", "application/x-mysql-misam-data", "0"},
+	{"*.MYI", "MySQL MISAM Compressed Index", "application/x-mysql-misam-compressed-index", "0"},
+	{"*.R", "R", "text/x-rsrc", "0"},
+	{"*.TIF", "TIFF Uncompressed File with Exif Metadata", "image/tiff", "0"},
+	{"*.XXX", "Template:File Format/Preload", "application/octet-stream", "0"},
+	{"*.Z", "Compress", "application/x-compress", "0"},
+	{"*.aa", "Audible.Com File Format", "audio/x-pn-audibleaudio", "0"},
+	{"*.ac3", "Dolby Digital AC-3", "audio/ac3", "0"},
+	{"*.acsm", "Adobe Content Server Message File", "application/vnd.adobe.adept+xml", "0"},
+	{"*.ada", "Ada source code", "text/x-ada", "0"},
+	{"*.adf", "AppleDouble", "multipart/appledouble", "0"},
+	{"*.afa", "Astrotite", "application/x-astrotite-afa", "0"},
+	{"*.afm", "Adobe Font Metric", "application/x-font-adobe-metric", "0"},
+	{"*.ai", "Adobe Illustrator Artwork", "application/illustrator", "0"},
+	{"*.aif", "Audio Interchange File Format", "audio/x-aiff", "0"},
+	{"*.aifc", "Audio Interchange File Format (compressed)", "audio/x-aiff", "0"},
+	{"*.aiff", "AIFF", "audio/x-aiff", "0"},
+	{"*.air", "Adobe Air 1.0", "application/vnd.adobe.air-application-installer-package+zip;version=\"1.0\"", "0"},
+	{"*.aj", "AspectJ source code", "text/x-aspectj", "0"},
+	{"*.amr", "AMR, Adaptive Multi-Rate Speech Codec", "audio/amr", "0"},
+	{"*.anim", "Unity3D Asset", "text/x-yaml", "0"},
+	{"*.anpa", "American Newspaper Publishers Association Wire Feeds", "text/vnd.iptc.anpa", "0"},
+	{"*.ans", "7-bit ANSI Text", "text/plain", "0"},
+	{"*.apl", "APL", "text/apl", "0"},
+	{"*.apng", "Animated Portable Network Graphics", "image/vnd.mozilla.apng", "0"},
+	{"*.applescript", "AppleScript source code", "text/x-applescript", "0"},
+	{"*.apr", "Lotus Approach View File 97", "application/vnd.lotus-approach;version=\"97\"", "0"},
+	{"*.apt", "Lotus Approach View File", "application/vnd.lotus-approach", "0"},
+	{"*.arc", "Internet Archive 1.0", "application/x-internet-archive;version=\"1.0\"", "0"},
+	{"*.arw", "Sony raw image", "image/x-raw-sony", "0"},
+	{"*.as", "ActionScript source code", "text/x-actionscript", "0"},
+	{"*.asc", "7-bit ASCII Text", "text/plain", "0"},
+	{"*.asciidoc", "Asciidoc source code", "text/x-asciidoc", "0"},
+	{"*.asf", "Advanced Systems Format", "application/vnd.ms-asf", "0"},
+	{"*.asice", "Extended Associated Signature Container", "application/vnd.etsi.asic-e+zip", "0"},
+	{"*.asics", "Simple Associated Signature Container", "application/vnd.etsi.asic-s+zip", "0"},
+	{"*.asn", "ASN.1", "text/x-ttcn-asn", "0"},
+	{"*.asp", "ASP", "application/x-aspx", "0"},
+	{"*.aspx", "ASP .NET", "text/aspdotnet", "0"},
+	{"*.asy", "LTspice Symbol", "text/x-spreadsheet", "0"},
+	{"*.atom", "Atom", "application/atom+xml", "0"},
+	{"*.au", "uLaw/AU Audio File", "audio/basic", "0"},
+	{"*.avi", "AVI (Audio Video Interleaved) File Format", "video/msvideo", "0"},
+	{"*.awb", "Adaptive Multi-Rate Wideband Audio", "audio/amr-wb", "0"},
+	{"*.awk", "AWK script", "text/x-awk", "0"},
+	{"*.axc", "Axc", "text/plain", "0"},
+	{"*.axx", "AxCrypt", "application/x-axcrypt", "0"},
+	{"*.b", "Brainfuck", "text/x-brainfuck", "0"},
+	{"*.b6z", "B6Z", "application/x-b6z-compressed", "0"},
+	{"*.bas", "Basic source code", "text/x-basic", "0"},
+	{"*.bay", "Casio raw image", "image/x-raw-casio", "0"},
+	{"*.bik", "Bink Video", "video/vnd.radgamettools.bink", "0"},
+	{"*.bik2", "Bink Video Format 2", "video/vnd.radgamettools.bink;version=\"2\"", "0"},
+	{"*.bin", "MacBinary", "application/x-macbinary", "0"},
+	{"*.bmp", "Windows bitmap", "image/bmp", "0"},
+	{"*.bpg", "Better Portable Graphics", "image/x-bpg", "0"},
+	{"*.bpm", "BizAgi Process Modeler", "application/bizagi-modeler", "0"},
+	{"*.bsp", "BSP", "model/vnd.valve.source.compiled-map", "0"},
+	{"*.btf", "BigTIFF", "image/tiff", "0"},
+	{"*.bw", "Silicon Graphics Image", "image/x-sgi-bw", "0"},
+	{"*.bz2", "Bzip2", "application/x-bzip2", "0"},
+	{"*.c", "C source code", "text/x-csrc", "0"},
+	{"*.cab", "Cabinet", "application/vnd.ms-cab-compressed", "0"},
+	{"*.cabal", "Cabal Config", "text/x-haskell", "0"},
+	{"*.cap", "pcap Packet Capture", "application/vnd.tcpdump.pcap", "0"},
+	{"*.catmaterial", "CATIA 5", "application/octet-stream;version=\"5\"", "0"},
+	{"*.catpart", "CATIA Model (Part Description) 5", "application/octet-stream;version=\"5\"", "0"},
+	{"*.catproduct", "CATIA Product Description 5", "application/octet-stream;version=\"5\"", "0"},
+	{"*.cbl", "COBOL source code", "text/x-cobol", "0"},
+	{"*.cbor", "Concise Binary Object Representation container", "application/cbor", "0"},
+	{"*.cbz", "Comic Book Archive", "application/x-cbr", "0"},
+	{"*.cca", "cc:Mail Archive Email Format", "application/octet-stream", "0"},
+	{"*.cda", "CD Audio", "application/x-cdf", "0"},
+	{"*.cdf", "netCDF-3 Classic", "application/x-netcdf", "0"},
+	{"*.cdx", "Chemical Draw Exchange Format", "chemical/x-cdx", "0"},
+	{"*.cfm", "ColdFusion source code", "text/x-coldfusion", "0"},
+	{"*.cfs", "Compact File Set", "application/x-cfs-compressed", "0"},
+	{"*.cgi", "CGI script", "text/x-cgi", "0"},
+	{"*.cgm", "Computer Graphics Metafile", "image/cgm", "0"},
+	{"*.chm", "Microsoft Compiled HTML Help", "application/vnd.ms-htmlhelp", "0"},
+	{"*.chrt", "KChart File", "application/x-kchart", "0"},
+	{"*.chs", "C2hs Haskell", "text/x-haskell", "0"},
+	{"*.cif", "CIF", "chemical/x-cif", "0"},
+	{"*.ck", "ChucK", "text/x-java", "0"},
+	{"*.cl", "Common Lisp source code", "text/x-common-lisp", "0"},
+	{"*.class", "Java Class File", "application/x-java", "0"},
+	{"*.clj", "Clojure source code", "text/x-clojure", "0"},
+	{"*.cls", "Visual basic source code", "text/x-vbasic", "0"},
+	{"*.cmake", "CMake", "text/x-cmake", "0"},
+	{"*.cml", "CML", "chemical/x-cml", "0"},
+	{"*.cob", "COBOL", "text/x-cobol", "0"},
+	{"*.cod", "Lightning Strike", "image/cis-cod", "0"},
+	{"*.coffee", "CoffeeScript", "application/vnd.coffeescript", "0"},
+	{"*.cp", "Component Pascal", "text/x-pascal", "0"},
+	{"*.cpio", "UNIX CPIO Archive", "application/x-cpio", "0"},
+	{"*.cpp", "C++ source code", "text/x-c++src", "0"},
+	{"*.cr", "Crystal", "text/x-crystal", "0"},
+	{"*.crw", "Camera Image File Format", "image/x-canon-crw", "0"},
+	{"*.crx", "Chrome Extension Package", "application/x-chrome-package", "0"},
+	{"*.cs", "C# source code", "text/x-csharp", "0"},
+	{"*.cshtml", "HTML+Razor", "text/html", "0"},
+	{"*.cson", "CSON", "text/x-coffeescript", "0"},
+	{"*.csr", "PKCS10", "application/pkcs10", "0"},
+	{"*.css", "Cascading Style Sheet", "text/css", "0"},
+	{"*.csv", "Comma Separated Values", "text/csv", "0"},
+	{"*.csvs", "CSV Schema", "text/csv-schema", "0"},
+	{"*.cu", "Cuda", "text/x-c++src", "0"},
+	{"*.cur", "Microsoft Windows Cursor", "image/x-win-bitmap", "0"},
+	{"*.cwl", "Common Workflow Language", "text/x-yaml", "0"},
+	{"*.cy", "Cycript", "text/javascript", "0"},
+	{"*.d", "D source code", "text/x-d", "0"},
+	{"*.dae", "COLLADA", "text/xml", "0"},
+	{"*.dart", "Dart", "application/dart", "0"},
+	{"*.dat", "MapInfo Data File (DAT)", "application/dbase", "0"},
+	{"*.db", "SQLite Database File Format", "application/x-sqlite3", "0"},
+	{"*.dbf", "dBASE Table File Format (DBF)", "application/x-dbf", "0"},
+	{"*.dcm", "Digital Imaging and Communications in Medicine File Format", "application/dicom", "0"},
+	{"*.dcr", "Shockwave (Director)", "application/x-director", "0"},
+	{"*.dcx", "Multipage Zsoft Paintbrush Bitmap Graphics", "image/x-dcx", "0"},
+	{"*.deb", "Deb", "application/vnd.debian.binary-package", "0"},
+	{"*.der", "DER encoded certificate", "application/x-x509-ca-cert", "0"},
+	{"*.dex", "Dalvik Executable Format", "application/x-dex", "0"},
+	{"*.dgc", "DGCA", "application/x-dgc-compressed", "0"},
+	{"*.diff", "Diff", "text/x-diff", "0"},
+	{"*.dir", "Shockwave Movie", "application/x-director", "0"},
+	{"*.dita", "DITA Topic", "application/dita+xml;format=topic", "0"},
+	{"*.ditamap", "DITA Map", "application/dita+xml;format=map", "0"},
+	{"*.ditaval", "DITA Conditional Processing Profile", "application/dita+xml;format=val", "0"},
+	{"*.diz", "FILE ID.DIZ", "text/plain", "0"},
+	{"*.djv", "Secure DjVU", "image/vnd.djvu", "0"},
+	{"*.djvu", "DjVu", "image/vnd.djvu", "0"},
+	{"*.dll", "Windows Portable Executable", "application/octet-stream", "0"},
+	{"*.dls", "Downloadable Sounds Audio", "audio/dls", "0"},
+	{"*.dmg", "Apple Disk Image", "application/x-apple-diskimage", "0"},
+	{"*.dng", "Adobe Digital Negative", "image/x-raw-adobe", "0"},
+	{"*.doc", "Microsoft Word", "application/msword", "0"},
+	{"*.dockerfile", "Dockerfile", "text/x-dockerfile", "0"},
+	{"*.docm", "Office Open XML Document (macro-enabled)", "application/vnd.ms-word.document.macroenabled.12", "0"},
+	{"*.docx", "OOXML Format Family -- ISO/IEC 29500 and ECMA 376", "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "0"},
+	{"*.dot", "Microsoft Word Document Template (Password Protected) 97-2003", "application/msword;version=\"97-2003\"", "0"},
+	{"*.dotm", "Office Open XML Document Template (macro-enabled)", "application/vnd.ms-word.template.macroenabled.12", "0"},
+	{"*.dotx", "Office Open XML Document Template", "application/vnd.openxmlformats-officedocument.wordprocessingml.template", "0"},
+	{"*.dpx", "Digital Moving-Picture Exchange (DPX), Version 2.0", "image/x-dpx", "0"},
+	{"*.drc", "Ogg Packaged Dirac Video", "video/x-dirac", "0"},
+	{"*.druby", "Mirah", "text/x-ruby", "0"},
+	{"*.dtd", "XML Document Type Definition (DTD)", "application/xml-dtd", "0"},
+	{"*.dts", "DTS Coherent Acoustics (DCA) Audio", "audio/vnd.dts", "0"},
+	{"*.dv", "Digital Video", "video/dv", "0"},
+	{"*.dvi", "DVI (Device Independent File Format)", "application/x-dvi", "0"},
+	{"*.dwf", "AutoCAD Design Web Format 6.0", "application/dwf;version=\"6.0\"", "0"},
+	{"*.dwfx", "AutoCAD Design Web Format", "model/vnd.dwfx+xps", "0"},
+	{"*.dwg", "AutoCad Drawing", "image/vnd.dwg", "0"},
+	{"*.dwl", "AutoCAD Database File Locking Information", "application/octet-stream", "0"},
+	{"*.dx", "DEC Data Exchange File", "application/dec-dx.", "0"},
+	{"*.dxb", "AutoCAD DXF simplified Binary", "image/vnd.dxb", "0"},
+	{"*.dxf", "AutoCAD DXF", "image/vnd.dxf", "0"},
+	{"*.dxr", "Play SID Audio 1", "audio/prs.sid;version=\"1\"", "0"},
+	{"*.dylan", "Dylan", "text/x-dylan", "0"},
+	{"*.e", "Eiffel source code", "text/x-eiffel", "0"},
+	{"*.eb", "Easybuild", "text/x-python", "0"},
+	{"*.ebnf", "EBNF", "text/x-ebnf", "0"},
+	{"*.ebuild", "Gentoo Ebuild", "text/x-sh", "0"},
+	{"*.ecl", "ECL", "text/x-ecl", "0"},
+	{"*.eclass", "Gentoo Eclass", "text/x-sh", "0"},
+	{"*.ecr", "HTML+ECR", "text/html", "0"},
+	{"*.edc", "Edje Data Collection", "application/json", "0"},
+	{"*.edn", "edn", "text/x-clojure", "0"},
+	{"*.eex", "HTML+EEX", "text/html", "0"},
+	{"*.el", "Emacs Lisp source code", "text/x-emacs-lisp", "0"},
+	{"*.elc", "Emacs Lisp bytecode", "application/x-elc", "0"},
+	{"*.elm", "Elm", "text/x-elm", "0"},
+	{"*.em", "EmberScript", "text/x-coffeescript", "0"},
+	{"*.emf", "Enhanced Metafile", "image/emf", "0"},
+	{"*.eml", "Internet e-mail message format", "message/rfc822", "0"},
+	{"*.enr", "EndNote Import File", "application/x-endnote-refer", "0"},
+	{"*.ens", "EndNote Style File", "application/x-endnote-style", "0"},
+	{"*.enz", "EndNote Connection File", "application/x-endnote-connect", "0"},
+	{"*.eot", "Embedded OpenType", "application/vnd.ms-fontobject", "0"},
+	{"*.epj", "Ecere Projects", "application/json", "0"},
+	{"*.eps", "Encapsulated PostScript (EPS) File Format, Version 3.x", "application/postscript", "0"},
+	{"*.epub", "Electronic Publication", "application/epub+zip", "0"},
+	{"*.eq", "EQ", "text/x-csharp", "0"},
+	{"*.erb", "HTML+ERB", "application/x-erb", "0"},
+	{"*.erf", "Epson raw image", "image/x-raw-epson", "0"},
+	{"*.erl", "Erlang source code", "text/x-erlang", "0"},
+	{"*.es", "ECMAScript", "application/ecmascript", "0"},
+	{"*.exe", "DOS/Windows executable (EXE)", "application/x-dosexec", "0"},
+	{"*.exp", "Expect Script", "text/x-expect", "0"},
+	{"*.exr", "OpenEXR 2", "image/x-exr;version=\"2\"", "0"},
+	{"*.f", "Fortran source code", "text/x-fortran", "0"},
+	{"*.f4a", "MPEG-4 Media File", "video/mp4", "0"},
+	{"*.f4m", "F4M", "application/f4m", "0"},
+	{"*.f90", "Fortran", "text/x-fortran", "0"},
+	{"*.factor", "Factor", "text/x-factor", "0"},
+	{"*.fb2", "FictionBook document", "application/x-fictionbook+xml", "0"},
+	{"*.fdf", "Forms Data Format", "application/vnd.fdf", "0"},
+	{"*.fff", "Imacon raw image", "image/x-raw-imacon", "0"},
+	{"*.fh", "FreeHand image", "image/x-freehand", "0"},
+	{"*.fig", "Matlab figure", "application/x-matlab-data", "0"},
+	{"*.fits", "Flexible Image Transport System", "image/fits", "0"},
+	{"*.flac", "FLAC (Free Lossless Audio Codec), Version 1.1.2", "audio/flac", "0"},
+	{"*.flif", "Free Lossless Image Format (FLIF)", "image/flif", "0"},
+	{"*.flv", "FLV", "video/x-flv", "0"},
+	{"*.fm", "FrameMaker", "application/vnd.framemaker", "0"},
+	{"*.fmz", "form*Z Project File", "application/octet-stream", "0"},
+	{"*.folio", "Folio", "application/vnd.adobe.folio+zip", "0"},
+	{"*.fp7", "FileMaker Pro 7", "application/x-filemaker", "0"},
+	{"*.fpx", "FlashPix", "image/vnd.fpx", "0"},
+	{"*.fref", "Freenet node reference", "text/plain", "0"},
+	{"*.fs", "F#", "text/x-fsharp", "0"},
+	{"*.fth", "Forth", "text/x-forth", "0"},
+	{"*.g3", "CCITT Group 3", "image/g3fax", "0"},
+	{"*.gbr", "Gerber Format", "application/vnd.gerber", "0"},
+	{"*.gca", "GCA", "application/x-gca-compressed", "0"},
+	{"*.geo", "GeoGebra 1.0", "application/vnd.geogebra.file;version=\"1.0\"", "0"},
+	{"*.gf", "Grammatical Framework", "text/x-haskell", "0"},
+	{"*.ggb", "Ggb", "application/vnd.geogebra.file", "0"},
+	{"*.gif", "Graphics Interchange Format", "image/gif", "0"},
+	{"*.gitconfig", "Git Config", "text/x-properties", "0"},
+	{"*.gitignore", "Ignore List", "text/x-sh", "0"},
+	{"*.glf", "Glyph", "text/x-tcl", "0"},
+	{"*.gml", "Geography Markup Language", "application/gml+xml", "0"},
+	{"*.gn", "GN", "text/x-python", "0"},
+	{"*.gnumeric", "Gnumeric", "application/x-gnumeric", "0"},
+	{"*.go", "Go source code", "text/x-go", "0"},
+	{"*.grb", "General Regularly-distributed Information in Binary form", "application/x-grib", "0"},
+	{"*.groovy", "Groovy source code", "text/x-groovy", "0"},
+	{"*.gsp", "Groovy Server Pages", "application/x-jsp", "0"},
+	{"*.gtar", "GNU tar Compressed File Archive (GNU Tape Archive)", "application/x-gtar", "0"},
+	{"*.gz", "Gzip Compressed Archive", "application/gzip", "0"},
+	{"*.h", "C source code header", "text/x-chdr", "0"},
+	{"*.haml", "HAML source code", "text/x-haml", "0"},
+	{"*.hcl", "HCL", "text/x-ruby", "0"},
+	{"*.hdf", "Hierarchical Data Format File", "application/x-hdf", "0"},
+	{"*.hdp", "HD Photo, Version 1.0 (Windows Media Photo)", "image/vnd.ms-photo", "0"},
+	{"*.hdr", "Radiance HDR", "image/vnd.radiance", "0"},
+	{"*.hh", "Hack", "application/x-httpd-php", "0"},
+	{"*.hpgl", "Hewlett Packard Graphics Language", "application/vnd.hp-hpgl", "0"},
+	{"*.hpp", "C++ source code header", "text/x-c++hdr", "0"},
+	{"*.hqx", "BinHex", "application/mac-binhex", "0"},
+	{"*.hs", "Haskell source code", "text/x-haskell", "0"},
+	{"*.htm", "Hypertext Markup Language", "text/html", "0"},
+	{"*.html", "HyperText Markup Language", "text/html", "0"},
+	{"*.http", "HTTP", "message/http", "0"},
+	{"*.hx", "Haxe source code", "text/x-haxe", "0"},
+	{"*.ibooks", "Apple iBook format", "application/x-ibooks+zip", "0"},
+	{"*.ico", "ICO", "image/vnd.microsoft.icon", "0"},
+	{"*.ics", "Internet Calendar and Scheduling format", "text/calendar", "0"},
+	{"*.idl", "Inteface Definition Language", "text/x-idl", "0"},
+	{"*.idml", "IDML", "application/vnd.adobe.indesign-idml-package", "0"},
+	{"*.iges", "Initial Graphics Exchange Specification (IGES) 5.x", "model/iges;version=\"5.x\"", "0"},
+	{"*.igs", "Initial Graphics Exchange Specification Format", "model/iges", "0"},
+	{"*.iiq", "Phase One raw image", "image/x-raw-phaseone", "0"},
+	{"*.ind", "Adobe InDesign Document Generic", "application/octet-stream;version=\"generic\"", "0"},
+	{"*.indd", "Adobe InDesign document", "application/x-adobe-indesign", "0"},
+	{"*.inf", "Windows Setup File", "application/inf", "0"},
+	{"*.ini", "Configuration file", "text/x-ini", "0"},
+	{"*.inx", "Adobe InDesign Interchange format", "application/x-adobe-indesign-interchange", "0"},
+	{"*.ipa", "Apple iOS IPA AppStore file", "application/x-itunes-ipa", "0"},
+	{"*.ipynb", "Jupyter Notebook", "application/json", "0"},
+	{"*.irclog", "IRC log", "text/mirc", "0"},
+	{"*.iso", "ISO Disk Image File Format", "application/x-iso9660-image", "0"},
+	{"*.itk", "Tcl script", "application/x-tcl", "0"},
+	{"*.j2c", "JPEG 2000 Codestream", "image/x-jp2-codestream", "0"},
+	{"*.jade", "Pug", "text/x-pug", "0"},
+	{"*.jar", "Java Archive", "application/java-archive", "0"},
+	{"*.java", "Java source code", "text/x-java", "0"},
+	{"*.jinja", "HTML+Django", "text/x-django", "0"},
+	{"*.jl", "Julia", "text/x-julia", "0"},
+	{"*.jls", "JPEG-LS", "image/jls", "0"},
+	{"*.jng", "JPEG Network Graphics", "image/x-jng", "0"},
+	{"*.jnilib", "Java Native Library for OSX", "application/x-java-jnilib", "0"},
+	{"*.jp2", "JPEG 2000", "image/jpx", "0"},
+	{"*.jpe", "Raw JPEG Stream", "image/jpeg", "0"},
+	{"*.jpf", "JPX (JPEG 2000 part 2)", "image/jpx", "0"},
+	{"*.jpg", "Joint Photographic Experts Group", "image/jpeg", "0"},
+	{"*.jpm", "JPEG 2000 Part 6 (JPM)", "image/jpm", "0"},
+	{"*.jq", "JSONiq", "application/json", "0"},
+	{"*.js", "JavaScript Source Code", "application/javascript", "0"},
+	{"*.json", "JSON (JavaScript Object Notation)", "application/json", "0"},
+	{"*.json-patch", "JSON Patch", "application/json-patch+json", "0"},
+	{"*.json5", "JSON5", "application/json", "0"},
+	{"*.jsonld", "JSON-LD", "application/ld+json", "0"},
+	{"*.jsp", "Java Server Pages", "application/x-jsp", "0"},
+	{"*.jsx", "JSX", "text/jsx", "0"},
+	{"*.jxr", "JPEG Extended Range", "image/jxr", "0"},
+	{"*.k25", "Kodak raw image", "image/x-raw-kodak", "0"},
+	{"*.kicad_pcb", "KiCad Layout", "text/x-common-lisp", "0"},
+	{"*.kid", "Genshi", "text/xml", "0"},
+	{"*.kil", "KIllustrator File", "application/x-killustrator", "0"},
+	{"*.kit", "Kit", "text/html", "0"},
+	{"*.kml", "Keyhole Markup Language", "application/vnd.google-earth.kml+xml", "0"},
+	{"*.kmz", "Keyhole Markup Language (Container)", "application/vnd.google-earth.kmz", "0"},
+	{"*.kpr", "KPresenter File", "application/x-kpresenter", "0"},
+	{"*.kra", "Krita Document Format", "application/x-krita", "0"},
+	{"*.ksp", "KSpread File", "application/x-kspread", "0"},
+	{"*.kt", "Kotlin", "text/x-kotlin", "0"},
+	{"*.ktx", "Khronos Texture File", "image/ktx", "0"},
+	{"*.kwd", "KWord File", "application/x-kword", "0"},
+	{"*.l", "Lex/Flex source code", "text/x-lex", "0"},
+	{"*.latex", "LaTeX Source Document", "application/x-latex", "0"},
+	{"*.latte", "Latte", "text/x-smarty", "0"},
+	{"*.less", "LESS source code", "text/x-less", "0"},
+	{"*.lfe", "LFE", "text/x-common-lisp", "0"},
+	{"*.lha", "LHA", "application/x-lzh-compressed", "0"},
+	{"*.lhs", "Literate Haskell", "text/x-literate-haskell", "0"},
+	{"*.lisp", "Common Lisp", "text/x-common-lisp", "0"},
+	{"*.log", "application log", "text/x-log", "0"},
+	{"*.lookml", "LookML", "text/x-yaml", "0"},
+	{"*.ls", "LiveScript", "text/x-livescript", "0"},
+	{"*.lua", "Lua source code", "text/x-lua", "0"},
+	{"*.lvproj", "LabVIEW", "text/xml", "0"},
+	{"*.lwp", "Lotus Word Pro", "application/vnd.lotus-wordpro", "0"},
+	{"*.lz", "Lzip", "application/x-lzip", "0"},
+	{"*.lzma", "LZMA Alone", "application/x-lzma", "0"},
+	{"*.m", "Objective-C source code", "text/x-objcsrc", "0"},
+	{"*.m3", "Modula source code", "text/x-modula", "0"},
+	{"*.m3u", "MP3 Playlist File", "audio/x-mpegurl", "0"},
+	{"*.maff", "MAFF", "application/x-maff", "0"},
+	{"*.mak", "Makefile", "text/x-cmake", "0"},
+	{"*.marko", "Marko", "text/html", "0"},
+	{"*.mas", "Lotus Freelance Smartmaster Graphics", "application/vnd.lotus-freelance", "0"},
+	{"*.mat", "MAT-File Level 5 File Format", "application/matlab-mat", "0"},
+	{"*.mathematica", "Mathematica", "text/x-mathematica", "0"},
+	{"*.matlab", "MATLAB", "text/x-octave", "0"},
+	{"*.maxpat", "Max", "application/json", "0"},
+	{"*.mbox", "MBOX Email Format", "application/mbox", "0"},
+	{"*.mbx", "Mbox", "application/mbox", "0"},
+	{"*.mcw", "Microsoft Word for Macintosh Document 5.0", "application/msword;version=\"5.0\"", "0"},
+	{"*.md", "Markdown", "text/markdown", "0"},
+	{"*.mdi", "Microsoft Document Imaging", "image/vnd.ms-modi", "0"},
+	{"*.mef", "Mamiya raw image", "image/x-raw-mamiya", "0"},
+	{"*.metal", "Metal", "text/x-c++src", "0"},
+	{"*.mht", "Microsoft Web Archive", "multipart/related", "0"},
+	{"*.mid", "Musical Instrument Digital Interface", "audio/midi", "0"},
+	{"*.mif", "FrameMaker Interchange Format", "application/x-mif", "0"},
+	{"*.mix", "MIX (PhotoDraw)", "image/vnd.mix", "0"},
+	{"*.mj2", "MJ2 (Motion JPEG 2000)", "video/mj2", "0"},
+	{"*.mkv", "Matroska Multimedia Container", "video/x-matroska", "0"},
+	{"*.ml", "OCaml", "text/x-ocaml", "0"},
+	{"*.mlp", "Dolby MLP Lossless Audio", "audio/vnd.dolby.mlp", "0"},
+	{"*.mm", "Mm", "application/x-freemind", "0"},
+	{"*.mmp", "MindManager", "application/vnd.mindjet.mindmanager", "0"},
+	{"*.mmr", "Xerox EDMICS-MMR", "image/vnd.fujixerox.edmics-mmr", "0"},
+	{"*.mng", "Multiple-image Network Graphics", "video/x-mng", "0"},
+	{"*.mo", "Modelica", "text/x-modelica", "0"},
+	{"*.mobi", "Mobipocket File Format", "application/x-mobipocket-ebook", "0"},
+	{"*.mod", "CATIA Model 4", "application/octet-stream;version=\"4\"", "0"},
+	{"*.mol", "MOL", "chemical/x-mdl-molfile", "0"},
+	{"*.mos", "Leaf raw image", "image/x-raw-leaf", "0"},
+	{"*.mov", "QuickTime File Format", "video/quicktime", "0"},
+	{"*.mp1", "MPEG Audio Layer I", "audio/mpeg", "0"},
+	{"*.mp2", "MPEG Audio Stream, Layer II", "audio/mpeg", "0"},
+	{"*.mp3", "MP3 File Format", "audio/mpeg", "0"},
+	{"*.mp4", "MPEG-4 File Format, Version 2", "video/mp4", "0"},
+	{"*.mpeg", "MPEG Movie Clip", "video/mpeg", "0"},
+	{"*.mpg", "MPEG-1", "video/mpeg", "0"},
+	{"*.mpga", "MPEG-1 Audio Layer 3", "audio/mpeg", "0"},
+	{"*.mpp", "Microsoft Project 2010", "application/vnd.ms-project;version=\"2010\"", "0"},
+	{"*.mpx", "Microsoft Project Export File 4.0", "application/x-project;version=\"4.0\"", "0"},
+	{"*.mrc", "MARC", "application/marc", "0"},
+	{"*.mrw", "Minolta raw image", "image/x-raw-minolta", "0"},
+	{"*.msg", "Microsoft Outlook Message", "application/vnd.ms-outlook", "0"},
+	{"*.msi", "Microsoft Windows Installer", "application/x-msi", "0"},
+	{"*.mso", "ActiveMime", "application/x-mso", "0"},
+	{"*.mtml", "MTML", "text/html", "0"},
+	{"*.muf", "MUF", "text/x-forth", "0"},
+	{"*.mumps", "M", "text/x-mumps", "0"},
+	{"*.mxf", "Material Exchange Format (MXF)", "application/mxf", "0"},
+	{"*.mxl", "Compressed Music XML", "application/vnd.recordare.musicxml", "0"},
+	{"*.mxmf", "Mobile eXtensible Music Format", "audio/mobile-xmf", "0"},
+	{"*.n3", "Notation3", "text/n3", "0"},
+	{"*.nap", "NAPLPS", "image/naplps", "0"},
+	{"*.nb", "Mathematica Notebook", "application/mathematica", "0"},
+	{"*.nc", "NetCDF-3 (Network Common Data Form, version 3)", "application/x-netcdf", "0"},
+	{"*.nef", "Nikon raw image", "image/x-raw-nikon", "0"},
+	{"*.nfo", "NFO", "text/x-nfo", "0"},
+	{"*.nginxconf", "Nginx", "text/x-nginx-conf", "0"},
+	{"*.nif", "Notation Interchange File Format", "application/vnd.music-niff", "0"},
+	{"*.nl", "NewLisp", "text/x-common-lisp", "0"},
+	{"*.nlogo", "NetLogo", "text/x-common-lisp", "0"},
+	{"*.ns2", "Lotus Notes Database 2", "application/vnd.lotus-notes;version=\"2\"", "0"},
+	{"*.ns3", "Lotus Notes Database 3", "application/vnd.lotus-notes;version=\"3\"", "0"},
+	{"*.ns4", "Lotus Notes Database 4", "application/vnd.lotus-notes;version=\"4\"", "0"},
+	{"*.nsf", "Notes Storage Facility", "application/vnd.lotus-notes", "0"},
+	{"*.nsi", "NSIS", "text/x-nsis", "0"},
+	{"*.ntf", "National Imagery Transmission Format", "application/vnd.nitf", "0"},
+	{"*.nu", "Nu", "text/x-scheme", "0"},
+	{"*.numpy", "NumPy", "text/x-python", "0"},
+	{"*.nut", "Squirrel", "text/x-c++src", "0"},
+	{"*.ocaml", "Ocaml source code", "text/x-ocaml", "0"},
+	{"*.odb", "OpenDocument Database Front End Document Format (ODB), Version 1.2,  ISO 26300-1:2015", "application/vnd.oasis.opendocument.database", "0"},
+	{"*.odc", "OpenDocument v1.0: Chart document", "application/vnd.oasis.opendocument.chart", "0"},
+	{"*.odf", "OpenDocument v1.0: Formula document", "application/vnd.oasis.opendocument.formula", "0"},
+	{"*.odft", "OpenDocument v1.0: Formula document used as template", "application/vnd.oasis.opendocument.formula-template", "0"},
+	{"*.odg", "OpenDocument Drawing", "application/vnd.oasis.opendocument.graphics", "0"},
+	{"*.odi", "OpenDocument v1.0: Image document", "application/vnd.oasis.opendocument.image", "0"},
+	{"*.odm", "OpenDocument", "application/vnd.oasis.opendocument.text-master", "0"},
+	{"*.odp", "OpenDocument Presentation", "application/vnd.oasis.opendocument.presentation", "0"},
+	{"*.ods", "OpenDocument Spreadsheet", "application/vnd.oasis.opendocument.spreadsheet", "0"},
+	{"*.odt", "OpenDocument Text", "application/vnd.oasis.opendocument.text", "0"},
+	{"*.ofx", "Open Financial Exchange 2.1.1", "application/x-ofx;version=\"2.1.1\"", "0"},
+	{"*.oga", "Ogg Vorbis Audio", "audio/ogg", "0"},
+	{"*.ogg", "Ogg Vorbis Codec Compressed Multimedia File", "audio/ogg", "0"},
+	{"*.ogm", "Ogg Packaged OGM Video", "video/x-ogm", "0"},
+	{"*.ogv", "Ogg Vorbis Video", "video/ogg", "0"},
+	{"*.ogx", "Ogg Skeleton", "application/ogg", "0"},
+	{"*.one", "Microsoft OneNote", "application/msonenote", "0"},
+	{"*.opf", "DTB (Digital Talking Book), 2005", "application/x-dtbook+xml", "0"},
+	{"*.opus", "Ogg Opus Codec Compressed WAV File", "audio/opus", "0"},
+	{"*.ora", "OpenRaster", "image/openraster", "0"},
+	{"*.orf", "Olympus raw image", "image/x-raw-olympus", "0"},
+	{"*.otc", "OpenDocument v1.0: Chart document used as template", "application/vnd.oasis.opendocument.chart-template", "0"},
+	{"*.otf", "OpenType Font", "application/x-font-otf", "0"},
+	{"*.otg", "OpenDocument v1.0: Graphics document used as template", "application/vnd.oasis.opendocument.graphics-template", "0"},
+	{"*.oth", "OpenDocument v1.0: Text document used as template for HTML documents", "application/vnd.oasis.opendocument.text-web", "0"},
+	{"*.oti", "OpenDocument v1.0: Image document used as template", "application/vnd.oasis.opendocument.image-template", "0"},
+	{"*.otm", "OpenDocument v1.0: Global Text document", "application/vnd.oasis.opendocument.text-master", "0"},
+	{"*.otp", "OpenDocument v1.0: Presentation document used as template", "application/vnd.oasis.opendocument.presentation-template", "0"},
+	{"*.ots", "OpenDocument v1.0: Spreadsheet document used as template", "application/vnd.oasis.opendocument.spreadsheet-template", "0"},
+	{"*.ott", "OpenDocument v1.0: Text document used as template", "application/vnd.oasis.opendocument.text-template", "0"},
+	{"*.oxps", "OpenXPS", "application/oxps", "0"},
+	{"*.oz", "Oz", "text/x-oz", "0"},
+	{"*.p", "Pascal source code", "text/x-pascal", "0"},
+	{"*.p65", "Pagemaker Document (Generic)", "application/vnd.pagemaker", "0"},
+	{"*.pab", "Personal Folder File", "application/vnd.ms-outlook", "0"},
+	{"*.pack", "Package (Web)", "application/package", "0"},
+	{"*.pam", "Portable Arbitrary Map", "image/x-portable-arbitrarymap", "0"},
+	{"*.pas", "Pascal", "text/x-pascal", "0"},
+	{"*.pbm", "Netpbm formats", "image/x-portable-bitmap", "0"},
+	{"*.pcap", "TCPDump pcap packet capture", "application/vnd.tcpdump.pcap", "0"},
+	{"*.pcapng", "pcap Next Generation Packet Capture", "application/vnd.tcpdump.pcap", "0"},
+	{"*.pcl", "PCL", "application/vnd.hp-pcl", "0"},
+	{"*.pct", "Macintosh PICT Image 2.0", "image/x-pict;version=\"2.0\"", "0"},
+	{"*.pcx", "PCX", "image/vnd.zbrush.pcx", "0"},
+	{"*.pdb", "Palm OS Database", "application/vnd.palm", "0"},
+	{"*.pdf", "Portable Document Format", "application/pdf", "0"},
+	{"*.pfm", "Printer Font Metric", "application/x-font-printer-metric", "0"},
+	{"*.pfr", "PFR", "application/font-tdpfr", "0"},
+	{"*.pgm", "Portable Graymap Graphic", "image/x-portable-graymap", "0"},
+	{"*.pgn", "PGN", "application/x-chess-pgn", "0"},
+	{"*.pgsql", "PLpgSQL", "text/x-sql", "0"},
+	{"*.php", "PHP script", "text/x-php", "0"},
+	{"*.phtml", "HTML+PHP", "application/x-httpd-php", "0"},
+	{"*.pic", "Apple Macintosh QuickDraw/PICT Format", "image/x-pict", "0"},
+	{"*.pict", "PICT", "image/x-pict", "0"},
+	{"*.pkpass", "PKPass", "application/vnd.apple.pkpass", "0"},
+	{"*.pl", "Perl script", "text/x-perl", "0"},
+	{"*.pls", "PLSQL", "text/x-plsql", "0"},
+	{"*.png", "Portable Network Graphics", "image/png", "0"},
+	{"*.pnm", "Portable Any Map", "image/x-portable-anymap", "0"},
+	{"*.pod", "Pod", "text/x-perl", "1"},
+	{"*.por", "SPSS Portable File, ASCII encoding", "application/x-spss-por", "0"},
+	{"*.potm", "Microsoft PowerPoint Macro-Enabled Template 2007", "application/vnd.ms-powerpoint.template.macroenabled.12;version=\"2007\"", "0"},
+	{"*.potx", "Office Open XML Presentation Template", "application/vnd.openxmlformats-officedocument.presentationml.template", "0"},
+	{"*.pp", "Puppet", "text/x-puppet", "0"},
+	{"*.ppam", "Office Open XML Presentation Add-in (macro-enabled)", "application/vnd.ms-powerpoint.addin.macroenabled.12", "0"},
+	{"*.ppm", "Portable Pixel Map - ASCII", "image/x-portable-pixmap", "0"},
+	{"*.pps", "Microsoft Powerpoint Presentation Show 97-2003", "application/vnd.ms-powerpoint;version=\"97-2003\"", "0"},
+	{"*.ppsm", "Office Open XML Presentation Slideshow (macro-enabled)", "application/vnd.ms-powerpoint.slideshow.macroenabled.12", "0"},
+	{"*.ppsx", "Office Open XML Presentation Slideshow", "application/vnd.openxmlformats-officedocument.presentationml.slideshow", "0"},
+	{"*.ppt", "Microsoft Powerpoint Presentation", "application/vnd.ms-powerpoint", "0"},
+	{"*.pptm", "Office Open XML Presentation (macro-enabled)", "application/vnd.ms-powerpoint.presentation.macroenabled.12", "0"},
+	{"*.pptx", "Office Open XML Presentation", "application/vnd.openxmlformats-officedocument.presentationml.presentation", "0"},
+	{"*.prc", "PRC (Palm OS)", "application/vnd.palm", "0"},
+	{"*.pro", "Prolog source code", "text/x-prolog", "0"},
+	{"*.project", "CATIA Project 4", "application/octet-stream;version=\"4\"", "0"},
+	{"*.properties", "Java Properties", "text/properties", "0"},
+	{"*.proto", "Protocol Buffer", "text/x-protobuf", "0"},
+	{"*.ps", "PostScript", "application/postscript", "0"},
+	{"*.ps1", "PowerShell", "application/x-powershell", "0"},
+	{"*.psb", "Adobe Photoshop Large Document Format", "image/vnd.adobe.photoshop", "0"},
+	{"*.psd", "Adobe Photoshop", "image/vnd.adobe.photoshop", "0"},
+	{"*.psid", "Play SID Audio 2", "audio/prs.sid;version=\"2\"", "0"},
+	{"*.pst", "Outlook Personal Folders File Format", "application/vnd.ms-outlook-pst", "0"},
+	{"*.ptx", "Pentax raw image", "image/x-raw-pentax", "0"},
+	{"*.purs", "PureScript", "text/x-haskell", "0"},
+	{"*.pxn", "Logitech raw image", "image/x-raw-logitech", "0"},
+	{"*.py", "Python script", "text/x-python", "0"},
+	{"*.pyx", "Cython", "text/x-cython", "0"},
+	{"*.qcd", "Quark Xpress Data File", "application/vnd.quark.quarkxpress", "0"},
+	{"*.qcp", "QCP Audio File Format", "audio/qcelp", "0"},
+	{"*.qif", "Quicken Interchange Format", "application/qif", "0"},
+	{"*.qxp", "QuarkXPress", "application/vnd.quark.quarkxpress", "0"},
+	{"*.qxp report", "Quark Xpress Report File", "application/vnd.quark.quarkxpress", "0"},
+	{"*.r", "R source code", "text/x-rsrc", "0"},
+	{"*.r3d", "Red raw image", "image/x-raw-red", "0"},
+	{"*.ra", "RealAudio", "audio/vnd.rn-realaudio", "0"},
+	{"*.raf", "Fuji raw image", "image/x-raw-fuji", "0"},
+	{"*.ram", "RealAudio Metafile", "audio/vnd.rn-realaudio", "0"},
+	{"*.raml", "RAML", "text/x-yaml", "0"},
+	{"*.rar", "RAR", "application/vnd.rar", "0"},
+	{"*.rar ", "RAR Archive File Format Family", "application/vnd.rar", "0"},
+	{"*.ras", "Sun Raster Image", "image/x-sun-raster", "0"},
+	{"*.raw", "Panasonic raw image", "image/x-raw-panasonic", "0"},
+	{"*.rb", "Ruby source code", "text/x-ruby", "0"},
+	{"*.rdf", "RDF", "application/rdf+xml", "0"},
+	{"*.re", "Reason", "text/x-rustsrc", "0"},
+	{"*.reg", "Windows Registry Entries", "text/x-properties", "0"},
+	{"*.rest", "reStructuredText source code", "text/x-rst", "0"},
+	{"*.rexx", "Rexx source code", "text/x-rexx", "0"},
+	{"*.rf64", "Broadcast WAVE 0 WAVEFORMATEXTENSIBLE Encoding", "audio/x-wav;version=\"0waveformatextensibleencoding\"", "0"},
+	{"*.rfa", "Revit Family File", "application/octet-stream", "0"},
+	{"*.rft", "Revit Family Template", "application/octet-stream", "0"},
+	{"*.rg", "Rouge", "text/x-clojure", "0"},
+	{"*.rgb", "Silicon Graphics RGB Bitmap", "image/x-rgb", "0"},
+	{"*.rhtml", "RHTML", "application/x-erb", "0"},
+	{"*.rlc", "Xerox EDMICS-RLC", "image/vnd.fujixerox.edmics-rlc", "0"},
+	{"*.rm", "RealAudio, Version 10", "application/vnd.rn-realmedia", "0"},
+	{"*.rmd", "RMarkdown", "text/x-gfm", "1"},
+	{"*.rmi", "RIFF-based MIDI File Format", "audio/mid", "0"},
+	{"*.rmp", "RealMedia Player Plug-in", "audio/x-pn-realaudio-plugin", "0"},
+	{"*.roff", "Roff", "text/troff", "0"},
+	{"*.rpm", "RedHat Package Manager", "application/x-rpm", "0"},
+	{"*.rs", "Rust", "text/x-rustsrc", "0"},
+	{"*.rss", "RSS", "application/rss+xml", "0"},
+	{"*.rst", "reStructuredText", "text/x-rst", "1"},
+	{"*.rte", "Revit Template", "application/octet-stream", "0"},
+	{"*.rtf", "Rich Text Format File", "application/rtf", "0"},
+	{"*.rv", "Real Video", "video/vnd.rn-realvideo", "0"},
+	{"*.rvg", "Revit External Group", "application/octet-stream", "0"},
+	{"*.rvt", "Revit Project", "application/octet-stream", "0"},
+	{"*.rws", "Revit Workspace", "application/octet-stream", "0"},
+	{"*.rwz", "Rawzor raw image", "image/x-raw-rawzor", "0"},
+	{"*.s", "Assembler source code", "text/x-asm", "0"},
+	{"*.s7m", "SAS DMDB Data Mining Database File", "application/x-sas-dmdb", "0"},
+	{"*.sa7", "SAS Access Descriptor", "application/x-sas-access", "0"},
+	{"*.sage", "Sage", "text/x-python", "0"},
+	{"*.sam", "AMI Professional Document", "application/vnd.lotus-wordpro", "0"},
+	{"*.sas", "SAS Program", "application/x-sas", "0"},
+	{"*.sas7bbak", "SAS Backup", "application/x-sas-backup", "0"},
+	{"*.sass", "Sass", "text/x-sass", "0"},
+	{"*.sav", "SPSS System Data File Format Family (.sav)", "application/x-spss-sav", "0"},
+	{"*.sc7", "SAS Catalog", "application/x-sas-catalog", "0"},
+	{"*.scala", "Scala source code", "text/x-scala", "0"},
+	{"*.sch", "Eagle", "text/xml", "0"},
+	{"*.scm", "Scheme source code", "text/x-scheme", "0"},
+	{"*.scores", "Xbill.scores", "text/plain", "0"},
+	{"*.scss", "SCSS", "text/x-scss", "0"},
+	{"*.sd7", "SAS Data Set", "application/x-sas-data", "0"},
+	{"*.sda", "SDA (StarOffice)", "application/vnd.stardivision.draw", "0"},
+	{"*.sdc", "SDC", "application/vnd.stardivision.calc", "0"},
+	{"*.sdn", "Steel Detailing Neutral Format", "text/plain", "0"},
+	{"*.sdw", "StarOffice binary formats", "application/vnd.stardivision.writer", "0"},
+	{"*.sed", "Sed code", "text/x-sed", "0"},
+	{"*.sf7", "SAS FDB Consolidation Database File", "application/x-sas-fdb", "0"},
+	{"*.sfd", "Spline Font Database", "application/vnd.font-fontforge-sfd", "0"},
+	{"*.sgm", "Standard Generalized Markup Language", "text/sgml", "0"},
+	{"*.sgml", "SGML", "text/sgml", "0"},
+	{"*.sh", "UNIX/LINUX Shell Script", "application/x-sh", "0"},
+	{"*.sh-session", "ShellSession", "text/x-sh", "0"},
+	{"*.shar", "Shell Archive Format", "application/x-shar", "0"},
+	{"*.shtml", "Server Side Includes", "text/x-server-parsed-html", "0"},
+	{"*.si7", "SAS Data Set Index", "application/x-sas-data-index", "0"},
+	{"*.sid", "SID", "audio/prs.sid", "0"},
+	{"*.sit", "StuffIt", "application/x-stuffit", "0"},
+	{"*.sitx", "StuffIt X", "application/x-stuffitx", "0"},
+	{"*.skb", "SketchUp Document", "application/octet-stream", "0"},
+	{"*.skp", "SSEYO Koan File", "application/vnd.koan", "0"},
+	{"*.sla", "Scribus", "application/vnd.scribus", "0"},
+	{"*.sld", "AutoCAD Slide", "application/sld", "0"},
+	{"*.sldm", "Microsoft PowerPoint Macro-Enabled Slide 2007", "application/vnd.ms-powerpoint.slide.macroenabled.12;version=\"2007\"", "0"},
+	{"*.sldprt", "SolidWorks CAD program", "application/sldworks", "0"},
+	{"*.slim", "Slim", "text/x-slim", "0"},
+	{"*.sls", "SaltStack", "text/x-yaml", "0"},
+	{"*.sm7", "SAS MDDB Multi-Dimensional Database File", "application/x-sas-mddb", "0"},
+	{"*.smi", "SMIL Multimedia", "application/smil+xml", "0"},
+	{"*.smk", "Smacker", "video/vnd.radgamettools.smacker", "0"},
+	{"*.soy", "Closure Templates", "text/x-soy", "0"},
+	{"*.sp7", "SAS Permanent Utility", "application/x-sas-putility", "0"},
+	{"*.sparql", "SPARQL", "application/sparql-query", "0"},
+	{"*.spec", "RPM Spec", "text/x-rpm-spec", "0"},
+	{"*.spl", "Macromedia FutureSplash File", "application/x-futuresplash", "0"},
+	{"*.spx", "Ogg Speex Audio Format", "audio/speex", "0"},
+	{"*.sql", "SQL code", "text/x-sql", "0"},
+	{"*.sr7", "SAS Item Store (ItemStor) File", "application/x-sas-itemstor", "0"},
+	{"*.srl", "Sereal binary serialization format", "application/sereal", "0"},
+	{"*.srt", "SRecode Template", "text/x-common-lisp", "0"},
+	{"*.ss7", "SAS Stored Program (DATA Step)", "application/x-sas-program-data", "0"},
+	{"*.ssml", "Speech Synthesis Markup Language", "application/ssml+xml", "0"},
+	{"*.st", "Smalltalk source code", "text/x-stsrc", "0"},
+	{"*.st7", "SAS Audit", "application/x-sas-audit", "0"},
+	{"*.stw", "STW", "application/vnd.sun.xml.writer.template", "0"},
+	{"*.stx", "SAS Transport File", "application/x-sas-transport", "0"},
+	{"*.su7", "SAS Utility", "application/x-sas-utility", "0"},
+	{"*.sublime-build", "JSON with Comments", "text/javascript", "0"},
+	{"*.sv", "SystemVerilog", "text/x-systemverilog", "0"},
+	{"*.sv7", "SAS Data Set View", "application/x-sas-view", "0"},
+	{"*.svf", "Simple Vector Format", "image/vnd.svf", "0"},
+	{"*.svg", "Scalable Vector Graphics", "image/svg+xml", "0"},
+	{"*.svgz", "Scalable Vector Graphics Compressed", "image/svg+xml", "0"},
+	{"*.swf", "SWF", "application/vnd.adobe.flash-movie", "0"},
+	{"*.swift", "Swift", "text/x-swift", "0"},
+	{"*.sxc", "OpenOffice Calc 1.0", "application/vnd.sun.xml.calc;version=\"1.0\"", "0"},
+	{"*.sxd", "SXD", "application/vnd.sun.xml.draw", "0"},
+	{"*.sxi", "SXI", "application/vnd.sun.xml.impress", "0"},
+	{"*.sxw", "OpenOffice.org XML", "application/vnd.sun.xml.writer", "0"},
+	{"*.sz", "Snappy Framed", "application/x-snappy-framed", "0"},
+	{"*.t", "TADS", "application/x-tads", "0"},
+	{"*.tap", "TAP (Tencent)", "image/vnd.tencent.tap", "0"},
+	{"*.tar", "Tape Archive", "application/x-tar", "0"},
+	{"*.tcl", "Tcl", "text/x-tcl", "0"},
+	{"*.tcsh", "Tcsh", "text/x-sh", "0"},
+	{"*.tex", "TeX Source", "text/x-tex", "0"},
+	{"*.textile", "Textile", "text/x-textile", "1"},
+	{"*.tfw", "ESRI World File", "text/plain", "0"},
+	{"*.tfx", "Tagged Image File Format for Internet Fax (TIFF-FX)", "image/tiff", "0"},
+	{"*.thmx", "Microsoft Office Theme", "application/vnd.ms-officetheme", "0"},
+	{"*.tif", "Tagged Image File Format for Image Technology (TIFF/IT)", "image/tiff", "0"},
+	{"*.tif ", "Digital Raster Graphic as TIFF", "image/tiff", "0"},
+	{"*.tiff", "Tagged Image File Format", "image/tiff", "0"},
+	{"*.toml", "TOML", "text/x-toml", "0"},
+	{"*.torrent", "Torrent file", "application/x-bittorrent", "0"},
+	{"*.tpl", "Smarty", "text/x-smarty", "0"},
+	{"*.ts", "TypeScript", "application/typescript", "0"},
+	{"*.tsv", "Tab-separated values", "text/tab-separated-values", "0"},
+	{"*.tta", "True Audio 1", "audio/tta;version=\"1\"", "0"},
+	{"*.ttf", "TrueType Font", "application/x-font-ttf", "0"},
+	{"*.ttl", "Turtle", "text/turtle", "0"},
+	{"*.twig", "Twig", "text/x-twig", "0"},
+	{"*.txt", "Plain text", "text/plain", "0"},
+	{"*.u3d", "Universal 3D (U3D) format family. ECMA-363, Editions 1-4", "model/u3d", "0"},
+	{"*.uc", "UnrealScript", "text/x-java", "0"},
+	{"*.ulx", "Glulx", "application/x-glulx", "0"},
+	{"*.uno", "Uno", "text/x-csharp", "0"},
+	{"*.upc", "Unified Parallel C", "text/x-csrc", "0"},
+	{"*.url", "Internet Shortcut", "application/x-url", "0"},
+	{"*.v", "Verilog source code", "text/x-verilog", "0"},
+	{"*.vb", "Visual Basic", "text/x-vb", "0"},
+	{"*.vbs", "VBScript source code", "text/x-vbscript", "0"},
+	{"*.vcd", "Virtual CD-ROM CD Image File", "application/x-cdlink", "0"},
+	{"*.vcf", "VCard", "text/vcard", "0"},
+	{"*.vcs", "VCalendar format", "text/x-vcalendar", "0"},
+	{"*.vdx", "Microsoft Visio XML Drawing 2003-2010", "application/vnd.visio;version=\"2003-2010\"", "0"},
+	{"*.vhd", "VHDL source code", "text/x-vhdl", "0"},
+	{"*.vhdl", "VHDL", "text/x-vhdl", "0"},
+	{"*.viv", "VivoActive", "video/vnd-vivo", "0"},
+	{"*.vmdk", "Virtual Disk Format", "application/x-vmdk", "0"},
+	{"*.vmt", "Valve Material Type", "application/vnd.valve.source.material", "0"},
+	{"*.volt", "Volt", "text/x-d", "0"},
+	{"*.vot", "VOTable", "application/x-votable+xml", "0"},
+	{"*.vpb", "Quantel VPB image", "image/vpb", "0"},
+	{"*.vsd", "Microsoft Visio Diagram", "application/vnd.visio", "0"},
+	{"*.vsdm", "Office Open XML Visio Drawing (macro-enabled)", "application/vnd.ms-visio.drawing.macroenabled.12", "0"},
+	{"*.vsdx", "Visio VSDX Drawing File Format", "application/vnd.visio", "0"},
+	{"*.vssm", "Office Open XML Visio Stencil (macro-enabled)", "application/vnd.ms-visio.stencil.macroenabled.12", "0"},
+	{"*.vssx", "Office Open XML Visio Stencil (macro-free)", "application/vnd.ms-visio.stencil", "0"},
+	{"*.vstm", "Office Open XML Visio Template (macro-enabled)", "application/vnd.ms-visio.template.macroenabled.12", "0"},
+	{"*.vstx", "Office Open XML Visio Template (macro-free)", "application/vnd.ms-visio.template", "0"},
+	{"*.vtf", "Valve Texture Format", "image/vnd.valve.source.texture", "0"},
+	{"*.vtt", "Web Video Text Tracks Format", "text/vtt", "0"},
+	{"*.vwx", "Vectorworks 2015", "application/vnd.vectorworks;version=\"2015\"", "0"},
+	{"*.w50", "WordPerfect for MS-DOS Document 5.0", "application/vnd.wordperfect;version=\"5.0\"", "0"},
+	{"*.w51", "WordPerfect for MS-DOS/Windows Document 5.1", "application/vnd.wordperfect;version=\"5.1\"", "0"},
+	{"*.w52", "WordPerfect for Windows Document 5.2", "application/vnd.wordperfect;version=\"5.2\"", "0"},
+	{"*.warc", "WARC, Web ARChive file format", "application/warc", "0"},
+	{"*.wast", "WebAssembly", "text/x-common-lisp", "0"},
+	{"*.wav", "Waveform Audio", "audio/x-wav", "0"},
+	{"*.wbmp", "Wireless Bitmap File Format", "image/vnd.wap.wbmp", "0"},
+	{"*.webapp", "Open Web App Manifest", "application/x-web-app-manifest+json", "0"},
+	{"*.webidl", "WebIDL", "text/x-webidl", "0"},
+	{"*.webm", "WebM", "video/webm", "0"},
+	{"*.webp", "WebP", "image/webp", "0"},
+	{"*.wisp", "wisp", "text/x-clojure", "0"},
+	{"*.wk1", "Lotus 1-2-3 Worksheet 2.0", "application/vnd.lotus-1-2-3;version=\"2.0\"", "0"},
+	{"*.wk3", "Lotus 1-2-3 Worksheet 3.0", "application/vnd.lotus-1-2-3;version=\"3.0\"", "0"},
+	{"*.wk4", "Lotus 1-2-3 Worksheet 4-5", "application/vnd.lotus-1-2-3;version=\"4-5\"", "0"},
+	{"*.wks", "Lotus 1-2-3", "application/vnd.lotus-1-2-3", "0"},
+	{"*.wma", "WMA (Windows Media Audio) File Format", "audio/x-ms-wma", "0"},
+	{"*.wmf", "Windows Metafile", "image/wmf", "0"},
+	{"*.wmlc", "Compiled WML Document", "application/vnd.wap.wmlc", "0"},
+	{"*.wmls", "WML Script", "text/vnd.wap.wmlscript", "0"},
+	{"*.wmlsc", "Compiled WML Script", "application/vnd.wap.wmlscriptc", "0"},
+	{"*.wmv", "WMV (Windows Media Video) File Format", "video/x-ms-wmv", "0"},
+	{"*.woff", "Web Open Font Format", "application/font-woff", "0"},
+	{"*.wp4", "WordPerfect 4.0/4.1/4.2", "application/vnd.wordperfect;version=\"4.0/4.1/4.2\"", "0"},
+	{"*.wpd", "WordPerfect", "application/vnd.wordperfect", "0"},
+	{"*.wpl", "Windows Media Playlist", "application/vnd.ms-wpl", "0"},
+	{"*.wrl", "VRML", "model/vrml", "0"},
+	{"*.wsz", "Winamp Skin", "interface/x-winamp-skin", "0"},
+	{"*.x3d", "X3D", "model/x3d+xml", "0"},
+	{"*.x3f", "Sigma raw image", "image/x-raw-sigma", "0"},
+	{"*.xap", "Silverlight", "application/x-silverlight-app", "0"},
+	{"*.xar", "Xar (vector graphics)", "application/vnd.xara", "0"},
+	{"*.xbm", "XBM", "image/x-xbitmap", "0"},
+	{"*.xc", "XC", "text/x-csrc", "0"},
+	{"*.xcf", "GIMP Image File", "image/xcf", "0"},
+	{"*.xdm", "X-Windows Screen Dump File X10", "image/x-xwindowdump;version=\"x10\"", "0"},
+	{"*.xfdf", "XFDF", "application/vnd.adobe.xfdf", "0"},
+	{"*.xhtml", "Extensible HyperText Markup Language (XHTML), 1.0", "application/xhtml+xml", "0"},
+	{"*.xif", "XIFF", "image/vnd.xiff", "0"},
+	{"*.xla", "Microsoft Excel Macro 4.0", "application/vnd.ms-excel;version=\"4.0\"", "0"},
+	{"*.xlam", "Office Open XML Workbook Add-in (macro-enabled)", "application/vnd.ms-excel.addin.macroenabled.12", "0"},
+	{"*.xlc", "Microsoft Excel Chart 3.0", "application/vnd.ms-excel;version=\"3.0\"", "0"},
+	{"*.xlm", "Microsoft Excel Macro 3.0", "application/vnd.ms-excel;version=\"3.0\"", "0"},
+	{"*.xls", "Microsoft Excel Spreadsheet", "application/vnd.ms-excel", "0"},
+	{"*.xlsb", "Microsoft Excel 2007 Binary Spreadsheet", "application/vnd.ms-excel.sheet.binary.macroenabled.12", "0"},
+	{"*.xlsm", "Office Open XML Workbook (macro-enabled)", "application/vnd.ms-excel.sheet.macroenabled.12", "0"},
+	{"*.xlsx", "Office Open XML Workbook", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "0"},
+	{"*.xltm", "Office Open XML Workbook Template (macro-enabled)", "application/vnd.ms-excel.template.macroenabled.12", "0"},
+	{"*.xltx", "Office Open XML Workbook Template", "application/vnd.openxmlformats-officedocument.spreadsheetml.template", "0"},
+	{"*.xlw", "Microsoft Excel 4.0 Workbook (xls) 4W", "application/vnd.ms-excel;version=\"4w\"", "0"},
+	{"*.xm", "Extended Module Audio File", "audio/xm", "0"},
+	{"*.xmf", "XMF, eXtensible Music File Format, Version 1.0", "audio/mobile-xmf", "0"},
+	{"*.xmind", "XMind Pro", "application/x-xmind", "0"},
+	{"*.xml", "Extensible Markup Language", "application/xml", "0"},
+	{"*.xmt", "MPEG-4, eXtensible MPEG-4 Textual Format (XMT)", "application/mpeg4-iod-xmt", "0"},
+	{"*.xpi", "Cross-Platform Installer Module", "application/x-xpinstall", "0"},
+	{"*.xpl", "XProc", "text/xml", "0"},
+	{"*.xpm", "X-Windows Pixmap Image X10", "image/x-xpixmap;version=\"x10\"", "0"},
+	{"*.xps", "Open XML Paper Specification", "application/oxps", "0"},
+	{"*.xpt", "SAS Transport File Format (XPORT) Family ", "application/x-sas-xport", "0"},
+	{"*.xq", "XQuery source code", "application/xquery", "0"},
+	{"*.xquery", "XQuery", "application/xquery", "0"},
+	{"*.xs", "XS", "text/x-csrc", "0"},
+	{"*.xsd", "XML Schema Definition", "application/xml", "0"},
+	{"*.xsl", "Extensible Stylesheet Language", "application/xml", "0"},
+	{"*.xslfo", "XSL Format", "application/xslfo+xml", "0"},
+	{"*.xslt", "XSL Transformations", "application/xslt+xml", "0"},
+	{"*.xsp-config", "XPages", "text/xml", "0"},
+	{"*.xspf", "XML Shareable Playlist Format", "application/xspf+xml", "0"},
+	{"*.xwd", "X Windows Dump", "image/x-xwindowdump", "0"},
+	{"*.xz", "XZ", "application/x-xz", "0"},
+	{"*.y", "Yacc/Bison source code", "text/x-yacc", "0"},
+	{"*.yaml", "YAML source code", "text/x-yaml", "0"},
+	{"*.yml", "YAML", "text/x-yaml", "0"},
+	{"*.zip", "Compressed Archive File", "application/zip", "0"},
+	{NULL, NULL, NULL, NULL }	
+};
