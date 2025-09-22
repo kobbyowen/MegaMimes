@@ -1,0 +1,99 @@
+# ---- Build directories
+/build/
+/build-*/ 
+/cmake-build-*/
+/out/
+/_install/
+/dist/
+/package/
+/Testing/
+
+# ---- CMake files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake_install.cmake
+CMakeTmp/
+/_compile_commands.json  # uncomment to ignore if you don't want to commit it
+Makefile
+install_manifest.txt
+
+# ---- Libraries / objects / debug
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.dll
+*.dylib
+*.so
+*.so.*
+*.exp
+*.pdb
+*.ilk
+
+# ---- Coverage / profiling / sanitizer
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+*.coverage
+sanitizer-*log*
+lsan.* 
+asan.* 
+tsan.*
+
+# ---- Logs & temp
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# ---- Pkg-config & generated metadata
+*.pc
+*.pkg.tar.*
+/lib/cmake/
+/lib/pkgconfig/
+
+# ---- Test/bench/fuzz outputs
+/fuzz-*/ 
+/corpus/
+/findings/
+/crash-*/ 
+/leaks-*/
+
+# ---- Docs (if you build locally)
+docs/_build/
+/site/
+
+# ---- IDE/editor
+.vscode/
+.vscode-*/
+.idea/
+*.iml
+*.code-workspace
+
+# ---- Tags & indexes
+tags
+TAGS
+
+# ---- Platform-specific
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ---- Archive helpers
+*.tar
+*.tar.*
+*.zip
