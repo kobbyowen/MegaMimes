@@ -18,7 +18,7 @@ set(MEGAMIMES_PUBLIC_HEADERS
 )
 
 set(MEGAMIMES_SOURCES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/megamimes.c
+	${CMAKE_CURRENT_SOURCE_DIR}/src/MegaMimes.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/megamagic.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/megaext.c
   ${CMAKE_CURRENT_SOURCE_DIR}/src/megautf8.c
