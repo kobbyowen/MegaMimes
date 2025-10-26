@@ -3,7 +3,6 @@
 #include <stddef.h>
 
 #if defined(_WIN32)
-  #include <strings.h>
   #define MEGA_STRCASECMP _stricmp
 #else
   #include <strings.h>
