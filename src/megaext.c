@@ -584,7 +584,7 @@ static const struct { const char* ext; const char* name; const char* mime; const
 	{"skb", "SketchUp Document", "application/octet-stream", "0"},
 	{"skp", "SSEYO Koan File", "application/vnd.koan", "0"},
 	{"sla", "Scribus", "application/vnd.scribus", "0"},
-	{"sld", "AutoCAD Slide", "application/sld", "0"},
+	{"sld", "AutoCAD Slide", "image/x-sld", "0"},
 	{"sldm", "Microsoft PowerPoint Macro-Enabled Slide 2007", "application/vnd.ms-powerpoint.slide.macroenabled.12;version=\"2007\"", "0"},
 	{"sldprt", "SolidWorks CAD program", "application/sldworks", "0"},
 	{"slim", "Slim", "text/x-slim", "0"},
