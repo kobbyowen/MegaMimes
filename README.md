@@ -1,20 +1,34 @@
 # MegaMimes v2.1
 
-Tiny, dependency-free C library to:
+Tiny, dependency-free C99 library for MIME detection and content classification.
 
-- Detect **MIME types** (magic signatures → container hints → extension fallback)
-- Tell if a file is **text or binary**
-- Guess **text encoding** (BOM + UTF-8 validation)
+MegaMimes probes files with layered evidence:
 
-Includes a lightweight CLI: `mmime` and a CTest suite in `tests/`.
+- magic signatures
+- container hints
+- extension fallback (disabled in strict mode)
 
-## Features
+It also reports text/binary classification and text encoding.
 
-- 🧪 Magic signatures for common formats (PDF/PNG/JPEG/GIF/WebP/ZIP/MP4/MP3/ELF/PE, soft JSON)
-- 🔤 Text vs. binary check with UTF-8 validator and BOM detection (UTF-8/UTF-16/UTF-32 LE/BE)
-- 🧩 Extension fallback with a tiny, customizable table (includes **Roff manpages** `1`–`8`)
-- 🧰 Zero external deps, C99, portable (Linux/macOS/Windows)
-- 🧪 CTest suite in `tests/`
+## What's New in 2.1
+
+- confidence scoring for each detection candidate
+- strict mode for security-oriented detection
+- ranked candidate output (best + alternatives)
+- suspicious flag for conflicting/weak evidence
+- runtime tuning APIs:
+  - mega_set_mode
+  - mega_set_max_bytes
+
+## Core Features
+
+- MIME detection from multiple signal sources
+- confidence-based result selection
+- candidate list in MegaFileInfo
+- strict mode requiring strong signals
+- UTF BOM + UTF-8 based text/encoding detection
+- zero external dependencies
+- portable C99 (Linux/macOS/Windows)
 
 ## Build (shared lib + CLI)
 
@@ -24,7 +38,7 @@ cmake -S . -B build -DMEGA_BUILD_SHARED=ON -DMEGA_BUILD_CLI=ON -DMEGA_ENABLE_TES
 cmake --build build -j
 ```
 
-## Run tests
+## Run Tests
 
 ```bash
 ctest --test-dir build --output-on-failure -V
@@ -34,33 +48,48 @@ ctest --test-dir build --output-on-failure -V
 
 ```bash
 cmake --install build --prefix /usr/local
-# pkg-config
 pkg-config --cflags --libs megamimes
 ```
 
-## CLI usage
+## CLI Usage
 
 ```bash
-# analyze a file
+# Analyze a file
 ./build/mmime /path/to/file
 
 # JSON output
 ./build/mmime /path/to/file --json
 ```
 
-## Minimal C API usage
+## Minimal C API Usage
 
 ```c
 #include "megamimes.h"
+#include <stdio.h>
 
 int main(void) {
   MegaMimesCtx* ctx = mega_open(NULL);
   if (!ctx) return 1;
+
+  mega_set_mode(ctx, MEGA_MODE_STRICT);
+  mega_set_max_bytes(ctx, 4096);
+
   MegaFileInfo* info = NULL;
   if (mega_probe_path(ctx, "file.pdf", &info) == MEGA_OK) {
-    /* info->mime_type, info->source ("magic|container|extension"),
-       info->is_text, info->text_encoding */
+    printf("mime=%s source=%s confidence=%.2f suspicious=%d\n",
+      info->mime_type,
+      info->source,
+      info->confidence,
+      info->suspicious);
+
+    for (size_t i = 0; i < info->candidate_count; i++) {
+      printf("candidate[%zu] %s (%.2f)\n",
+        i,
+        info->candidates[i].mime,
+        info->candidates[i].confidence);
+    }
   }
+
   mega_free(ctx, info);
   mega_close(ctx);
   return 0;
@@ -69,19 +98,19 @@ int main(void) {
 
 ## CMake Options
 
-- `MEGA_BUILD_SHARED` (ON) – build shared library
-- `MEGA_BUILD_STATIC` (OFF) – also build static library
-- `MEGA_BUILD_CLI` (ON) – build `mmime` tool
-- `MEGA_ENABLE_TESTS` (ON) – enable `tests/` via CTest
-- `MEGA_ENABLE_SIMD` (OFF) – enable optional SIMD fast-paths
+- MEGA_BUILD_SHARED (ON): build shared library
+- MEGA_BUILD_STATIC (OFF): also build static library
+- MEGA_BUILD_CLI (ON): build mmime tool
+- MEGA_ENABLE_TESTS (ON): enable tests via CTest
+- MEGA_ENABLE_SIMD (OFF): enable optional SIMD fast paths
 
-## Project layout
+## Project Layout
 
-```
+```text
 .
-├─ include/          # public headers (megamimes.h)
-├─ src/              # library sources
-├─ tools/            # mmime CLI
-├─ tests/            # CTest suites
-└─ CMakeLists.txt
+|- include/   # public headers
+|- src/       # library sources
+|- tools/     # mmime CLI
+|- tests/     # CTest suites
+`- CMakeLists.txt
 ```
