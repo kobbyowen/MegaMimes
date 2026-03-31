@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 # ---- Project ----
-project(megamimes VERSION 2.0.0 LANGUAGES C)
+project(megamimes VERSION 2.1.0 LANGUAGES C)
 
 include(GNUInstallDirs)  # provides CMAKE_INSTALL_INCLUDEDIR / LIBDIR / BINDIR, etc.
 
@@ -115,19 +115,6 @@ install(EXPORT megamimesTargets
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/megamimes
 )
 
-# ---- pkg-config file ----
-# Put this template at project root as CMakePkg.pc.in:
-#   prefix=@CMAKE_INSTALL_PREFIX@
-#   exec_prefix=${prefix}
-#   libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
-#   includedir=${prefix}/@CMAKE_INSTALL_INCLUDEDIR@
-#
-#   Name: megamimes
-#   Description: Tiny MIME, text/binary and encoding detector
-#   Version: @PROJECT_VERSION@
-#   Libs: -L${libdir} -lmegamimes
-#   Cflags: -I${includedir}
-#
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CMakePkg.pc.in
                ${CMAKE_CURRENT_BINARY_DIR}/megamimes.pc @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/megamimes.pc
