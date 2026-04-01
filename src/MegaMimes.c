@@ -2,9 +2,12 @@
 #include "megautil.h"
 #include <stdio.h>
 #include <string.h>
-#include <strings.h>
 #include <errno.h>
 #include <sys/types.h>
+
+#if !defined(_WIN32)
+  #include <strings.h>
+#endif
 
 #if defined(_WIN32)
   #include <io.h>

@@ -8,6 +8,13 @@ add_executable(megamimes_tests
 )
 if(TARGET megamimes)
   target_link_libraries(megamimes_tests PRIVATE megamimes)
+  if(WIN32)
+    add_custom_command(TARGET megamimes_tests POST_BUILD
+      COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        $<TARGET_FILE:megamimes>
+        $<TARGET_FILE_DIR:megamimes_tests>
+    )
+  endif()
 else()
   target_link_libraries(megamimes_tests PRIVATE megamimes_static)
 endif()
